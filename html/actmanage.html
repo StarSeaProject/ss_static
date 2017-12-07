@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <title>Title</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="tab">
+            <div class="row container form">
+                <input type="text" id="text" />
+                <input id="query" type="submit" value="查询活动" class="btn btn-info btn-lg text-right" />
+            </div>
+            <br> <br> <br>
+            <!-- -->
+
+            <div class="row container" style="height: 500px;">
+                <table id="activitys" class="table">
+                    <thead>
+                        <tr>
+                            <th>活动名</th>
+                            <th>活动状态</th>
+                            <th><button id="addfun" class="btn btn-info btn-lg text-right">添加活动</button></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="pages"></div>
+            </div>
+            <div id="addact">
+                <form class="form" method="post" action="activity/add">
+                    <table class="table">
+                        <tr>
+                            <td>请输入活动名称：</td>
+                            <td><input name="activityName" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>输入具体内容:</td>
+                            <td><input name="activityContent" type="text" style="height: 100px;"><br></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="添加活动" class="btn btn-success btn-lg text-right"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div id="showdetail">
+                <h1 id="showactname"></h1>
+                <br>
+                <p id="showactcontent"></p>
+                <br>
+                <p id="showactstatus"><button id="changestatus" class="btn btn-primary btn-lg text-right">更改活动状态</button></p>
+                <div id="changecontainer">
+                    <form action="activity/modify" class="form" method="post" id="modifyForm">
+                        <input type="hidden" name="activityId" id="modifyActivityId" />
+                        <input type="radio" value="2" name="activityStatus" />进行中
+                        <input type="radio" value="3" name="activityStatus" />已结束
+                        <button class="btn btn-primary btn-lg text-right" id="checkchange">确认改变</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="activity/remove" method="post" id="removeForm">
+        <input type="hidden" name="activityId" id="removeActivityId" />
+    </form>
+    <script>
+        $("#addact").hide();
+        $("#showdetail").hide();
+        $("#changecontainer").hide();
+        $("#addfun").click(function () {
+            if (document.getElementById("addact").style.display == "none")
+            { $("#addact").show(); }
+            else { $("#addact").hide(); }
+        });
+        $(function () {
+            let page=1;
+            let ajaxOpt = {
+                type: "post",
+                url: "activity/ajax",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                data: '{"activityName":"' + $("#text").val() + '","page":"'+page+'"}',
+                async: false,
+                success: handleData,
+            };
+            $.ajax(ajaxOpt);
+            $("#pages").on("click",function(event){
+				if(isNaN($(event.target).text())){
+					return;
+				}
+				page=$(event.target).text();
+				ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"'+page+'"}';
+				$.ajax(ajaxOpt);
+			});
+            $("#query").click(function () {
+                ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"'+page+'"}';
+                $.ajax(ajaxOpt);
+            });
+            $(".query").click(function (event) {
+                $.ajax({
+                    type: "post",
+                    data: '{"activityId":"' + $(event.target).data("activityid") + '"}',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    url: "activity/detail/ajax",
+                    success: function (data) {
+                        let activity = data.activity;
+                        $("#showactname").text(activity.activityName);
+                        $("#showactcontent").html(activity.activityContent);
+                        $("#showactstatus").val(activity.activityStatus);
+                        $("#activitys").parent().remove();
+                        $("#showdetail").show();
+                        $("#modifyActivityId").val(data.activityId);
+                    }
+                });
+            });
+            $(".delete").click(function (event) {
+                $("#removeActivityId").val($(event.target).data("activityid"));
+                $("#removeForm").submit();
+            });
+            $("#checkchange").click(function (event) {
+                $("#modifyForm").submit();
+            });
+            $("#changestatus").click(function () {
+                $("#changecontainer").show();
+            })
+            function handleData(data) {
+                if (data.errInfo) {
+                    $(".table tbody").empty();
+                    return;
+                }
+                let str = "";
+                for (let activity of data.result) {
+                    str += `<tr>
+						<td>${activity.activityId}</td>
+						<td>${activity.activityName}</td>
+						<td>
+                            <button data-activityid=${activity.activityId} class="delete btn btn-danger btn-lg text-right">删除活动</button>
+                            <button data-activityid=${activity.activityId} class="query btn btn-primary btn-lg text-right">活动详情</button>
+                        </td>
+					</tr>`;
+                }
+                $("#activitys tbody").empty();
+                $("#activitys tbody").append(str);
+                let pages = "";
+				if (data.nowPage - 1 > 0) {
+					pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
+				}
+				pages += `  <span>${data.nowPage}</span>`;
+				if (data.nowPage + 1 <= data.totalPage) {
+					pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
+				}
+				$("#pages").html(pages);
+                $("#text").val(data.activityName);
+            }
+        });
+    </script>
+</body>
+
+</html>
