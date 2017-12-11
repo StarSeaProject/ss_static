@@ -38,7 +38,7 @@
                 <div id="pages"></div>
             </div>
             <div id="addact">
-                <form class="form" method="post" action="activity/add">
+                <form class="form" method="post" action="activity/add" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <td>请输入活动名称：</td>
@@ -47,6 +47,14 @@
                         <tr>
                             <td>输入具体内容:</td>
                             <td><input name="activityContent" type="text" style="height: 100px;"><br></td>
+                        </tr>
+                        <tr>
+                            <td>请选择活动封面:</td>
+                            <td><input name="coverFile" type="file"><br></td>
+                        </tr>
+                        <tr>
+                            <td>输入活动概要:</td>
+                            <td><input name="activitySummary" type="text" style="height: 100px;"><br></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -60,7 +68,32 @@
                 <br>
                 <p id="showactcontent"></p>
                 <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>众筹者id</td>
+                            <td>众筹金额</td>
+                            <td>留言</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody id="funding"></tbody>
+                </table>
+                <p id="add_funding"><button id="add_funding" class="btn btn-primary btn-lg text-right">添加众筹人信息</button></p>
                 <p id="showactstatus"><button id="changestatus" class="btn btn-primary btn-lg text-right">更改活动状态</button></p>
+                <div id="add_funding_container" hidden>
+                    <form action="activity/funding/add" class="form" method="post" id="addFundingForm">
+                        众筹人姓名:<input type="text" name="fundings[0].fundingName" /> 众筹金额:
+                        <input type="text" name="fundings[0].fundingMoney" /> 众筹留言:
+                        <input type="text" name="fundings[0].fundingMessage" /><br/>
+                        <input type="hidden" name="activityId" id="addFundingActivityId" />
+                    </form>
+                    <input type="button" value="新增众筹人" id="new_funding_one" />
+                    <input type="button" value="提交" id="submit_funding" />
+                </div>
+                <form action="activity/funding/remove" method="post" id="removeFundingForm">
+                    <input type="hidden" name="fundingId" id="removeFundingId" />
+                </form>
                 <div id="changecontainer">
                     <form action="activity/modify" class="form" method="post" id="modifyForm">
                         <input type="hidden" name="activityId" id="modifyActivityId" />
@@ -80,34 +113,48 @@
         $("#showdetail").hide();
         $("#changecontainer").hide();
         $("#addfun").click(function () {
-            if (document.getElementById("addact").style.display == "none")
-            { $("#addact").show(); }
-            else { $("#addact").hide(); }
+            $("#activitys").parent().remove();
+            $("#addact").show();
+        });
+        let funding_num = 1;
+        $("#add_funding").click(function () {
+            $("#add_funding_container").show();
+        });
+        $("#new_funding_one").click(function () {
+            let str = `众筹人姓名:<input type="text" name="fundings[${funding_num}].fundingName"/>
+                    众筹金额:<input type="text" name="fundings[${funding_num}].fundingMoney"/>
+                    众筹留言:<input type="text" name="fundings[${funding_num}].fundingMessage"/><br/>`;
+            funding_num++;
+            $("#addFundingForm").append(str);
+        });
+        $("#submit_funding").click(function () {
+            $("#addFundingForm").submit();
         });
         $(function () {
-            let page=1;
+            let page = 1;
             let ajaxOpt = {
                 type: "post",
                 url: "activity/ajax",
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
-                data: '{"activityName":"' + $("#text").val() + '","page":"'+page+'"}',
+                data: '{"activityName":"' + $("#text").val() + '","page":"' + page + '"}',
                 async: false,
                 success: handleData,
             };
             $.ajax(ajaxOpt);
-            $("#pages").on("click",function(event){
-				if(isNaN($(event.target).text())){
-					return;
-				}
-				page=$(event.target).text();
-				ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"'+page+'"}';
-				$.ajax(ajaxOpt);
-			});
-            $("#query").click(function () {
-                ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"'+page+'"}';
+            $("#pages").on("click", function (event) {
+                if (isNaN($(event.target).text())) {
+                    return;
+                }
+                page = $(event.target).text();
+                ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"' + page + '"}';
                 $.ajax(ajaxOpt);
             });
+            $("#query").click(function () {
+                ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"' + page + '"}';
+                $.ajax(ajaxOpt);
+            });
+
             $(".query").click(function (event) {
                 $.ajax({
                     type: "post",
@@ -123,6 +170,22 @@
                         $("#activitys").parent().remove();
                         $("#showdetail").show();
                         $("#modifyActivityId").val(data.activityId);
+                        $("#addFundingActivityId").val(data.activityId);
+                        let fundings = "";
+                        for (let funding of data.fundings) {
+                            fundings += `<tr>
+                                <td>${funding.fundingName}</td>
+                                <td>${funding.fundingMoney}</td>
+                                <td>${funding.fundingMessage}</td>
+                                <td><button class="delete_funding" data-fundingid=${funding.fundingId}>删除</button></td>
+                            </tr>`;
+                        }
+                        $("#funding").html(fundings);
+                        $(".delete_funding").click(function (event) {
+                            let fundingId = $(event.target).data("fundingid");
+                            $("#removeFundingId").val(fundingId);
+                            $("#removeFundingForm").submit();
+                        });
                     }
                 });
             });
@@ -155,14 +218,14 @@
                 $("#activitys tbody").empty();
                 $("#activitys tbody").append(str);
                 let pages = "";
-				if (data.nowPage - 1 > 0) {
-					pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
-				}
-				pages += `  <span>${data.nowPage}</span>`;
-				if (data.nowPage + 1 <= data.totalPage) {
-					pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
-				}
-				$("#pages").html(pages);
+                if (data.nowPage - 1 > 0) {
+                    pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
+                }
+                pages += `  <span>${data.nowPage}</span>`;
+                if (data.nowPage + 1 <= data.totalPage) {
+                    pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
+                }
+                $("#pages").html(pages);
                 $("#text").val(data.activityName);
             }
         });
