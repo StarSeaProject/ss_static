@@ -23,11 +23,13 @@ $(window).scroll(function(){
 			return;
 		$.ajax({
 			type: "post",
-			url: "ajax",
+			url: "/work/ajax",
 			contentType: "application/json;charset=utf-8",
 			dataType: "json",
 			data: '{"workName":"","page":"' + page + '"}',
 			success:function(data){
+				if(data.result===undefined)
+					return;
 				let str="";
 				for(let work of data.result){
 					page=data.nowPage;
@@ -50,4 +52,4 @@ $(window).scroll(function(){
 			}
 		});
 	}
-})
+});

@@ -1,7 +1,6 @@
 $(function() {
 	$("#gotoOrder").on("click",function(event){
 		let workId=$(event.target).data("workid");
-		alert(workId);
 		window.location.href="/order/toAddOrder?workId="+workId;
 	});
             var widthget = 0;
