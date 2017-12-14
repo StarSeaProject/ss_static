@@ -38,7 +38,7 @@
                 <div id="pages"></div>
             </div>
             <div id="addact">
-                <form class="form" method="post" action="activity/add" enctype="multipart/form-data">
+                <form id="addActivityForm" class="form" method="post" action="activity/add" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <td>请输入活动名称：</td>
@@ -46,7 +46,10 @@
                         </tr>
                         <tr>
                             <td>输入具体内容:</td>
-                            <td><input name="activityContent" type="text" style="height: 100px;"><br></td>
+                            <td>
+                                <div id="content"></div>
+                                <input id="activityContent" name="activityContent" type="hidden" style="height: 100px;"><br>
+                            </td>
                         </tr>
                         <tr>
                             <td>请选择活动封面:</td>
@@ -108,6 +111,44 @@
     <form action="activity/remove" method="post" id="removeForm">
         <input type="hidden" name="activityId" id="removeActivityId" />
     </form>
+    <script type="text/javascript" src="/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor;
+        var editor = new E('#content');
+        let imgSrc = new Array();
+        editor.customConfig.uploadImgServer = '/uploads';
+        editor.customConfig.uploadFileName = 'file';
+        editor.customConfig.debug = true;
+        editor.customConfig.menus = [
+            'head',  // 标题
+            'bold',  // 粗体
+            'italic',  // 斜体
+            'underline',  // 下划线
+            'strikeThrough',  // 删除线
+            'foreColor',  // 文字颜色
+            'backColor',  // 背景颜色
+            'link',  // 插入链接
+            'list',  // 列表
+            'justify',  // 对齐方式
+            'image',  // 插入图片
+            'table',  // 表格
+            'undo',  // 撤销
+            'redo'  // 重复
+        ];
+        editor.customConfig.uploadImgHooks = {
+            success: function (xhr, editor, result) {
+                imgSrc.push(result.data);
+                console.log(result);
+            },
+            fail: function (xhr, editor, result) {
+                console.log(result);
+            },
+            error: function (xhr, editor) {
+                console.log("出错了");
+            },
+        }
+        editor.create();
+    </script>
     <script>
         $("#addact").hide();
         $("#showdetail").hide();
@@ -154,7 +195,6 @@
                 ajaxOpt.data = '{"activityName":"' + $("#text").val() + '","page":"' + page + '"}';
                 $.ajax(ajaxOpt);
             });
-
             $(".query").click(function (event) {
                 $.ajax({
                     type: "post",
@@ -188,6 +228,17 @@
                         });
                     }
                 });
+            });
+            $("#addActivityForm").submit(function () {
+                $("#activityContent").val(editor.txt.html());
+                let imgs = $(editor.txt.html()).find("img");
+                if (imgs.length !== imgSrc.length)
+                    return false;
+                let imgStr = "";
+                for (let i = 0; i < imgs.length; i++) {
+                    imgStr += `<input type=hidden name=activityImages[${i}].activityImagePath value=${imgSrc[i]}/>`;
+                }
+                $("#addActivityForm").append(imgStr);
             });
             $(".delete").click(function (event) {
                 $("#removeActivityId").val($(event.target).data("activityid"));
