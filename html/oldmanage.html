@@ -120,6 +120,7 @@
                     $.ajax(ajaxOpt);
                 });
                 $(".query").click(function () {
+                    $("#pages").remove();
                     if (document.getElementById("showdetail").style.display == "none")
                     { $("#showdetail").show(); }
                     if (document.getElementById("showdetail").style.display != "none")
