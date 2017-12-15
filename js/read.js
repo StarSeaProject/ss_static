@@ -19,7 +19,7 @@ $(window).scroll(function(){
 	let scrollHeight = $(document).height();
 	let windowHeight = $(this).height();
 	if (scrollTop + windowHeight == scrollHeight) {
-		if(page===total)
+		if(page>total)
 			return;
 		$.ajax({
 			type: "post",
@@ -31,9 +31,9 @@ $(window).scroll(function(){
 				if(data.result===undefined)
 					return;
 				let str="";
+				page++;
+				total=data.totalPage;
 				for(let work of data.result){
-					page=data.nowPage;
-					total=data.totalPage;
 					str+=`<div>
 						<div class="row workbox">
 							<div class="col-xs-3 workimage">
@@ -48,7 +48,6 @@ $(window).scroll(function(){
 					</div>`;
 				}
 				$("#works").append(str);
-				page++;
 			}
 		});
 	}
