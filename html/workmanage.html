@@ -40,10 +40,10 @@
 				作品pdf文件路径:<input type="text" name="workPdfpath" /><br/> 
 				作品封面图片:<input type="file" accept="image/*" name="coverFile" /><br/>
 				作品概要:<input type="text" name="workSummary" /><br/>
-				作品图片:<input type="file" accept="image/*" name="imageFiles" /><br/>
-				<input type="file" accept="image/*" name="imageFiles" /><br/>
-				<input type="file" accept="image/*" name="imageFiles" /><br/>
-				<input type="file" accept="image/*" name="imageFiles" /><br/>
+				作品图片:<div id="imageFilesDiv">
+					<input type="file" accept="image/*" name="imageFiles" /><br/>
+				</div>
+				<button id="addImageFile">增加图片</button><br/>
 				<input type="submit" class="btn btn-info btn-lg" value="确认添加" />
 			</form>
 		</div>
@@ -137,6 +137,11 @@
 				$("#pages").html(pages);
 				$("#text").val(data.workName);
 			}
+			$("#addImageFile").on("click",function(){
+				let str=`<input type="file" accept="image/*" name="imageFiles" /><br/>`;
+				$("#imageFilesDiv").append(str);
+				return false;
+			});
 		});
 	</script>
 
