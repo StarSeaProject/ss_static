@@ -89,18 +89,18 @@
 						data: '{"workId":"' + $(event.target).data("workid") + '"}',
 						async: false,
 						success: function (data) {
-							console.log(data);
 							let work = data.work;
 							let detail = `<div>
 								作品名称:<div>${work.workName}</div>
 								作品上传时间:<div>${work.workUploadTime}</div>
-								作品pdf路径:<div><a href=${work.workPdfpath} download=${work.workName}>${work.workPdfpath}</a></div>
+								作品pdf路径:<div><a href="${work.workPdfpath}" download="${work.workName}">${work.workPdfpath}</a></div>
 							</div>`;
 							$("#findresult").html(detail);
 							let image=``;
 							for(let workImage of data.workImages){
-								image+=`<img style="width:70%" src=${workImage.workImagePath} />`;
+								image+=`<img style="width:70%" src="${workImage.workImagePath}" />`;
 							}
+							console.log(image);
 							$("#findresult").append(image);
 						},
 						error: function (data) {
