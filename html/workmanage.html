@@ -35,12 +35,12 @@
 		</div>
 		<div id="addwork" hidden>
 			<form method="post" enctype="multipart/form-data" class="form" action="/work/add">
-				作品名称:<input type="text" name="workName" /><br/> 
-				作品库存:<input type="number" name="workStock" /> <br/> 
-				作品pdf文件路径:<input type="text" name="workPdfpath" /><br/> 
-				作品封面图片:<input type="file" accept="image/*" name="coverFile" /><br/>
-				作品概要:<input type="text" name="workSummary" /><br/>
-				作品图片:<div id="imageFilesDiv">
+				作品名称:<input type="text" name="workName" /><br/> 作品库存:
+				<input type="number" name="workStock" /> <br/> 作品pdf文件路径:
+				<input type="text" name="workPdfpath" /><br/> 作品封面图片:
+				<input type="file" accept="image/*" name="coverFile" /><br/> 作品概要:
+				<input type="text" name="workSummary" /><br/> 作品图片:
+				<div id="imageFilesDiv">
 					<input type="file" accept="image/*" name="imageFiles" /><br/>
 				</div>
 				<button id="addImageFile">增加图片</button><br/>
@@ -76,37 +76,40 @@
 				ajaxOpt.data = '{"workName":"' + $("#text").val() + '","page":"' + page + '"}';
 				$.ajax(ajaxOpt);
 			});
-			$(".btn-primary").click(function (event) {
-				$.ajax({
-					type: "post",
-					url: "work/detail/ajax",
-					contentType: "application/json;charset=utf-8",
-					dataType: "json",
-					data: '{"workId":"' + $(event.target).data("workid") + '"}',
-					async: false,
-					success: function (data) {
-						let work = data.work;
-						let detail = `<div>
-							作品名称:<div>${work.workName}</div>
-							作品上传时间:<div>${work.workUploadTime}</div>
-							作品pdf路径:<div>${work.workPdfpath}</div>
-						</div>`;
-						$("#findresult").html(detail);
-					},
-					error: function (data) {
-						console.log(data);
-					}
-				});
+			$(".table").click((event) => {
+				let target = $(event.target);
+				if (target.data("workid") == undefined)
+					return;
+				if (target.hasClass("query")) {
+					$.ajax({
+						type: "post",
+						url: "work/detail/ajax",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						data: '{"workId":"' + $(event.target).data("workid") + '"}',
+						async: false,
+						success: function (data) {
+							let work = data.work;
+							let detail = `<div>
+								作品名称:<div>${work.workName}</div>
+								作品上传时间:<div>${work.workUploadTime}</div>
+								作品pdf路径:<div>${work.workPdfpath}</div>
+							</div>`;
+							$("#findresult").html(detail);
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					});
+				} else if (target.hasClass("delete")) {
+					$("#removeWorkId").val($(event.target).data("workid"));
+					$("#removeForm").submit();
+				}
 			});
 			//添加菜单展开
 			$("#addfun").click(function () {
 				$("#findresult").remove();
 				$("#addwork").show();
-			});
-			//删除功能
-			$(".btn-danger").click(function () {
-				$("#removeWorkId").val($(event.target).data("workid"));
-				$("#removeForm").submit();
 			});
 			function handleData(data) {
 				if (data.errInfo) {
@@ -119,8 +122,8 @@
 						<td>${work.workId}</td>
 						<td>${work.workName}</td>
 						<td>
-							<button data-workid=${work.workId} class='btn btn-primary btn-lg text-right'>作品信息</button>
-							<button data-workid=${work.workId} class='btn btn-danger btn-lg text-right'>删除作品</button>
+							<button data-workid=${work.workId} class='query btn btn-primary btn-lg text-right'>作品信息</button>
+							<button data-workid=${work.workId} class='delete btn btn-danger btn-lg text-right'>删除作品</button>
 						</td>
 					</tr>`;
 				}
@@ -137,8 +140,8 @@
 				$("#pages").html(pages);
 				$("#text").val(data.workName);
 			}
-			$("#addImageFile").on("click",function(){
-				let str=`<input type="file" accept="image/*" name="imageFiles" /><br/>`;
+			$("#addImageFile").on("click", function () {
+				let str = `<input type="file" accept="image/*" name="imageFiles" /><br/>`;
 				$("#imageFilesDiv").append(str);
 				return false;
 			});
