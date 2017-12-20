@@ -155,6 +155,7 @@
         $("#changecontainer").hide();
         $("#addfun").click(function () {
             $("#activitys").parent().remove();
+            console.log("1");
             $("#addact").show();
         });
         let funding_num = 1;
@@ -252,7 +253,7 @@
             })
             function handleData(data) {
                 if (data.errInfo) {
-                    $(".table tbody").empty();
+                    $("#activitys tbody").html(data.errInfo);
                     return;
                 }
                 let str = "";
