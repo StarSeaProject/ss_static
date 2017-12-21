@@ -96,6 +96,8 @@
                 </div>
                 <form action="activity/funding/remove" method="post" id="removeFundingForm">
                     <input type="hidden" name="fundingId" id="removeFundingId" />
+                    <input type="hidden" name="fundingMoney" id="removeFundingMoney" />
+                    <input type="hidden" name="activityId" id="removeActivityId" />
                 </form>
                 <div id="changecontainer">
                     <form action="activity/modify" class="form" method="post" id="modifyForm">
@@ -218,13 +220,17 @@
                                 <td>${funding.fundingName}</td>
                                 <td>${funding.fundingMoney}</td>
                                 <td>${funding.fundingMessage}</td>
-                                <td><button class="delete_funding" data-fundingid=${funding.fundingId}>删除</button></td>
+                                <td><button class="delete_funding" data-activityid=${funding.activity.activityId} data-fundingmoney=${funding.fundingMoney} data-fundingid=${funding.fundingId}>删除</button></td>
                             </tr>`;
                         }
                         $("#funding").html(fundings);
                         $(".delete_funding").click(function (event) {
                             let fundingId = $(event.target).data("fundingid");
+                            let fundingMoney=$(event.target).data("fundingmoney");
+                            let activityId=$(event.target).data("activityid");
                             $("#removeFundingId").val(fundingId);
+                            $("#removeFundingMoney").val(fundingMoney);
+                            $("#removeActivityId").val(activityId);
                             $("#removeFundingForm").submit();
                         });
                     }
