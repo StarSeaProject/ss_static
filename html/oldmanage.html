@@ -144,13 +144,16 @@
                             $("#orderaddress").html(order.orderAddress);
                             $("#orderstatus").html(order.orderStatus);
                             $("#orderexpressnum").html(order.orderExpressnum);
-                            $("#ordertime").html(order.orderTime);
+                            $("#ordertime").html(new Date(order.orderTime).toLocaleString());
                             if (order.orderStatus == "已发货") {
                                 $("#callchangedetail").hide();
                             }
                         }
                     });
                 });
+                Date.prototype.toLocaleString = function() {
+                    return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日" + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+                };
                 function handleData(data) {
                     if (data.errInfo) {
                         $(".table tbody").empty();
@@ -158,11 +161,12 @@
                     }
                     let str = "";
                     for (let order of data.result) {
+                        let orderTime=new Date(order.orderTime).toLocaleString();
                         str += `<tr>
                             <td>${order.orderNum}</td>
                             <td>${order.orderName}</td>
                             <td>${order.orderStatus}</td>
-                            <td>${order.orderTime}</td>
+                            <td>${orderTime}</td>
                             <td>
                                 <button data-orderid=${order.orderId} class="query btn btn-primary btn-lg text-right">查询订单</button>
                                 <button data-orderid=${order.orderId} class="delete btn btn-danger btn-lg text-right">删除订单</button>
