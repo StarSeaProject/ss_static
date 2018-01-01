@@ -45,6 +45,7 @@ $(window).scroll(function(){
 								<a data-workid=${work.workId} class="h4 detailhref" href="javascript:void(0)">&nbsp;&nbsp;查看作品&nbsp;&nbsp;</a>
 							</div>
 						</div>
+						<hr/>
 					</div>`;
 				}
 				$("#works").append(str);
