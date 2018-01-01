@@ -1,20 +1,20 @@
-$(function(){
-	$("#work_orders").on("click",function(event){
-		let workid=$(event.target).data("workid");
-		if(workid==undefined)
+$(function () {
+	$("#work_orders").on("click", function (event) {
+		let workid = $(event.target).data("workid");
+		if (workid == undefined)
 			return;
 		$("#workId").val(workid);
 		$("#workDetail").submit();
 	});
 });
-let page=2;
+let page = 2;
 let total;
-$(window).scroll(function(){
+$(window).scroll(function () {
 	let scrollTop = $(this).scrollTop();
 	let scrollHeight = $(document).height();
 	let windowHeight = $(this).height();
 	if (scrollTop + windowHeight == scrollHeight) {
-		if(page>total)
+		if (page > total)
 			return;
 		$.ajax({
 			type: "post",
@@ -22,14 +22,14 @@ $(window).scroll(function(){
 			contentType: "application/json;charset=utf-8",
 			dataType: "json",
 			data: '{"workName":"","page":"' + page + '"}',
-			success:function(data){
-				if(data.result===undefined)
+			success: function (data) {
+				if (data.result === undefined)
 					return;
-				let str="";
+				let str = "";
 				page++;
-				total=data.totalPage;
-				for(let work of data.result){
-					str+=`<div>
+				total = data.totalPage;
+				for (let work of data.result) {
+					str += `<div>
 						<div class="row workbox">
 							<div class="col-xs-3 workimage">
 								<img src="${work.workCover}" class="workimg img-reponsive"></img>
