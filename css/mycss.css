@@ -18,8 +18,8 @@ body{
 }
 .anav{
     font-size: 1.5em;
-    color:rgb(255,255,255);
-
+    color:rgb(255,255,255) !important;
+    font-family: sans-serif;
 }
 a.anav:hover,a.abnav:hover{
     color: rgb(255, 255, 255);
