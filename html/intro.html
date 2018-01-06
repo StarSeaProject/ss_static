@@ -2,63 +2,81 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<meta charset="utf-8"></meta>
+    <meta charset="utf-8"></meta>
 
-<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
-<title>星之海志愿者公会</title>
-<link rel="stylesheet"
-	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
-<link rel="stylesheet"
-	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"></link>
-<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="mycss.css"></link>
+    <title>星之海志愿者公会</title>
+    <link rel="stylesheet"
+          href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
+    <link rel="stylesheet"
+          href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"></link>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="mycss.css"></link>
 
-<style>
-	.heading {
-		background-image: url("/navbar.jpg");
-		height:360px;
-		background-repeat:no-repeat;
-	}
-    .myli{
-        color:#fff;
-    }
-    .myli:hover{
-        text-decoration:underline;
-    }
+    <style>
+        .heading {
+            background-image: url("/navbar.jpg");
+            height: 360px;
+            background-repeat: no-repeat;
+        }
 
-	#btnnav {
-		float: right;
-	}
+        .myli {
+            color: #fff;
+        }
 
-	#shownav {
-		float: right;
-	}
+        .myli:hover {
+            text-decoration: underline;
+        }
 
-	.abnav {
-		color: #FFFFFF;
-		font-size: 1.5em;
-        text-decoration: underline;
-	}
+        #btnnav {
+            float: right;
+        }
 
-a:hover {
-	color: rgb(7, 251, 251);
-}
-.navimg{
-	transition: all 0.6s;
+        #shownav {
+            float: right;
+        }
 
-}
-.navimg:hover{
-	transform: scale(1.4);
-}
-	.footbar{
-		background-image:url("/wavew.png");
-		background-repeat: repeat-x;
-		height:120px;
-		backgroud:#409cc3;
-	}
-</style>
+        .abnav {
+            color: #FFFFFF;
+            font-size: 1.5em;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: rgb(7, 251, 251);
+        }
+
+        .navimg {
+            transition: all 0.6s;
+
+        }
+
+        .navimg:hover {
+            transform: scale(1.4);
+        }
+
+        .footbar {
+            background-image: url("/wavew.png");
+            background-repeat: repeat-x;
+            height: 120px;
+            backgroud: #409cc3;
+        }
+
+        .intro {
+            font-size: 20px;
+        }
+
+        .introh1 {
+            color: #23b1f7;
+            padding-top: 40px;
+        }
+
+        #weibo {
+            padding-bottom: 40px;
+        }
+    </style>
 </head>
 
 <body>
@@ -87,61 +105,43 @@ a:hover {
         </div>
     </nav>
 </div>
-	<div class="container">
-		<h1 class="text-center h1" id="jieshaoh1">我们的成员</h1>
-		<p></p>
-		<p class="text-center" id="jieshaoh2">
-		木木说暂时还不用写这个(其实就是懒)<br>
-		<br/>
-	</div>
-	<div class="container weibo">
-		<div class="text-center">
-			<h1 class="text-center h1" id="jieshao">我们的微博</h1>
-			<iframe id="weibo" style="width: 80%; height: 500px;" frameborder="0"
-				scrolling="no"></iframe>
-		</div>
-
-
-	</div>
-<div class="footbar text-center">
-	<p style="padding-top:100px;">互联网ICP备案：鲁ICP备17053445号</p>
+<div class="container">
+    <h1 class="text-center introh1 h1">关于我们</h1>
+    <p></p>
+    <br/>
+    <br/>
+    <p class="text-left intro">
+        “麦克风还正常吗？Check,1,2,OK.”</p>
+    <p class="text-left intro">
+        大家好，我们是星之海志愿者公会，致力于为校园偶像在中国国内的Event应援、向各位传递LoveLove!Sunshine!!的魅力的组织！想要成为Aqours的【第十人】，我们凭借各自微小的力量聚集在了一起，为Aqours在国内的活动多次制作了CallBook，宣传折页，徽章等纪念品，力图将校园偶像带给我们的温暖传递下去，为热爱校园偶像的每一个人留下一份温暖而珍贵的回忆！</p>
+    <p class="text-left intro">
+        从组织前身的μ’S Final LoveLive Callbook制作组走来，我们制作了包括但不限于Aqours 的1st 与2nd
+        的CallBook以及BML-SP的宣传折页和其他相应的纪念徽章在内的应援物，并且还在致力于为大家提供更精美，更多样的纪念品！</p>
+    <p class="text-left intro">
+        制作纪念品时的花销来自于成员们的众筹款，每一次的详细花销我们都记录在册，留下你与我们一同创造的故事的痕迹！我们相信，在大家共同的努力下，我们定能创造出【大家一起实现的崭新的故事】!<br/>
+    </p>
+    <blockquote>
+        <p>それは階段　それとも扉</p>
+        <p>夢のかたちは色々あるんだろう</p>
+        <p>そして繋がれ　みんな繋がれ</p>
+        <p style="color: #f69163">夜空を照らしにいこう！</p>
+        <small>Aqours<cite title="Source Title">夢で夜空を照らしたい</cite></small>
+    </blockquote>
 </div>
-	<script>
-    (function() {
-        var widthget = 0;
-        if (window.innerWidth) {
-            widthget = window.innerWidth;
-        }
-        else ((document.body) && (document.body.clientWidth))
-        {
-            widthget = document.body.clientWidth;
-        }
-        // window.alert(widthget);
-        if (document.getElementById("mybar")){
-            if(widthget<768)
-            {
-                document.getElementById("shownav").style ="background-color:rgba(0, 73, 198, 0.55)";
-                document.getElementById("jieshaoh1").style = "padding-top: 2em; font-size:2em;"
-                document.getElementById("jieshaoh2").style = "padding-bottom: 2em;font-size: large;"
-                document.getElementById("weibo").src = "https://m.weibo.cn/p/1005056241874149";
+<div class="container weibo">
+    <div class="text-center">
+        <h1 class="text-center h1" id="jieshao">我们的微博</h1>
+        <iframe id="weibo" style="width: 80%; height: 540px;" frameborder="0"
+                scrolling="no"></iframe>
+    </div>
 
-            }
-            if(widthget>=500 && widthget<1100)
-            {
 
-                document.getElementById("jieshaoh1").style = "padding-top: 3em;font-size:xx-large"
-                document.getElementById("jieshaoh2").style = "padding-bottom: 3em; font-size:x-large;"
-                document.getElementById("weibo").src = "https://m.weibo.cn/p/1005056241874149";
-            }
-            if(widthget>=1100)
-            {
-                document.getElementById("jieshaoh1").style = "padding-top: 4em;font-size:xx-large;"
-                document.getElementById("jieshaoh2").style = "padding-bottom: 4em;font-size: x-large;"
-                document.getElementById("weibo").src = "http://v.t.sina.com.cn/widget/widget_blog.php?uid=6241874149";
-            }
-        }
-    }
-    )();
+</div>
+<div class="footbar text-center">
+    <p style="padding-top:100px;">互联网ICP备案：鲁ICP备17053445号</p>
+</div>
+<script>
+    document.getElementById("weibo").src = "http://v.t.sina.com.cn/widget/widget_blog.php?uid=6241874149";
 </script>
 </body>
 </html>
