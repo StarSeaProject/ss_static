@@ -47,3 +47,6 @@ a.anav:hover,a.abnav:hover{
 .nornavbar{
     margin: auto;
 }
+p{
+	margin:0;
+}
