@@ -50,3 +50,13 @@ a.anav:hover,a.abnav:hover{
 p{
 	margin:0;
 }
+/*移动端页脚用*/
+.mfoot {
+    background-image: url("/wavew.png");
+    background-repeat: repeat-x;
+    height: 60px;
+    backgroud: #409cc3;
+}
+.footp{
+    padding-top: 40px;
+}
