@@ -14,5 +14,9 @@
             document.getElementById("homepage").style.height = 600 + "px";
         case 1600:
             document.getElementById("homepage").style.height = 700 + "px";
+		case 2160:
+			document.getElementById("homepage").style.height = 900 + "px";
+		case 3840:
+			document.getElementById("homepage").style.height = 1600 + "px";
     }
 })();
