@@ -80,7 +80,6 @@
         </div>
         <div class="container" id="changedetaildiv">
             <form class="form" id="changeform" action="order/modify" method="post">
-                <input type="hidden" name="orderId" id="orderId" />
                 <input type="hidden" name="orderStatus" value="2" /> 请输入运单号：
                 <input type="text" name="orderExpressnum" value="" />
                 <button class="btn btn-primary btn-lg text-right" id="changedetail">确认修改</button>
@@ -134,7 +133,7 @@
                         success: function (data) {
                             $("#orders").empty();
                             $("#showdetail").show();
-                            $("#orderId").val(data.orderId);
+                            $("#changeform").attr("action","order/modify/"+data.orderId);
                             let order = data.orders;
                             $("#workname").html(order.workName);
                             $("#ordername").html(order.orderName);
