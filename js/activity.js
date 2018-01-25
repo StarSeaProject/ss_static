@@ -16,6 +16,5 @@ $(function () {
 	$("#pages").on("click", function (event) {
 		let page = $(event.target).text();
 		$(event.target).attr("href", "/activity?page=" + page);
-		$(event.target).click();
 	});
 });
