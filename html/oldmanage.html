@@ -92,9 +92,7 @@
                 <button class="btn btn-primary btn-lg text-right" id="changedetail">确认修改</button>
             </form>
         </div>
-        <form action="order/remove" method="post" id="removeForm">
-            <input type="hidden" name="orderId" id="removeOrderId" />
-        </form>
+        <form action="order/remove" method="post" id="removeForm"></form>
         <script>
             var orderID;
             $("#showdetail").hide();
@@ -209,7 +207,9 @@
                     }
                 });
                 $(".delete").click(function (event) {
-                    $("#removeOrderId").val($(event.target).data("orderid"));
+                    if(!confirm("确定要删除吗?"))
+                        return;
+                    $("#removeForm").attr("action","order/remove/"+$(event.target).data("orderid"));
                     $("#removeForm").submit();
                 });
             });
