@@ -1,6 +1,5 @@
 $(function() {
 	$("#addOrderBtn").on("click", function(e) {
-		alert("1");
 		name = $("#ordname").val();
 		if (name.length == 0) {
 			alert("收货人为空");
