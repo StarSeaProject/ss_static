@@ -44,6 +44,11 @@ $(function() {
 			return false;
 		}
 
+		let remark=$("#orderRemark").val();
+		if(remark.length>50){
+			alert("备注长度不能超过50");
+			return false;
+		}
 		$("#addOrderForm").submit();
 	});
 
