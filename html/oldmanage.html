@@ -83,6 +83,7 @@
                 <tr>
                     <td></td>
                     <td><button class="btn btn-primary btn-lg text-right" id="callchangedetail">发货</button></td>
+                    <td><button class="btn btn-primary btn-lg text-right" id="back">返回上一级</button></td>
                 </tr>
             </table>
         </div>
@@ -207,10 +208,13 @@
                     }
                 });
                 $(".delete").click(function (event) {
-                    if(!confirm("确定要删除吗?"))
+                    if (!confirm("确定要删除吗?"))
                         return;
-                    $("#removeForm").attr("action","order/remove/"+$(event.target).data("orderid"));
+                    $("#removeForm").attr("action", "order/remove/" + $(event.target).data("orderid"));
                     $("#removeForm").submit();
+                });
+                $("#back").click(function () {
+                    window.location.href = "/oldmanage.html";
                 });
             });
         </script>
