@@ -18,6 +18,7 @@
         <div class="row container form">
             <input type="text" name="orderName" id="text">
             <button id="orderquery" class="btn btn-info btn-lg text-right">收货人查询</button>
+            <button id="export" class="btn btn-info btn-lg text-right">发货名单导出为xls</button>
         </div>
         <br> <br> <br>
         <div class="row container">
@@ -190,7 +191,6 @@
                     if (data.nowPage + 1 <= data.totalPage) {
                         pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
                     }
-                    console.log(pages);
                     $("#pages").html(pages);
                     $("#text").val(data.workName);
                 }
@@ -216,6 +216,13 @@
                 $("#back").click(function () {
                     window.location.href = "/oldmanage.html";
                 });
+                $("#export").click(function () {
+                    let form = $("<form></form>");
+                    form.attr("action", "/order/export");
+                    form.attr("method", "get");
+                    $(document.body).append(form);
+                    form.submit();
+                })
             });
         </script>
     </div>
