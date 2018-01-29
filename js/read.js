@@ -1,15 +1,9 @@
 $(function () {
-    $("#works").on("click", function (event) {
-        let workId = $(event.target).data("workid");
+    $(".workimage").click(function (e) {
+        let workId = $(e.target).data("workid");
         if (workId == undefined)
             return;
-        $("#workId").val(workId);
-        $("#workDetail").submit();
-    });
-    $("#pages").on("click", function (event) {
-        let page = $(event.target).text();
-        $(event.target).attr("href", "/work/?page=" + page);
-        $(event.target).click();
+        window.location.href = "/work/" + workId;
     });
 });
 let page = 2;
@@ -18,7 +12,7 @@ $(window).scroll(function () {
     let scrollTop = $(this).scrollTop();
     let scrollHeight = $(document).height();
     let windowHeight = $(this).height();
-    if (scrollTop + windowHeight > scrollHeight-1) {
+    if (scrollTop + windowHeight > scrollHeight - 1) {
         if (page > total)
             return;
         $.ajax({
