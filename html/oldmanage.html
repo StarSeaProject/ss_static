@@ -125,40 +125,6 @@
                     ajaxOpt.data = '{"orderName":"' + $("#text").val() + '","page":"' + page + '"}';
                     $.ajax(ajaxOpt);
                 });
-                $(".query").click(function () {
-                    $("#pages").remove();
-                    if (document.getElementById("showdetail").style.display == "none")
-                    { $("#showdetail").show(); }
-                    if (document.getElementById("showdetail").style.display != "none")
-                    { $("#showdetail").hide(); }
-                    $.ajax({
-                        type: "post",
-                        data: '{"orderId":"' + $(event.target).data("orderid") + '"}',
-                        contentType: "application/json;charset=utf-8",
-                        dataType: "json",
-                        url: "order/detail/ajax",
-                        success: function (data) {
-                            $("#orders").empty();
-                            $("#showdetail").show();
-                            $("#changeform").attr("action", "order/modify/" + data.orderId);
-                            let order = data.orders;
-                            $("#workname").html(order.workName);
-                            $("#worktypename").html(order.workTypeName);
-                            $("#ordername").html(order.orderName);
-                            $("#orderaddress").html(order.orderAddress);
-                            $("#orderstatus").html(order.orderStatus);
-                            $("#orderexpressnum").html(order.orderExpressnum);
-                            $("#ordertime").html(new Date(order.orderTime).toLocaleString());
-                            if (order.orderStatus == "已发货") {
-                                $("#callchangedetail").hide();
-                            }
-                            $("#orderemail").html(order.orderEMail);
-                            $("#ordernum").html(order.orderNum);
-                            $("#orderremark").html(order.orderRemark);
-                            $("#orderphone").html(order.orderPhone);
-                        }
-                    });
-                });
                 Date.prototype.toLocaleString = function () {
                     return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日" + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
                 };
@@ -183,6 +149,40 @@
                     }
                     $("#orders tbody").empty();
                     $("#orders tbody").append(str);
+                    $(".query").on("click", function () {
+                        $("#pages").remove();
+                        if (document.getElementById("showdetail").style.display == "none")
+                        { $("#showdetail").show(); }
+                        if (document.getElementById("showdetail").style.display != "none")
+                        { $("#showdetail").hide(); }
+                        $.ajax({
+                            type: "post",
+                            data: '{"orderId":"' + $(event.target).data("orderid") + '"}',
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            url: "order/detail/ajax",
+                            success: function (data) {
+                                $("#orders").empty();
+                                $("#showdetail").show();
+                                $("#changeform").attr("action", "order/modify/" + data.orderId);
+                                let order = data.orders;
+                                $("#workname").html(order.workName);
+                                $("#worktypename").html(order.workTypeName);
+                                $("#ordername").html(order.orderName);
+                                $("#orderaddress").html(order.orderAddress);
+                                $("#orderstatus").html(order.orderStatus);
+                                $("#orderexpressnum").html(order.orderExpressnum);
+                                $("#ordertime").html(new Date(order.orderTime).toLocaleString());
+                                if (order.orderStatus == "已发货") {
+                                    $("#callchangedetail").hide();
+                                }
+                                $("#orderemail").html(order.orderEMail);
+                                $("#ordernum").html(order.orderNum);
+                                $("#orderremark").html(order.orderRemark);
+                                $("#orderphone").html(order.orderPhone);
+                            }
+                        });
+                    });
                     let pages = "";
                     if (data.nowPage - 1 > 0) {
                         pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
