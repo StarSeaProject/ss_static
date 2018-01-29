@@ -50,13 +50,12 @@
 		<form action="work/remove" method="post" id="removeForm">
 			<input type="hidden" name="workId" id="removeWorkId" />
 		</form>
-		<form action="work/modifystock"method="post" id="modifystockForm">
-			<input type="hidden" name="workTypeId" id="modifystockWorkTypeId"/>
-			<input type="hidden" name="stock" id="modifystockStock"/>
+		<form action="worktype/modifystock" method="post" id="modifystockForm">
+			<input type="hidden" name="workTypeId" id="modifystockWorkTypeId" />
+			<input type="hidden" name="stock" id="modifystockStock" />
 		</form>
 	</div>
 	<script>
-		
 		$(function () {
 			let page = 1;
 			let ajaxOpt = {
@@ -81,7 +80,7 @@
 				ajaxOpt.data = '{"workName":"' + $("#text").val() + '","page":"' + page + '"}';
 				$.ajax(ajaxOpt);
 			});
-			
+
 			$(".table").click((event) => {
 				let target = $(event.target);
 				if (target.data("workid") == undefined)
@@ -102,24 +101,26 @@
 								作品pdf路径:<div><a href="${work.workPdfpath}" download="${work.workName}">${work.workPdfpath}</a></div>
 							</div>`;
 							$("#findresult").html(detail);
-							let type=`<table border=1><thead><tr><td>类型</td><td>库存</td><td>操作</td></tr></thead><tbody>`;
-							for(let workType of data.workTypes){
-								type+=`<tr><td>${workType.name}</td><td>${workType.stock}</td><td><button data-worktypeid=${workType.workTypeId} class="modifystock btn btn-primary">修改库存</button></td></tr>`;
+							let type = `<table border=1><thead><tr><td>类型</td><td>库存</td><td>操作</td></tr></thead><tbody>`;
+							for (let workType of data.workTypes) {
+								type += `<tr><td>${workType.name}</td><td>${workType.stock}</td><td><button data-worktypeid=${workType.workTypeId} class="modifystock btn btn-primary">修改库存</button></td></tr>`;
 							}
-							type+=`</tbody></table>`;
+							type += `</tbody></table>`;
 							$("#findresult").append(type);
-							let image=``;
-							for(let workImage of data.workImages){
-								image+=`<img style="width:70%" src="${workImage.workImagePath}" />`;
+							let image = ``;
+							for (let workImage of data.workImages) {
+								image += `<img style="width:70%" src="${workImage.workImagePath}" />`;
 							}
 							$("#findresult").append(image);
-							$(".modifystock").click(function(e){
+							$(".modifystock").click(function (e) {
 								$("#modifystockWorkTypeId").val($(e.target).data("worktypeid"));
-								$(e.target).parent().append(`<input type=text id="modify_stock" /><button class="sureModifystock btn btn-primary">确定</button>`);
-							});
-							$(".sureModifystock").click(function(e){
-								$("#modifystockStock").val($("#modify_stock").val());
-								$("#modifystockForm").submit();
+								let stock = prompt("要改成多少库存?");
+								if (!isNaN(stock) && stock >= 0) {
+									$("#modifystockStock").val(stock);
+									$("#modifystockForm").submit();
+								} else {
+									alert("输入的库存数字不合法");
+								}
 							});
 						},
 						error: function (data) {
@@ -136,7 +137,7 @@
 				$("#findresult").remove();
 				$("#addwork").show();
 			});
-			
+
 			function handleData(data) {
 				if (data.errInfo) {
 					$(".table tbody").empty();
@@ -171,7 +172,7 @@
 				$("#imageFilesDiv").append(str);
 				return false;
 			});
-			
+
 		});
 	</script>
 
