@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 /*这里是主页用*/
@@ -55,8 +56,11 @@ p{
     background-image: url("/wavew.png");
     background-repeat: repeat-x;
     height: 60px;
-    backgroud: #409cc3;
+    margin-top: 45px;
 }
 .footp{
     padding-top: 40px;
+}
+.footbar{
+    margin-top: 45px;
 }
