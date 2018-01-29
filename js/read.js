@@ -36,7 +36,7 @@ $(window).scroll(function () {
                 for (let work of data.result) {
                     str += `<div>
 						<div class="row workbox">
-							<div class="col-xs-5 workimage">
+							<div class="col-xs-3 workimage">
 								<img src="${work.workCover}" class="workimg img-reponsive"></img>
 							</div>
 							<div class="col-xs-7 workdetail">
