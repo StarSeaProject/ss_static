@@ -18,7 +18,7 @@ $(window).scroll(function () {
     let scrollTop = $(this).scrollTop();
     let scrollHeight = $(document).height();
     let windowHeight = $(this).height();
-    if (scrollTop + windowHeight == scrollHeight) {
+    if (scrollTop + windowHeight > scrollHeight-1) {
         if (page > total)
             return;
         $.ajax({
