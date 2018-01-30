@@ -1,2 +1,4 @@
 /.project
 nginx.copy.conf
+logs/
+temp/
