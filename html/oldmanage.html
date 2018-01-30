@@ -183,6 +183,12 @@
                             }
                         });
                     });
+                    $(".delete").click(function (event) {
+                        if (!confirm("确定要删除吗?"))
+                            return;
+                        $("#removeForm").attr("action", "order/remove/" + $(event.target).data("orderid"));
+                        $("#removeForm").submit();
+                    });
                     let pages = "";
                     if (data.nowPage - 1 > 0) {
                         pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
