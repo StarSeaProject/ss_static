@@ -144,6 +144,7 @@
                             <td>
                                 <button data-orderid=${order.orderId} class="query btn btn-primary btn-lg text-right">查询订单</button>
                                 <button data-orderid=${order.orderId} class="delete btn btn-danger btn-lg text-right">删除订单</button>
+                                <button data-orderid=${order.orderId} class="resend btn btn-primary btn-lg text-right">补发邮件</button>
                             </td>
 					    </tr>`;
                     }
@@ -188,6 +189,25 @@
                             return;
                         $("#removeForm").attr("action", "order/remove/" + $(event.target).data("orderid"));
                         $("#removeForm").submit();
+                    });
+                    $(".resend").click(function (e) {
+                        if(!confirm("将重新发送成功下单/发货通知邮件,是否继续?"))
+                            return;
+                        $.ajax({
+                            type: "post",
+                            data: '{"orderId":"' + $(e.target).data("orderid") + '"}',
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            url: "order/resend",
+                            success:function(data){
+                                if(data.result=="success"){
+                                    alert("成功发送!");
+                                }
+                                else{
+                                    alert("发送失败!");
+                                }
+                            }
+                        });
                     });
                     let pages = "";
                     if (data.nowPage - 1 > 0) {
