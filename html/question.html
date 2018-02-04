@@ -2,46 +2,44 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
-<title>星之海志愿者公会</title>
+    <title>星之海志愿者公会</title>
 
 </head>
 
 <body>
-	<div class="container">
-		<div class="row container form">
-			<select id="questionStatus">
-				<option value="">请选择问题状态</option>
-				<option value=1>未回答</option>
-				<option value=2>已回答</option>
-			</select>
-			<button id="questionquery" class="btn btn-info btn-lg text-right">查询</button>
-		</div>
-		<br> <br> <br>
-		<div class="row container">
-			<table id="questions" class="table">
-				<thead>
-					<tr>
-						<th>问题内容</th>
-						<th>问题提出时间</th>
-						<th>问题状态</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-			<div id="pages"></div>
-		</div>
-	</div>
-	<script>
+    <div class="container">
+        <div class="row container form">
+            <select id="questionStatus">
+                <option value="">请选择问题状态</option>
+                <option value=1>未回答</option>
+                <option value=2>已回答</option>
+            </select>
+            <button id="questionquery" class="btn btn-info btn-lg text-right">查询</button>
+        </div>
+        <br> <br> <br>
+        <div class="row container">
+            <table id="questions" class="table">
+                <thead>
+                    <tr>
+                        <th>问题内容</th>
+                        <th>问题提出时间</th>
+                        <th>问题状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="pages"></div>
+        </div>
+    </div>
+    <script>
         $(function () {
             let page = 1;
             let ajaxOpt = {
@@ -80,11 +78,17 @@
                     str += `<tr>
                         <td>${question.question}</td>
                         <td>${createTime}</td>
-                        <td>${question.questionStatus}</td>
-                        <td>
-                            <button data-questionid=${question.questionId} class="answer btn btn-primary btn-lg text-right">回答</button>
+                        <td class="${question.questionId}">${question.questionStatus}</td>`;
+                        if(question.questionStatus=="未回答"){
+                       str+= `<td>
+                            <button data-questionid=${question.questionId} class="answer btn btn-primary btn-lg text-right" id="${question.questionId}">回答</button>
                         </td>
 				    </tr>`;
+                        }else{
+                        	 str+= `<td>
+                             </td>
+     				    </tr>`;
+                        }
                 }
                 $("#questions tbody").empty();
                 $("#questions tbody").append(str);
@@ -100,6 +104,8 @@
 							   success:function(data){
                                 if(data.result==true){
                                     alert("回复成功!");
+                                    $("."+$(e.target).data("questionid")).text("已回答");
+                                    $("#"+$(e.target).data("questionid")).hide();
                                 }
                                 else{
                                     alert("回复失败!");
@@ -109,7 +115,7 @@
 					}else if(answer==""){
 						alert("请输入回复内容！");
 					}
-				});				
+				});
                 let pages = "";
                 if (data.nowPage - 1 > 0) {
                     pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
