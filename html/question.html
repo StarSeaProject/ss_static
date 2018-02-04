@@ -2,44 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
-    <title>星之海志愿者公会</title>
+<title>星之海志愿者公会</title>
 
 </head>
 
 <body>
-    <div class="container">
-        <div class="row container form">
-            <select id="questionStatus">
-                <option value="">请选择问题状态</option>
-                <option value=1>未回答</option>
-                <option value=2>已回答</option>
-            </select>
-            <button id="questionquery" class="btn btn-info btn-lg text-right">查询</button>
-        </div>
-        <br> <br> <br>
-        <div class="row container">
-            <table id="orders" class="table">
-                <thead>
-                    <tr>
-                        <th>问题内容</th>
-                        <th>问题提出时间</th>
-                        <th>问题状态</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div id="pages"></div>
-        </div>
-    </div>
-    <script>
+	<div class="container">
+		<div class="row container form">
+			<select id="questionStatus">
+				<option value="">请选择问题状态</option>
+				<option value=1>未回答</option>
+				<option value=2>已回答</option>
+			</select>
+			<button id="questionquery" class="btn btn-info btn-lg text-right">查询</button>
+		</div>
+		<br> <br> <br>
+		<div class="row container">
+			<table id="questions" class="table">
+				<thead>
+					<tr>
+						<th>问题内容</th>
+						<th>问题提出时间</th>
+						<th>问题状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<div id="pages"></div>
+		</div>
+	</div>
+	<script>
         $(function () {
             let page = 1;
             let ajaxOpt = {
@@ -52,13 +54,73 @@
                 success: handleData,
             };
             $.ajax(ajaxOpt);
+            $("#pages").on("click", function (event) {
+                if (isNaN($(event.target).text())) {
+                    return;
+                }
+                page = $(event.target).text();
+                ajaxOpt.data = '{"questionStatus":"' + $("#questionStatus").val() + '","page":"' + page + '"}';
+                $.ajax(ajaxOpt);
+            });
             $("#questionquery").on("click", function () {
                 ajaxOpt.data = '{"questionStatus":"' + $("#questionStatus").val() + '","page":"' + page + '"}';
                 $.ajax(ajaxOpt);
             });
+            Date.prototype.toLocaleString = function () {
+                return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日" + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+            };
             function handleData(data) {
-                console.log(data);
+                if (data.errInfo) {
+                    $(".table tbody").empty();
+                    return;
+                }
+                let str = "";
+                for (let question of data.result) {
+                    let createTime = new Date(question.questionCreateTime).toLocaleString();
+                    str += `<tr>
+                        <td>${question.question}</td>
+                        <td>${createTime}</td>
+                        <td>${question.questionStatus}</td>
+                        <td>
+                            <button data-questionid=${question.questionId} class="answer btn btn-primary btn-lg text-right">回答</button>
+                        </td>
+				    </tr>`;
+                }
+                $("#questions tbody").empty();
+                $("#questions tbody").append(str);
+				$(".answer").on("click",function(e){
+					var answer=prompt("请输入回复内容","");
+					if(answer!=null&&answer!=""){
+						$.ajax({
+							type: "post",
+							 data: '{"questionId":"' + $(e.target).data("questionid") + '","answer":"' + answer + '"}',
+							contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            url: "question/answer",
+							   success:function(data){
+                                if(data.result==true){
+                                    alert("回复成功!");
+                                }
+                                else{
+                                    alert("回复失败!");
+                                }
+                            }
+						});
+					}else if(answer==""){
+						alert("请输入回复内容！");
+					}
+				});				
+                let pages = "";
+                if (data.nowPage - 1 > 0) {
+                    pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
+                }
+                pages += `  <span>${data.nowPage}</span>`;
+                if (data.nowPage + 1 <= data.totalPage) {
+                    pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
+                }
+                $("#pages").html(pages);
             }
+            
         });
     </script>
 </body>
