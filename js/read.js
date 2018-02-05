@@ -7,6 +7,11 @@ $(function () {
     });
 });
 let page = 1;
+let clazz="col-xs-3";
+if (navigator.userAgent.match(/IEMobile|BlackBerry|Android|iPod|iPhone|iPad/i)) {
+    alert("是移动设备");
+    clazz="col-xs-5";
+}
 $(window).scroll(function () {
     let scrollTop = $(this).scrollTop();
     let scrollHeight = $(document).height();
@@ -19,7 +24,7 @@ $(window).scroll(function () {
             url: "/work/ajax",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            data: '{"workName":"","page":"' + page + '"}',
+            data: '{"workName":"","page":"' + (page+1) + '"}',
             success: function (data) {
                 console.log("length:" + data.result.length);
                 if (data.result === undefined)
@@ -30,7 +35,7 @@ $(window).scroll(function () {
                 for (let work of data.result) {
                     str += `<div>
 						<div class="row workbox">
-							<div class="col-xs-3 workimage">
+							<div class="${clazz} workimage">
 								<img src="${work.workCover}" class="workimg img-reponsive"></img>
 							</div>
 							<div class="col-xs-7 workdetail">
