@@ -6,8 +6,7 @@ $(function () {
         window.location.href = "/work/" + workId;
     });
 });
-let page = 2;
-let total;
+let page = 1;
 $(window).scroll(function () {
     let scrollTop = $(this).scrollTop();
     let scrollHeight = $(document).height();
@@ -22,6 +21,7 @@ $(window).scroll(function () {
             dataType: "json",
             data: '{"workName":"","page":"' + page + '"}',
             success: function (data) {
+                console.log("length:" + data.result.length);
                 if (data.result === undefined)
                     return;
                 let str = "";

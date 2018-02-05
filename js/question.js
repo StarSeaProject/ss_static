@@ -1,6 +1,5 @@
-let page = 2;
-let status=2;
-let total;
+let page = 1;
+let status = 2;
 $(window).scroll(function () {
     let scrollTop = $(this).scrollTop();
     let scrollHeight = $(document).height();
@@ -13,7 +12,7 @@ $(window).scroll(function () {
             url: "/question/ajax",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            data: '{"questionStatus":"'+ status +'","page":"' + page + '"}',
+            data: '{"questionStatus":"' + status + '","page":"' + page + '"}',
             success: function (data) {
                 if (data.result === undefined)
                     return;
