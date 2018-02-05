@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -191,7 +191,7 @@
                         $("#removeForm").submit();
                     });
                     $(".resend").click(function (e) {
-                        if(!confirm("将重新发送成功下单/发货通知邮件,是否继续?"))
+                        if (!confirm("将重新发送成功下单/发货通知邮件,是否继续?"))
                             return;
                         $.ajax({
                             type: "post",
@@ -199,11 +199,11 @@
                             contentType: "application/json;charset=utf-8",
                             dataType: "json",
                             url: "order/resend",
-                            success:function(data){
-                                if(data.result=="success"){
+                            success: function (data) {
+                                if (data.result == "success") {
                                     alert("成功发送!");
                                 }
-                                else{
+                                else {
                                     alert("发送失败!");
                                 }
                             }

@@ -79,43 +79,43 @@
                         <td>${question.question}</td>
                         <td>${createTime}</td>
                         <td class="${question.questionId}">${question.questionStatus}</td>`;
-                        if(question.questionStatus=="未回答"){
-                       str+= `<td>
+                    if (question.questionStatus == "未回答") {
+                        str += `<td>
                             <button data-questionid=${question.questionId} class="answer btn btn-primary btn-lg text-right" id="${question.questionId}">回答</button>
                         </td>
 				    </tr>`;
-                        }else{
-                        	 str+= `<td>
+                    } else {
+                        str += `<td>
                              </td>
      				    </tr>`;
-                        }
+                    }
                 }
                 $("#questions tbody").empty();
                 $("#questions tbody").append(str);
-				$(".answer").on("click",function(e){
-					var answer=prompt("请输入回复内容","");
-					if(answer!=null&&answer!=""){
-						$.ajax({
-							type: "post",
-							 data: '{"questionId":"' + $(e.target).data("questionid") + '","answer":"' + answer + '"}',
-							contentType: "application/json;charset=utf-8",
+                $(".answer").on("click", function (e) {
+                    var answer = prompt("请输入回复内容", "");
+                    if (answer != null && answer != "") {
+                        $.ajax({
+                            type: "post",
+                            data: '{"questionId":"' + $(e.target).data("questionid") + '","answer":"' + answer + '"}',
+                            contentType: "application/json;charset=utf-8",
                             dataType: "json",
                             url: "question/answer",
-							   success:function(data){
-                                if(data.result==true){
+                            success: function (data) {
+                                if (data.result == true) {
                                     alert("回复成功!");
-                                    $("."+$(e.target).data("questionid")).text("已回答");
-                                    $("#"+$(e.target).data("questionid")).hide();
+                                    $("." + $(e.target).data("questionid")).text("已回答");
+                                    $("#" + $(e.target).data("questionid")).hide();
                                 }
-                                else{
+                                else {
                                     alert("回复失败!");
                                 }
                             }
-						});
-					}else if(answer==""){
-						alert("请输入回复内容！");
-					}
-				});
+                        });
+                    } else if (answer == "") {
+                        alert("请输入回复内容！");
+                    }
+                });
                 let pages = "";
                 if (data.nowPage - 1 > 0) {
                     pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
@@ -126,7 +126,7 @@
                 }
                 $("#pages").html(pages);
             }
-            
+
         });
     </script>
 </body>

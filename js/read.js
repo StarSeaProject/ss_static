@@ -9,7 +9,6 @@ $(function () {
 let page = 1;
 let clazz="col-xs-3";
 if (navigator.userAgent.match(/IEMobile|BlackBerry|Android|iPod|iPhone|iPad/i)) {
-    alert("是移动设备");
     clazz="col-xs-5";
 }
 $(window).scroll(function () {
