@@ -1,3 +1,16 @@
+$(function () {
+    $("#askQuestion").on("submit", function () {
+        let message = $("#message").val();
+        if (message === undefined || message === "") {
+            alert("问题内容不能为空");
+            return false;
+        }
+        if (message.length > 150) {
+            alert("问题内容长度不能超过150个字");
+            return false;
+        }
+    });
+});
 let page = 1;
 let status = 2;
 $(window).scroll(function () {

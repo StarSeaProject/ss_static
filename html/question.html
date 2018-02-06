@@ -94,27 +94,36 @@
                 $("#questions tbody").append(str);
                 $(".answer").on("click", function (e) {
                     var answer = prompt("请输入回复内容", "");
-                    if (answer != null && answer != "") {
-                        $.ajax({
-                            type: "post",
-                            data: '{"questionId":"' + $(e.target).data("questionid") + '","answer":"' + answer + '"}',
-                            contentType: "application/json;charset=utf-8",
-                            dataType: "json",
-                            url: "question/answer",
-                            success: function (data) {
-                                if (data.result == true) {
-                                    alert("回复成功!");
-                                    $("." + $(e.target).data("questionid")).text("已回答");
-                                    $("#" + $(e.target).data("questionid")).hide();
-                                }
-                                else {
-                                    alert("回复失败!");
-                                }
-                            }
-                        });
-                    } else if (answer == "") {
+                    if (answer === undefined || answer === "") {
                         alert("请输入回复内容！");
+                        return false;
                     }
+                    if (answer.length > 150) {
+                        alert("回复内容不能超过150！");
+                        return false;
+                    }
+                    let questionId = $(e.target).data("questionid");
+                    if (questionId === undefined || questionId === "") {
+                        alert("问题id不能为空");
+                        return false;
+                    }
+                    $.ajax({
+                        type: "post",
+                        data: '{"questionId":"' + questionId + '","answer":"' + answer + '"}',
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        url: "question/answer",
+                        success: function (data) {
+                            if (data.result == true) {
+                                alert("回复成功!");
+                                $("." + $(e.target).data("questionid")).text("已回答");
+                                $("#" + $(e.target).data("questionid")).hide();
+                            }
+                            else {
+                                alert("回复失败!");
+                            }
+                        }
+                    });
                 });
                 let pages = "";
                 if (data.nowPage - 1 > 0) {
