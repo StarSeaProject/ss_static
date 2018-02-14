@@ -7,6 +7,10 @@
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.6.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+	<script src="admin/work.js" type="text/babel"></script>
 
 
 	<title>星之海志愿者公会</title>
@@ -14,25 +18,13 @@
 </head>
 
 <body>
-	<div class="container">
+	<div id="container" class="container">
 		<div class="row container form">
 			<input type="text" name="workName" id="text" />
 			<button id="workquery" class="btn btn-info btn-lg text-right">作品查询</button>
 		</div>
 		<br/> <br/> <br/>
-		<div class="row container" id="findresult" style="height: 500px;">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>作品ID</th>
-						<th>作品名称</th>
-						<th><button id="addfun" class="btn btn-info btn-lg text-right">添加作品</button></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table><br/>
-			<div id="pages"></div>
-		</div>
+		<div class="row container" id="findresult" style="height: 500px;"></div>
 		<div id="addwork" hidden>
 			<form method="post" enctype="multipart/form-data" class="form" action="/work/add">
 				作品名称:<input type="text" name="workName" /><br/> 作品库存:
@@ -47,15 +39,8 @@
 				<input type="submit" class="btn btn-info btn-lg" value="确认添加" />
 			</form>
 		</div>
-		<form action="work/remove" method="post" id="removeForm">
-			<input type="hidden" name="workId" id="removeWorkId" />
-		</form>
-		<form action="worktype/modifystock" method="post" id="modifystockForm">
-			<input type="hidden" name="workTypeId" id="modifystockWorkTypeId" />
-			<input type="hidden" name="stock" id="modifystockStock" />
-		</form>
 	</div>
-	<script>
+	<script type="text/babel">
 		$(function () {
 			let page = 1;
 			let ajaxOpt = {
@@ -67,112 +52,16 @@
 				success: handleData,
 			};
 			$.ajax(ajaxOpt);
-			$("#pages").on("click", function (event) {
-				if (isNaN($(event.target).text())) {
-					return;
-				}
-				page = $(event.target).text();
-				ajaxOpt.data = '{"workName":"' + $("#text").val() + '","page":"' + page + '"}';
-				$.ajax(ajaxOpt);
-			});
-			//查询全表
-			$("#workquery").click(function () {
-				ajaxOpt.data = '{"workName":"' + $("#text").val() + '","page":"' + page + '"}';
-				$.ajax(ajaxOpt);
-			});
-
-			$(".table").click((event) => {
-				let target = $(event.target);
-				if (target.data("workid") == undefined)
-					return;
-				if (target.hasClass("query")) {
-					$.ajax({
-						type: "post",
-						url: "work/detail/ajax",
-						contentType: "application/json;charset=utf-8",
-						dataType: "json",
-						data: '{"workId":"' + $(event.target).data("workid") + '"}',
-						async: false,
-						success: function (data) {
-							let work = data.work;
-							let detail = `<div>
-								作品名称:<div>${work.workName}</div>
-								作品上传时间:<div>${work.workUploadTime}</div>
-								作品pdf路径:<div><a href="${work.workPdfpath}" download="${work.workName}">${work.workPdfpath}</a></div>
-							</div>`;
-							$("#findresult").html(detail);
-							let type = `<table border=1><thead><tr><td>类型</td><td>库存</td><td>操作</td></tr></thead><tbody>`;
-							for (let workType of data.workTypes) {
-								type += `<tr><td>${workType.name}</td><td>${workType.stock}</td><td><button data-worktypeid=${workType.workTypeId} class="modifystock btn btn-primary">修改库存</button></td></tr>`;
-							}
-							type += `</tbody></table>`;
-							$("#findresult").append(type);
-							let image = ``;
-							for (let workImage of data.workImages) {
-								image += `<img style="width:70%" src="${workImage.workImagePath}" />`;
-							}
-							$("#findresult").append(image);
-							$(".modifystock").click(function (e) {
-								$("#modifystockWorkTypeId").val($(e.target).data("worktypeid"));
-								let stock = prompt("要改成多少库存?");
-								if (!isNaN(stock) && stock >= 0) {
-									$("#modifystockStock").val(stock);
-									$("#modifystockForm").submit();
-								} else {
-									alert("输入的库存数字不合法");
-								}
-							});
-						},
-						error: function (data) {
-							console.log(data);
-						}
-					});
-				} else if (target.hasClass("delete")) {
-					$("#removeWorkId").val($(event.target).data("workid"));
-					$("#removeForm").submit();
-				}
-			});
 			//添加菜单展开
 			$("#addfun").click(function () {
 				$("#findresult").remove();
 				$("#addwork").show();
 			});
-
-			function handleData(data) {
-				if (data.errInfo) {
-					$(".table tbody").empty();
-					return;
-				}
-				let str = "";
-				for (let work of data.result) {
-					str += `<tr>
-						<td>${work.workId}</td>
-						<td>${work.workName}</td>
-						<td>
-							<button data-workid=${work.workId} class='query btn btn-primary btn-lg text-right'>作品信息</button>
-							<button data-workid=${work.workId} class='delete btn btn-danger btn-lg text-right'>删除作品</button>
-						</td>
-					</tr>`;
-				}
-				$(".table tbody").empty();
-				$(".table tbody").append(str);
-				let pages = "";
-				if (data.nowPage - 1 > 0) {
-					pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
-				}
-				pages += `  <span>${data.nowPage}</span>`;
-				if (data.nowPage + 1 <= data.totalPage) {
-					pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
-				}
-				$("#pages").html(pages);
-				$("#text").val(data.workName);
-			}
 			$("#addImageFile").on("click", function () {
 				let str = `<input type="file" accept="image/*" name="imageFiles" /><br/>`;
 				$("#imageFilesDiv").append(str);
 				return false;
 			});
-
 		});
 	</script>
 
