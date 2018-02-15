@@ -38,14 +38,6 @@
         <div class="container" id="showdetail">
             <table id="aorder" class="table">
                 <tr>
-                    <td>作品名称</td>
-                    <td id="workname"></td>
-                </tr>
-                <tr>
-                    <td>作品类型</td>
-                    <td id="worktypename"></td>
-                </tr>
-                <tr>
                     <td>收货人姓名</td>
                     <td id="ordername"></td>
                 </tr>
@@ -167,8 +159,10 @@
                                 $("#showdetail").show();
                                 $("#changeform").attr("action", "order/modify/" + data.orderId);
                                 let order = data.orders;
-                                $("#workname").html(order.workName);
-                                $("#worktypename").html(order.workTypeName);
+                                let orderDetails = data.orderDetails;
+                                for (let orderDetail of orderDetails) {
+                                    $("#aorder").prepend(`<tr><td>作品名称</td><td>${orderDetail.workName}</td></tr><tr><td>作品类型</td><td>${orderDetail.workTypeName}</td></tr>`);
+                                }
                                 $("#ordername").html(order.orderName);
                                 $("#orderaddress").html(order.orderAddress);
                                 $("#orderstatus").html(order.orderStatus);
