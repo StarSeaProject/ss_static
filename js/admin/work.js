@@ -10,9 +10,15 @@ class Work extends React.Component {
             url: "work/detail/ajax",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            data: '{"workId":"' + $(event.target).data("workid") + '"}',
+            //不要将JSON作为string发送
+            // data: '{"workId":"' + $(event.target).data("workid") + '"}',
+            //使用原生react this.props
+            data:JSON.stringify({
+                workId:this.props.work.workId
+            }),
             async: false,
-            success: function (data) {
+            //ES6
+            success: (data) => {
                 ReactDOM.render(
                     <span>
                         <WorkDetail work={data.work} />
@@ -26,14 +32,18 @@ class Work extends React.Component {
                     document.getElementById("findresult")
                 );
             },
-            error: function (data) {
+            //ES6 sh function
+            error: (data) => {
                 console.log(data);
             }
         });
     }
     handleDeleteClick(e) {
+        //Todo:可以使用ajax删除
         let form = $(`<form action="work/remove" method="post"><form>`);
-        form.append(`<input type=hidden name=workId value=${$(event.target).data("workid")} />`);
+        // form.append(`<input type=hidden name=workId value=${$(event.target).data("workid")} />`);
+        //使用react原生props
+        form.append(`<input type=hidden name=workId value=${this.props.work.workId} />`);
         form.appendTo(document.body);
         form.submit();
         document.body.remove(form[0]);
@@ -44,8 +54,11 @@ class Work extends React.Component {
                 <td>{this.props.work.workId}</td>
                 <td>{this.props.work.workName}</td>
                 <td>
-                    <button data-workid={this.props.work.workId} className='btn btn-primary btn-lg text-right' onClick={this.handleQueryClick}>作品信息</button>
-                    <button data-workid={this.props.work.workId} className='btn btn-danger btn-lg text-right' onClick={this.handleDeleteClick}>删除作品</button>
+                    {/* <button data-workid={this.props.work.workId} className='btn btn-primary btn-lg text-right' onClick={this.handleQueryClick}>作品信息</button>
+                    <button data-workid={this.props.work.workId} className='btn btn-danger btn-lg text-right' onClick={this.handleDeleteClick}>删除作品</button> */}
+                    {/*不需要在dom里再添加id,在state里面已经保存好了*/}
+                    <button className='btn btn-primary btn-lg text-right' onClick={this.handleQueryClick}>作品信息</button>
+                    <button className='btn btn-danger btn-lg text-right' onClick={this.handleDeleteClick}>删除作品</button>
                 </td>
             </tr>
         );
@@ -70,20 +83,32 @@ class Page extends React.Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
     handleClick(e) {
-        let page = $(e.target).text();
+        let page =  $(e.target).text();
+        this.pageRequest(page,$("#text").val())
         if (isNaN(page)) {
             return;
         }
-        let ajaxOpt = {
+        // let ajaxOpt = {
+        //     type: "post",
+        //     url: "work/ajax",
+        //     contentType: "application/json;charset=utf-8",
+        //     dataType: "json",
+        //     success: handleData,
+        // };
+        // ajaxOpt.data = '{"workName":"' + $("#text").val() + '","page":"' + page + '"}';
+    }
+    
+    pageRequest(page,workName){
+        $.ajax({
             type: "post",
             url: "work/ajax",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
+            data:JSON.stringify({workName,page}),
             success: handleData,
-        };
-        ajaxOpt.data = '{"workName":"' + $("#text").val() + '","page":"' + page + '"}';
-        $.ajax(ajaxOpt);
+        });
     }
 
     render() {
@@ -129,13 +154,14 @@ class WorkDetailTypeTableItem extends React.Component {
     }
 
     handleModifyStock(e) {
+        //Todo:Ajax
         let form = $(`<form action="worktype/modifystock" method="post"></form>`);
         let workTypeId = $(e.target).data("worktypeid");
         form.append(`<input type=hidden name=workTypeId value=${workTypeId} />`);
         let stock = prompt("要改成多少库存?");
         if (stock === null)
             return;
-        if (!isNaN(stock) && stock >= 0) {
+        else if (!isNaN(stock) && stock >= 0) {
             form.append(`<input type=hidden name=stock value=${stock} />`);
             form.appendTo(document.body);
             form.submit();
@@ -163,6 +189,18 @@ class WorkImage extends React.Component {
     }
 }
 class WorkTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {createWorkToggle: false};
+        this.handleClick = this.handleClick.bind(this);
+      }
+
+      handleClick() {
+        this.setState(prevState => ({
+          createWorkToggle: !prevState.createWorkToggle
+        }));
+      }
+    
     render() {
         return (
             <span>
@@ -171,7 +209,7 @@ class WorkTable extends React.Component {
                         <tr>
                             <th>作品ID</th>
                             <th>作品名称</th>
-                            <th><button id="addfun" className="btn btn-info btn-lg text-right">添加作品</button></th>
+                            <th><button id="addfun" onClick={this.handleClick} className="btn btn-info btn-lg text-right">{this.state.createWorkToggle ? "关闭": "创建作品"}</button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -181,21 +219,55 @@ class WorkTable extends React.Component {
                             })
                         }
                     </tbody>
+                    <Page nowPage={this.props.nowPage} totalPage={this.props.totalPage} />
                 </table>
-                <Page nowPage={this.props.nowPage} totalPage={this.props.totalPage} />
+                {this.state.createWorkToggle ? <CreateWork /> : null}
+                
             </span>
         );
     }
 }
-function handleData(data) {
-    if (data.errInfo) {
-        $(".table tbody").empty();
-        $(".table").append(data.errInfo);
-        return;
+//Todo:Toggle时隐藏Table元素
+class CreateWork extends React.Component {
+    constructor(props){
+        super(props);
+        this.addImage = this.addImage.bind(this);
     }
-    ReactDOM.render(
-        <WorkTable works={data.result} nowPage={data.nowPage} totalPage={data.totalPage} />,
-        document.getElementById("findresult")
-    );
-    $("#text").val(data.workName);
+    render(){ 
+        return(
+            <div id="addwork">
+			<form method="post" enctype="multipart/form-data" class="form" action="/work/add">
+				作品名称:<input type="text" name="workName" /><br/> 作品库存:
+				<input type="number" name="workStock" /> <br/> 作品pdf文件路径:
+				<input type="text" name="workPdfpath" /><br/> 作品封面图片:
+				<input type="file" accept="image/*" name="coverFile" /><br/> 作品概要:
+				<input type="text" name="workSummary" /><br/> 作品图片:
+				<div id="imageFilesDiv">
+					<input type="file" accept="image/*" name="imageFiles" /><br/>
+				</div>
+				<button id="addImageFile" onClick={this.addImage} type="button">增加图片</button><br/>
+				<input type="submit" class="btn btn-info btn-lg" value="确认添加" />
+			</form>
+		</div>
+        );
+    }
+    addImage(e){
+        e.preventDefault();
+        let str = `<input type="file" accept="image/*" name="imageFiles" /><br/>`;
+        $("#imageFilesDiv").append(str);
+    }
+
 }
+//尽量不要使用外部function
+// function handleData(data) {
+//     if (data.errInfo) {
+//         $(".table tbody").empty();
+//         $(".table").append(data.errInfo);
+//         return;
+//     }
+//     ReactDOM.render(
+//         <WorkTable works={data.result} nowPage={data.nowPage} totalPage={data.totalPage} />,
+//         document.getElementById("findresult")
+//     );
+//     $("#text").val(data.workName);
+// }

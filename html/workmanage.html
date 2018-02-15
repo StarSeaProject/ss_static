@@ -25,7 +25,7 @@
 		</div>
 		<br/> <br/> <br/>
 		<div class="row container" id="findresult" style="height: 500px;"></div>
-		<div id="addwork" hidden>
+		<!-- <div id="addwork" hidden>
 			<form method="post" enctype="multipart/form-data" class="form" action="/work/add">
 				作品名称:<input type="text" name="workName" /><br/> 作品库存:
 				<input type="number" name="workStock" /> <br/> 作品pdf文件路径:
@@ -38,7 +38,8 @@
 				<button id="addImageFile">增加图片</button><br/>
 				<input type="submit" class="btn btn-info btn-lg" value="确认添加" />
 			</form>
-		</div>
+		</div> -->
+		<!--转移至React-->
 	</div>
 	<script type="text/babel">
 		$(function () {
@@ -48,21 +49,35 @@
 				url: "work/ajax",
 				contentType: "application/json;charset=utf-8",
 				dataType: "json",
-				data: '{"workName":"' + $("#text").val() + '","page":"' + page + '"}',
+				// data: '{"workName":"' + $("#text").val() + '","page":"' + page + '"}',
+				data:JSON.stringify({workName:"",page}),
 				success: handleData,
 			};
 			$.ajax(ajaxOpt);
+			//转移React
 			//添加菜单展开
-			$("#addfun").click(function () {
-				$("#findresult").remove();
-				$("#addwork").show();
-			});
-			$("#addImageFile").on("click", function () {
-				let str = `<input type="file" accept="image/*" name="imageFiles" /><br/>`;
-				$("#imageFilesDiv").append(str);
-				return false;
-			});
+			// $("#addfun").click(function () {
+			// 	$("#findresult").remove();
+			// 	$("#addwork").show();
+			// });
+			// $("#addImageFile").on("click", function () {
+			// 	let str = `<input type="file" accept="image/*" name="imageFiles" /><br/>`;
+			// 	$("#imageFilesDiv").append(str);
+			// 	return false;
+			// });
 		});
+	function handleData(data) {
+        if (data.errInfo) {
+            $(".table tbody").empty();
+            $(".table").append(data.errInfo);
+            return;
+        }
+        ReactDOM.render(
+            <WorkTable works={data.result} nowPage={data.nowPage} totalPage={data.totalPage} />,
+            document.getElementById("findresult")
+        );
+		$("#text").val(data.workName);
+	}
 	</script>
 
 </body>
