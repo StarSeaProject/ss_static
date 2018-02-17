@@ -181,8 +181,8 @@ class WorkTable extends React.Component {
     }
 
     render() {
-        return (
-            <span>
+        if (this.state.createWorkToggle) {
+            return (<span>
                 <table id="workTable" className="table">
                     <thead>
                         <tr>
@@ -191,18 +191,33 @@ class WorkTable extends React.Component {
                             <th><button id="addfun" onClick={this.handleClick} className="btn btn-info btn-lg text-right">{this.state.createWorkToggle ? "关闭" : "创建作品"}</button></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {
-                            this.props.works.map((work, index) => {
-                                return <Work work={work} />
-                            })
-                        }
-                    </tbody>
-                    <Page nowPage={this.props.nowPage} totalPage={this.props.totalPage} />
                 </table>
-                {this.state.createWorkToggle ? <CreateWork /> : null}
-            </span>
-        );
+                <CreateWork />
+            </span>);
+            return <CreateWork />;
+        } else {
+            return (
+                <span>
+                    <table id="workTable" className="table">
+                        <thead>
+                            <tr>
+                                <th>作品ID</th>
+                                <th>作品名称</th>
+                                <th><button id="addfun" onClick={this.handleClick} className="btn btn-info btn-lg text-right">{this.state.createWorkToggle ? "关闭" : "创建作品"}</button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.works.map((work, index) => {
+                                    return <Work work={work} />
+                                })
+                            }
+                        </tbody>
+                        <Page nowPage={this.props.nowPage} totalPage={this.props.totalPage} />
+                    </table>
+                </span>
+            );
+        }
     }
 }
 //Todo:Toggle时隐藏Table元素
