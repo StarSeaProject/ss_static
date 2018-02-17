@@ -27,13 +27,31 @@
 		<div class="row container" id="findresult" style="height: 500px;"></div>
 	</div>
 	<script type="text/babel">
-		$(function () { let page = 1; let ajaxOpt = { type: "post", url: "work/ajax", contentType: "application/json;charset=utf-8",
-		dataType: "json", // data: '{"workName":"' + $("#text").val() + '","page":"' + page + '"}', data:JSON.stringify({workName:"",page}),
-		success: handleData, }; $.ajax(ajaxOpt); }); function handleData(data) { if (data.errInfo) { $(".table tbody").empty();
-		$(".table").append(data.errInfo); return; } ReactDOM.render(
-		<WorkTable works={data.result} nowPage={data.nowPage} totalPage={data.totalPage} />, document.getElementById("findresult") ); $("#text").val(data.workName); }
+		$(function () {
+			let page = 1;
+			let ajaxOpt = {
+				type: "post",
+				url: "work/ajax",
+				contentType: "application/json;charset=utf-8",
+				dataType: "json",
+				data: JSON.stringify({ workName: "", page })
+			};
+			$.ajax(ajaxOpt).done(handleData).fail(function(data){
+				console.log(data);
+			});
+			function handleData(data) {
+				if (data.errInfo) {
+					$(".table tbody").empty();
+					$(".table").append(data.errInfo);
+					return;
+				}
+				ReactDOM.render(
+					<WorkTable works={data.result} nowPage={data.nowPage} totalPage={data.totalPage} />,
+					document.getElementById("findresult"));
+				$("#text").val(data.workName);
+			}
+		});
 	</script>
-
 </body>
 
 </html>
