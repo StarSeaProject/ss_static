@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>星之海网站组招聘</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+    <style>
+        .job {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            padding: 20px;
+            margin: 5px;
+        }
+
+        .uk-grid>* {
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--导航栏-->
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">
+                    <a href="#">主页</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <!--主容器-->
+    <div class="uk-container">
+        <!--Heading-->
+        <h2>星之海网站组招聘</h2>
+        <!--简介-->
+        <blockquote>
+            <p class="uk-margin-small-bottom">
+                欢迎来到星之海网站组招聘主页
+            </p>
+        </blockquote>
+        <!--Job Block-->
+        <div class="job_blob" uk-grid>
+            <div class="job uk-width-1-1">
+                <!--职务名-->
+                <div class="title">
+                    <p class="uk-text-lead">职务名:
+                        <span>初级前端工程师</span>
+                    </p>
+                </div>
+                <!--工作职责-->
+                <div class="duty">
+                    <span class="uk-text-lead">职责</span>
+                    <ul class="uk-list uk-list-bullet">
+                        <li>根据UI设计师的原型设计，尽可能编写出接近原型设计的html页面</li>
+                        <li>日常维护和修改星之海官网用户端页面的bug</li>
+                    </ul>
+                </div>
+                <!--职位要求-->
+                <div class="requirement">
+                    <span class="uk-text-lead">职位要求</span>
+                    <ul class="uk-list uk-list-bullet">
+                        <li>最好是在校大学生（大二/大三更好），能够有较多自己分配的时间</li>
+                        <li>熟悉html/css/js，能够编写出有基本样式的网页</li>
+                        <li>接触过bootstrap，使用过bootstrap者优先</li>
+                        <li>了解jquery或themeleaf者优先</li>
+                    </ul>
+                </div>
+                <!--咨询/信息-->
+                <div class="contact">
+                    <span class="uk-text-lead">咨询/信息</span>
+                    <p>
+                        有意者请将简历投至
+                        <a href="mailto:kuma_loveliver@163.com">kuma_loveliver@163.com</a>，简历中请写明QQ和能够接收邮件的邮箱哦
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
