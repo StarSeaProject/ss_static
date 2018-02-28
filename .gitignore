@@ -1,4 +1,5 @@
 /.project
+/.settings
 nginx.copy.conf
 logs/
 temp/
