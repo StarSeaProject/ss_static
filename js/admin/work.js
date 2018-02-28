@@ -194,7 +194,6 @@ class WorkTable extends React.Component {
                 </table>
                 <CreateWork />
             </span>);
-            return <CreateWork />;
         } else {
             return (
                 <span>
