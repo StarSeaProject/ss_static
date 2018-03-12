@@ -136,8 +136,33 @@ class QuestionTableThread extends React.Component {
 
 class Page extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.handleClick = this.handleClick.bind(this)
     }
+    handleClick(){
+        $ajax({
+            type: "post",
+            url: "question/ajax",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data: '{"questionStatus":"' + 0 + '","page":"' + page + '"}',
+            success:function(){
+                if (data.nowPage - 1 > 0) {
+                    pages += `<a href="javascript:void(0)">${data.nowPage - 1}</a>`;
+                }
+                pages += `  <span>${data.nowPage}</span>`;
+                if (data.nowPage + 1 <= data.totalPage) {
+                    pages += `  <a href="javascript:void(0)">${data.nowPage + 1}</a>`;
+                }
+                ReactDom.render(
+                    <span>{this.nowPage}</span>
+                );
+            },
+        })
+    }
+    
+            
+
     render() {
         return (
             <div id="pages" onClick={this.handleClick}>
