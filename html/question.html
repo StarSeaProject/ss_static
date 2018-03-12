@@ -18,31 +18,15 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row container form">
-            <select id="questionStatus">
-                <option value="">请选择问题状态</option>
-                <option value=1>未回答</option>
-                <option value=2>已回答</option>
-            </select>
-            <button id="questionquery" class="btn btn-info btn-lg text-right">查询</button>
-        </div>
-        <br> <br> <br>
-        <div class="row container">
-            <table id="questions" class="table">
-                <thead>
-                    <tr>
-                        <th>问题内容</th>
-                        <th>问题提出时间</th>
-                        <th>问题状态</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div id="pages"></div>
-        </div>
+    <div class="container" id="root">
+
     </div>
+    <script type="text/babel">
+        ReactDOM.render(
+            <Question />,
+            document.getElementById('root')
+        )
+    </script>
     <script>
         $(function () {
             let page = 1;
