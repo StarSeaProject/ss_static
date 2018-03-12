@@ -55,10 +55,10 @@ class QuestionTable extends React.Component {
                 <table id="questions" className="table">
                     <thead>
                         <tr>
-                            <th>问题内容</th>
-                            <th>问题提出时间</th>
-                            <th>问题状态</th>
-                            <th>操作</th>
+                        <th>问题内容</th>
+                        <th>问题提出时间</th>
+                        <th>问题状态</th>
+                        <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -134,6 +134,25 @@ class QuestionTableThread extends React.Component {
     }
 }
 
+                        render(){
+                        return(
+                        <tr>
+                        <td>{this.props.question}</td>
+                        <td>{this.props.createTime}</td>
+                        <td className={this.props.questionId}>{this.props.questionStatus}</td>
+                        {
+                            this.props.questionStatus == "未回答" &&
+                            <td>
+                                <button data-questionid={this.props.questionId}
+                                        class="answer btn btn-primary btn-lg text-right" id={this.props.questionId}
+                                        onclick={this.handleAnswerClick()}>回答
+                                </button>
+                            </td>
+                        }
+                        </tr>
+                        )
+                    }
+                        }
 
 class Page extends React.Component {
     constructor(props) {
