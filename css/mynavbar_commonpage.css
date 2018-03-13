@@ -3,6 +3,10 @@
     padding:0;
 }
 
+.common-navbar {
+    padding:0;
+}
+
 .heading {
     background-image: url("/navbar.jpg");
     height: 360px;
@@ -26,6 +30,7 @@
 }
 
 #shownav {
+    padding-top: 10px;
     float: right;
 }
 
@@ -35,6 +40,7 @@
 
 .myli {
     color: #fff;
+    font-size:1.5em;
 }
 
 .myli:hover {
