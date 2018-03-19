@@ -1,0 +1,73 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+}
+
+.qaBox>.qBox>.qText {
+    padding: 20px;
+    background: #409cc3;
+    border-radius: 5px;
+    color: #fafafa;
+    font-size: 1.65rem;
+}
+
+.qaBox>.aBox>.aText {
+    padding: 20px;
+    background: orange;
+    border-radius: 5px;
+    color: #fafafa;
+    font-size: 1.65rem;
+}
+
+@media screen and (max-width: 991px) {
+    p.h2 {
+        font-size: 2.25rem;
+    }
+    .navbartop {
+        display: block;
+        width: 100%;
+        background: #1e93f3;
+    }
+    .ma {
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-bottom: -4px;
+        color: white;
+        display: inline-block;
+        font-size: 1.2em;
+    }
+    .common-navbar {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .navbartop {
+        display: none;
+    }
+    .common-navbar {
+        display: block;
+    }
+}
+
+.job {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    margin: 5px;
+}
+
+.uk-grid>* {
+    margin-left: 30px;
+}
+
+.navbartop{
+    clear:both;
+}
+
+.navimgm{
+    width:70px;
+}

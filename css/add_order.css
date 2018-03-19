@@ -1,0 +1,16 @@
+.col-xs-6{
+    margin-top:15px;
+}
+
+#addOrderBtn{
+    margin-top:15px;
+}
+
+select{
+    height:30px;
+    font-size:16px;
+}
+
+p#advice{
+    font-size: 12px;
+}

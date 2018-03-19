@@ -17,4 +17,5 @@ $(function () {
 		let page = $(event.target).text();
 		$(event.target).attr("href", "/activity?page=" + page);
 	});
+
 });

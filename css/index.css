@@ -1,0 +1,73 @@
+.main {
+    width: 100%;
+    background-image: url("/aqours.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    clear: both
+}
+
+.navbar-header{
+    padding-top:10px;
+    paddingleft:25px;
+}
+
+.navimg{
+    width: 100px;
+}
+.title {
+    font-size: 3.8em;
+    color: #409cc3;
+
+}
+
+.secondtitle {
+    font-size: 2.2em;
+    font-style: oblique;
+    color: #FFFFFF;
+    color: red;
+}
+
+.mymain {
+    clear: both;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    background: black;
+    width: 100%;
+    height: 1000px;
+
+}
+
+.jieshao {
+    color: #ffffff;
+
+    font-size: 1.3em;
+}
+
+#shownav {
+    float: right;
+    transition: all 0.3s;
+}
+
+#shownav:hover {
+    text-decoration: underline;
+}
+
+.myli {
+    color: #fff;
+}
+
+.myli:hover {
+    text-decoration: underline;
+}
+
+.footbar {
+    background-image: url("/wave.png");
+    background-repeat: repeat-x;
+    height: 80px;
+    padding-top:60px;
+}
+
+#WeAre{
+    color:#fff;
+}

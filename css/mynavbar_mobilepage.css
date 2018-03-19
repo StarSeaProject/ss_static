@@ -1,0 +1,13 @@
+.navbartop {
+    background: #1e93f3;
+    clear: both;
+}
+
+.navimg{
+    width: 70px;
+}
+
+.imgbar{
+    width:120%;
+    transform:translateX(-5%);
+}

@@ -1,0 +1,59 @@
+
+.pagetitle {
+    background-color: #eeeeee;
+    color: #23b1f7;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.pagetitleh1 {
+    padding-left: 100px;
+    margin: 0px;
+}
+
+.pagetitleh2 {
+    padding-left: 100px;
+    margin: 0px;
+    color: #999999;
+}
+
+.worktitle {
+    color: #23b1f7;
+}
+
+.workdetail {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+a.detailhref {
+    padding: 9px;
+    border: 1px solid;
+    border-radius: 12px;
+    border-color: #23b1f7;
+    text-decoration: none;
+    color: #23b1f7;
+}
+
+a.detailhref:hover {
+    text-decoration: none;
+    color: #23b1f7;
+}
+
+a.detailhref:visited {
+    text-decoration: none;
+    color: #23b1f7;
+}
+
+a.detailhref:link {
+    text-decoration: none;
+    color: #23b1f7;
+}
+
+#weibo{
+    width: 80%;
+    height: 500px;
+}

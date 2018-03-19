@@ -1,0 +1,49 @@
+
+.head {
+    background-color: #eeeeee;
+    color: #23b1f7;
+    height: 100px;
+    clear: both;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.headh1 {
+    padding-left: 100px;
+    margin: 0;
+}
+
+.leftbox {
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 20px 10px 20px 10px;
+}
+
+.rightbox {
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 20px 10px 20px 10px;
+}
+
+.fundimg{
+    width:45%;
+}
+
+.fname {
+    font-size: 1.4em;
+}
+
+.fnamebold {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.fmoney {
+
+}
+
+.fms {
+
+}

@@ -1,4 +1,6 @@
 $(function () {
+
+
     $("#addOrderBtn").on("click",function(e){
         name = $("#ordname").val();
         if(name.length==0){
