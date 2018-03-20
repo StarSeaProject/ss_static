@@ -1,0 +1,82 @@
+
+.pagetitle {
+    background-color: #f69163;
+    color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 35px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.pagetitleh1 {
+    padding-left: 40px;
+    margin: 0px;
+    font-size: 1.7em;
+}
+
+.pagetitleh2 {
+    padding-left: 40px;
+    margin: 0px;
+    color: #000;
+    font-size: 1.3em;
+}
+
+.workbox {
+    background: #a9d6f5;
+}
+
+.worktitle {
+    color: #000;
+    font-size: 1.3em;
+}
+
+.workdetail {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    color: #fff;
+}
+
+.workimg {
+    width: 130px;
+}
+
+a.detailhref {
+    padding: 9px;
+    border: 1px solid;
+    border-radius: 12px;
+    border-color: #23b1f7;
+    text-decoration: none;
+    color: #23b1f7;
+    background: #ffffff;
+}
+
+a.detailhref:hover {
+    text-decoration: none;
+    color: #23b1f7;
+}
+
+a.detailhref:visited {
+    text-decoration: none;
+    color: #23b1f7;
+}
+
+a.detailhref:link {
+    text-decoration: none;
+    color: #23b1f7;
+}
+#gotocar{
+    border:1px solid orange;
+    border-radius:20px;
+    height:40px;
+    width:40px;
+    background:#fff;
+}
+#cardiv{
+    position:absolute;
+}
+
+.glyphicon-shopping-cart{
+    font-size:1.6em;
+    color:orange;
+}
