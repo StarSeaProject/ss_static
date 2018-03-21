@@ -2,3 +2,4 @@
 nginx.copy.conf
 logs/
 temp/
+/.settings/
