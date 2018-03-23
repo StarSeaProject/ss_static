@@ -6,8 +6,21 @@
 .navimg{
     width: 70px;
 }
+.imgbarcontainer{
+    overflow:hidden;
+}
 
 .imgbar{
     width:120%;
     transform:translateX(-5%);
+}
+
+
+.ma {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: -4px;
+    color: white;
+    display: inline-block;
+    font-size: 1.2em;
 }
