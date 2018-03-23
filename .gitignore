@@ -1,5 +1,8 @@
 /.project
+.gitingnore
 nginx.copy.conf
+.idea/
 logs/
 temp/
 /.settings/
+html/test/
