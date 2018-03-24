@@ -28,7 +28,6 @@ function countchecked(){
         const selected=$(div).eq(0).find("input").is(':checked');
         if(selected){
             count++;
-            console.log(count);
         }
     });
     if(count==0){

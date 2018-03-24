@@ -1,10 +1,50 @@
+.pagetitle {
+    color: #238acb;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.pagetitleh1 {
+    padding-left: 100px;
+    margin: 0px;
+}
+
+.pagetitleh2 {
+    padding-left: 100px;
+    margin: 0px;
+    color: #999999;
+}
+
+.addheight1{
+    height:100px;
+}
+
+.titleline{
+    border-top: 2px solid #999;
+}
+
 .abnav {
     color: #FFFFFF;
     font-size: 1.5em;
 }
 
+.actbox {
+    font-size: 1.5em;
+}
+
+a{
+    color:white;
+}
+
 a:hover {
     color: rgb(7, 251, 251);
+    text-decoration: none;
+}
+
+.glyphicon-circle-arrow-right{
+    font-size:2em;
 }
 
 .imagerow {
@@ -51,20 +91,19 @@ a.nowactbutton:link {
     font-size: 2.6em;
 }
 
-.page {
-    font-size: 1.2em;
-}
-
-.nowpage {
-    font-size: 1.2em;
+.pagebox{
+    text-align:center;
+    color:white;
 }
 
 .pagebutton {
+    font-size: 1.6em;
+    margin-left:50%;
     border: 1px solid;
     border-radius: 2px;
-    border-color: #23b1f7;
-    margin-left: 10px;
+    background-color: #23b1f7;
     height: 40px;
+    width: 40px;
 }
 
 .right {
