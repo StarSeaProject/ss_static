@@ -10,30 +10,30 @@ $(function () {
             return false;
         }
     });
-});
-let page = 1;
-let status = 2;
-$(window).scroll(function () {
-    let scrollTop = $(this).scrollTop();
-    let scrollHeight = $(document).height();
-    let windowHeight = $(this).height();
-    if (scrollTop + windowHeight > scrollHeight - 1) {
-        if (page >= total)
-            return;
-        $.ajax({
-            type: "post",
-            url: "/question/ajax",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            data: '{"questionStatus":"' + status + '","page":"' + page + '"}',
-            success: function (data) {
-                if (data.result === undefined)
-                    return;
-                let str = "";
-                page++;
-                total = data.totalPage;
-                for (let question of data.result) {
-                    str += `<div>
+
+    let page = 1;
+    let status = 2;
+    $(window).scroll(function () {
+        let scrollTop = $(this).scrollTop();
+        let scrollHeight = $(document).height();
+        let windowHeight = $(this).height();
+        if (scrollTop + windowHeight > scrollHeight - 1) {
+            if (page >= total)
+                return;
+            $.ajax({
+                type: "post",
+                url: "/question/ajax",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                data: '{"questionStatus":"' + status + '","page":"' + page + '"}',
+                success: function (data) {
+                    if (data.result === undefined)
+                        return;
+                    let str = "";
+                    page++;
+                    total = data.totalPage;
+                    for (let question of data.result) {
+                        str += `<div>
                     			<div class="row qaBox">
                     				<div class="col-sm-12 col-md-10 qBox">
                     					<p class="qText">
@@ -47,9 +47,12 @@ $(window).scroll(function () {
                     				</div>
                     			</div>
 					</div>`;
+                    }
+                    $("#questions").append(str);
                 }
-                $("#questions").append(str);
-            }
-        });
-    }
+            });
+        }
+    });
 });
+
+
