@@ -1,4 +1,6 @@
 $(function () {
+    $(".spinner").hide();
+
     $(".workimage").click(function (e) {
         let workId = $(e.target).data("workid");
         if (workId == undefined)
@@ -18,6 +20,7 @@ $(window).scroll(function () {
     if (scrollTop + windowHeight > scrollHeight - 1) {
         if (page >= total)
             return;
+        $(".spinner").show();
         $.ajax({
             type: "post",
             url: "/work/ajax",
@@ -43,9 +46,10 @@ $(window).scroll(function () {
 								<a data-workid=${work.workId} class="h4 detailhref" href="javascript:void(0)">&nbsp;&nbsp;查看作品&nbsp;&nbsp;</a>
 							</div>
 						</div>
-						<hr/>
+						<hr/> 
 					</div>`;
                 }
+                $(".spinner").hide();
                 $("#works").append(str);
             }
         });

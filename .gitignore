@@ -1,6 +1,9 @@
 /.project
 .gitingnore
 nginx.copy.conf
+package-lock.json
+.babelrc
+node_modules/
 .idea/
 logs/
 temp/
