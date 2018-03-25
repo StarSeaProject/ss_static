@@ -11,6 +11,7 @@ $(function () {
         }
     });
 
+
     let page = 1;
     let status = 2;
     $(window).scroll(function () {
@@ -53,6 +54,30 @@ $(function () {
             });
         }
     });
+
+    //如果无问题则显示
+    let count=0;
+    $(".qaBox").each(function(i,div){
+        count=1;
+    });
+    if (!count){
+        let str=`<div>
+                    <div class="row qaBox">
+                        <div class="col-sm-12 col-md-10 qBox">
+                            <p class="qText">
+                            Q:暂无问题显示
+                            </p>
+                        </div>
+                        <div class="col-sm-12 col-md-10 aBox">
+                            <p class="aText">
+                            A:暂无问题显示
+                            </p>
+                        </div>
+                    </div>
+					</div>
+        `;
+        $("#questions").append(str);
+    }
 });
 
 

@@ -19,8 +19,6 @@ function func1()
     window.addEventListener("scroll",func2)
 }
 
-window.onload = func1;
-
 //购物车页面在不能提交时“确认”按钮是暗的，至少选中了一个之后就亮起来的功能
 function countchecked(){
     let count=0;
@@ -37,7 +35,26 @@ function countchecked(){
         $("#confbutt").css("background","#333")
     }
 }
-countchecked();
-$(".selectallinput").click(function(){
+
+//购物车中无物品
+function NoItem(){
+    let count=0;
+    $(".formdata").each(function(i,div){
+        count=1;
+    });
+    if(!count){
+        $("#NoItemDiv").show();
+    }
+}
+
+
+$(function() {
+    $("#NoItemDiv").hide();
+    NoItem();
+    window.onload = func1;
     countchecked();
+    $(".selectallinput").click(function(){
+        countchecked();
+    });
 });
+
