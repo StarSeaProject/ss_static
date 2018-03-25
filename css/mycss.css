@@ -52,4 +52,9 @@ p{
 	margin:0;
 }
 
+/*弹窗*/
+.modal-dialog{
+    width:40%;
+    margin-top:20%;
+}
 

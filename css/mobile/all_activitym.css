@@ -70,6 +70,10 @@ a.nowactbutton:link {
     padding-top: 10px;
 }
 
+.previousact{
+    text-align:center;
+}
+
 .page {
     font-size: 1.2em;
 }

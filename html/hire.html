@@ -8,9 +8,8 @@
     <title>星之海志愿者公会</title>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
-    <link rel="stylesheet" href="mycss.css">
-    <link rel="stylesheet" href="/mynavbar_commonpage.css"></link>
+    <link rel="stylesheet" href="/mycss.min.css">
+    <link rel="stylesheet" href="/mynavbar_commonpage.min.css"></link>
     <style>
         html {
             position: relative;
@@ -20,17 +19,6 @@
         body {
             margin: 0 0 100px;
         }
-
-        .abnav {
-            color: #FFFFFF;
-            font-size: 1.5em;
-            text-decoration: underline;
-        }
-
-        a:hover {
-            color: rgb(7, 251, 251);
-        }
-
         .footbar {
             background-image: url("/wavew.png");
             background-repeat: repeat-x;
@@ -74,7 +62,7 @@
                 display: inline-block;
                 font-size: 1.2em;
             }
-            nav {
+            .common-navbar {
                 display: none;
             }
         }
@@ -83,7 +71,7 @@
             .navbartop {
                 display: none;
             }
-            nav {
+            .common-navbar {
                 display: block;
             }
         }
@@ -127,19 +115,24 @@
     </nav>
 </div>
     <!--Mobile Navbar-->
-    <div class="navbartop" style="clear: both">
+<div class="navbartop container-fluid">
+    <div class="row">
         <div class="navbar-header col-xs-3">
-            <a href="/">
-                <img src="/starsea.png" style="width: 70px;" class="img-reponsive"></img>
-            </a>
+            <a href="/"><img src="/starsea.png" class="navimg img-responsive"></img></a>
         </div>
         <div class="navbar-right col-xs-9 text-right">
             <a href="/work" class="ma text-right">作品</a>
-            <a href="/activity" class="ma text-right">活动</a>
-            <a href="/mintro.html" class="ma text-right">关于</a>
+            <a href="/activity"class="ma text-right">活动</a>
+            <a href="/mintro.html"class="ma text-right">关于</a>
         </div>
-        <img class="img-reponsive" src="/navbar.jpg"></img>
     </div>
+    <div class="row">
+        <div class="col-xs-12 imgbarcontainer">
+            <img class="imgbar" src="/navbar.jpg"></img>
+        </div>
+    </div>
+</div>
+
     <!--主容器-->
     <div class="uk-container">
         <!--Heading-->
@@ -162,6 +155,9 @@
     <div class="footbar text-center">
         <p style="padding-top:80px;">互联网ICP备案：鲁ICP备17053445号</p>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+    <script src="/mynavbar_commonpage.min.js"></script>
 </body>
 
 </html>
