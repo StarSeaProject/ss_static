@@ -12,116 +12,38 @@
 <link rel="stylesheet"
 	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"></link>
 <link rel="stylesheet" href="/mycss.min.css"></link>
+<link rel="stylesheet" href="/mobile/mynavbar_mobilepage.min.css"></link>
+<link rel="stylesheet" href="/mobile/myfootbar_mobilepage.min.css"></link>
+<link rel="stylesheet" href="/mobile/mintro.min.css"></link>
 
 <style>
-.navbartop {
-	width: 100%;
-	background: #1e93f3;
-}
-
-.ma {
-	margin-top: 20px;
-	margin-left: 10px;
-	margin-bottom: -4px;
-	color: white;
-	display: inline-block;
-	font-size: 1.2em;
-}
-
-.mfoot {
-	background-image: url("/wavew.png");
-	background-repeat: repeat-x;
-	height: 120px;
-	backgroud: #409cc3;
-}
-
-.pagetitle {
-	background-color: #f69163;
-	color: #ffffff;
-	padding-top: 20px;
-	padding-bottom: 35px;
-	margin-top: 0px;
-	margin-bottom: 10px;
-}
-
-.pagetitleh1 {
-	padding-left: 40px;
-	margin: 0px;
-	font-size: 1.7em;
-}
-
-.pagetitleh2 {
-	padding-left: 40px;
-	margin: 0px;
-	color: #000;
-	font-size: 1.3em;
-}
-
-.workbox {
-	background: #a9d6f5;
-}
-
-.worktitle {
-	color: #000;
-}
-
-.workdetail {
-	margin-top: 15px;
-	margin-bottom: 15px;
-	padding-bottom: 5px;
-	color: #fff;
-}
-
-a.detailhref {
-	padding: 9px;
-	border: 1px solid;
-	border-radius: 12px;
-	border-color: #23b1f7;
-	text-decoration: none;
-	color: #23b1f7;
-}
-
-a.detailhref:hover {
-	text-decoration: none;
-	color: #23b1f7;
-}
-
-a.detailhref:visited {
-	text-decoration: none;
-	color: #23b1f7;
-}
-
-a.detailhref:link {
-	text-decoration: none;
-	color: #23b1f7;
-}
-
-.intro {
-	font-size: 16px;
-	padding-top: 20px;
-}
 </style>
 </head>
 
-<body>
-	<div class="navbartop" style="clear: both">
+<body class="container-fluid">
+	<div class="navbartop row">
 		<div class="navbar-header col-xs-3">
-			<a href="/"><img src="/starsea.png" style="width: 70px;"
-				class="img-reponsive"></img></a>
+			<a href="/"><img src="/starsea.png" class="navimg img-responsive"></img></a>
 		</div>
 		<div class="navbar-right col-xs-9 text-right">
-			<a href="/work" class="ma text-right">作品</a> <a href="/activity"
-				class="ma text-right">活动</a> <a href="/mintro.html"
-				class="ma text-right">关于</a>
+			<a href="/work" class="ma text-right">作品</a>
+			<a href="/activity" class="ma text-right">活动</a>
+			<a href="/mintro.html" class="ma text-right">关于</a>
 		</div>
-		<img class="img-reponsive" src="/navbar.jpg"></img>
 	</div>
-	<div class="pagetitle">
+	<div class="row">
+		<div class="col-xs-12 imgbarcontainer">
+			<img class="imgbar" src="/navbar.jpg" ></img>
+		</div>
+	</div>
+
+
+	<div class="pagetitle row">
 		<h1 class="h1 pagetitleh1">组织介绍</h1>
 		<h2 class="h2 pagetitleh2">About Us</h2>
 	</div>
-	<div class="pagecontain container text-left">
-		<p class="text-left intro" style="color: #23b1f7">
+	<div class="pagecontain container text-left row">
+		<p class="text-left intro" id="blueword">
 			“麦克风还正常吗？Check，1，2，OK！”</p>
 		<p class="text-left intro">
 			大家好，我们是星之海志愿者公会，致力于为校园偶像在中国国内的Event应援、向各位传递LoveLove!Sunshine!!的魅力的组织！想要成为Aqours的【第十人】，我们凭借各自微小的力量聚集在了一起，为Aqours在国内的活动多次制作了CallBook，宣传折页，徽章等纪念品，力图将校园偶像带给我们的温暖传递下去，为热爱校园偶像的每一个人留下一份温暖而珍贵的回忆！</p>
@@ -138,25 +60,21 @@ a.detailhref:link {
 			<p>それは階段 それとも扉</p>
 			<p>夢のかたちは色々あるんだろう</p>
 			<p>そして繋がれ みんな繋がれ</p>
-			<p style="color: #f69163">夜空を照らしにいこう！</p>
+			<p id="textorange">夜空を照らしにいこう！</p>
 			<small>Aqours<cite title="Source Title">夢で夜空を照らしたい</cite></small>
 		</blockquote>
 		<p class="text-left intro">
 			同时，我们星之海官网项目组也在招揽专业的软件开发人才，你可以<a href="/hire.html">点击这里</a>加入我们。
 		</p>
 	</div>
-	<div class="weibo col-xs-12 text-center" style="height: 520px;">
-		<iframe id="weibo" style="width: 80%; height: 500px;" frameborder="0"
-			scrolling="no" src="https://m.weibo.cn/u/6241874149"></iframe>
-	</div>
-	<div class="mfoot text-center" style="clear: both;">
-		<p style="padding-top: 100px;">互联网ICP备案：鲁ICP备17053445号</p>
+	<iframe id="weibo" frameborder="0"
+		scrolling="no" src="https://m.weibo.cn/u/6241874149"></iframe>
+	<div class="mfoot text-center row">
+		<p class="footp">互联网ICP备案：鲁ICP备17053445号</p>
 	</div>
 	<script src="/jquery-3.2.1.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="/common.js"></script>
-	<script src="/read.js"></script>
 
 </body>
 

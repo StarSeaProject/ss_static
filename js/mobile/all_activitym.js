@@ -1,5 +1,9 @@
-var x = document.getElementById("back");
-if (x.innerHTML == "") {
-    $("#backbox").hide();
+$(function () {
+    if ($("#front").text() == "") {
+        $("#frontbox").hide();
 
-}
+    }
+    if ($("#back").text() == "" ) {
+        $("#backbox").hide();
+    }
+});

@@ -1,8 +1,8 @@
 $(function () {
-    let str = `<img style="width: 70%" src="${workImages.shift().workImagePath}" /><br/>`;
+    let str = `<img class="more_picture" src="${workImages.shift().workImagePath}" /><br/>`;
     $("#more_image").before(str);
     $("#more_image").on("click", () => {
-        let str = `<img style="width: 70%" src="${workImages.shift().workImagePath}" /><br/>`;
+        let str = `<img class="more_picture" src="${workImages.shift().workImagePath}" /><br/>`;
         $("#more_image").before(str);
     });
 
@@ -41,9 +41,6 @@ $(function () {
             }
         }
     });
-});
-$(window).scroll(function () {
-    const y = $(window).height();
-    const cury = $(window).scrollTop() + y - 160;
-    $('#cardiv').css("left", "90%").css("top", cury + "px");
+
+
 });

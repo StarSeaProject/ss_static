@@ -18,18 +18,9 @@
     color: #999999;
 }
 
-.btn-primary{
-    background-color: #23b1f7;
-    background-image: none;
-    border-color: #23b1f7;
-}
-
-a#anchorbutton{
-    position:fixed;
-    margin-top:50px;
-    margin-left:50%;
-    transform:translateX(-50%);
-    color:white;
+#leftcolumn{
+    margin-left:0;
+    width:85%;
 }
 
 .worktitle {
@@ -72,18 +63,6 @@ a.detailhref:link {
     background-position: right bottom;
 }
 
-#gotocar {
-    border: 1px solid orange;
-    border-radius: 40px;
-    height: 80px;
-    width: 80px;
-    background: #fff;
-}
-
-#cardiv {
-    position: absolute;
-}
-
 .addheight1{
     height:100px;
 }
@@ -96,9 +75,60 @@ a.detailhref:link {
     cursor: pointer;
 }
 
+.fixedbutton{
+    position:fixed;
+    margin-left:85%;
+    width:15%;
+    height:100%;
+}
+
+#addheight3{
+    height:80%;
+}
+
+#cardiv{
+    position:relative;
+    margin-left:50%;
+}
+
+#gotocar {
+    transform: translateX(-50%);
+    border: 1px solid orange;
+    border-radius: 40px;
+    height: 80px;
+    width: 80px;
+    background: #fff;
+}
+
 .glyphicon-shopping-cart{
     font-size: 1.6em;
     color: orange;
+}
+
+#btncon{
+    text-align:center;
+    margin-top:20px;
+    margin-left:50%;
+    transform: translateX(-50%);
+}
+
+a#anchorbutton{
+    color:white;
+    background-color: #23b1f7;
+    border-color: #23b1f7;
+    border-radius:5px;
+    padding:10px;
+}
+
+a#anchorbutton:hover{
+    text-decoration: none;
+    background-color: #3361af;
+}
+
+.btn-primary{
+    background-color: #23b1f7;
+    background-image: none;
+    border-color: #23b1f7;
 }
 
 .spinner {

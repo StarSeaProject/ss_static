@@ -1,5 +1,4 @@
-
-.titleh1 {
+titleh1 {
     font-size: 0.8em;
 }
 
@@ -32,8 +31,13 @@
     color:#238acb;
 }
 
+.more_picture{
+    width: 70%;
+    margin-left:15%
+}
+
 #workImages{
-    text-align: center
+    text-align: center;
 }
 
 #gotocar{
@@ -44,8 +48,8 @@
     background:#fff;
 }
 #cardiv{
-    position:absolute;
-}
+     position:fixed;
+ }
 
 .glyphicon-shopping-cart{
     font-size:1.6em;

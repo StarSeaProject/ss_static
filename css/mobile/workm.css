@@ -65,6 +65,7 @@ a.detailhref:link {
     text-decoration: none;
     color: #23b1f7;
 }
+
 #gotocar{
     border:1px solid orange;
     border-radius:20px;
@@ -72,8 +73,9 @@ a.detailhref:link {
     width:40px;
     background:#fff;
 }
+
 #cardiv{
-    position:absolute;
+    position:fixed;
 }
 
 .glyphicon-shopping-cart{

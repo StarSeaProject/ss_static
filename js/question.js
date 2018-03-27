@@ -62,19 +62,10 @@ $(function () {
     });
     if (!count){
         let str=`<div>
-                    <div class="row qaBox">
-                        <div class="col-sm-12 col-md-10 qBox">
-                            <p class="qText">
-                            Q:暂无问题显示
-                            </p>
-                        </div>
-                        <div class="col-sm-12 col-md-10 aBox">
-                            <p class="aText">
-                            A:暂无问题显示
-                            </p>
-                        </div>
+                    <div class="row noitem">
+                        暂无问题显示
                     </div>
-					</div>
+				</div>
         `;
         $("#questions").append(str);
     }

@@ -13,39 +13,9 @@
 	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"></link>
 
 <link rel="stylesheet" href="/mycss.min.css"></link>
+<link rel="stylesheet" href="/intro.min.css"></link>
 <link rel="stylesheet" href="/mynavbar_commonpage.min.css"></link>
-
-<style>
-.abnav {
-	color: #FFFFFF;
-	font-size: 1.5em;
-	text-decoration: underline;
-}
-
-a:hover {
-	color: rgb(7, 251, 251);
-}
-
-.footbar {
-	background-image: url("/wavew.png");
-	background-repeat: repeat-x;
-	height: 120px;
-	backgroud: #409cc3;
-}
-
-.intro {
-	font-size: 20px;
-}
-
-.introh1 {
-	color: #23b1f7;
-	padding-top: 40px;
-}
-
-#weibo {
-	padding-bottom: 40px;
-}
-</style>
+<link rel="stylesheet" href="/myfootbar_commonpage.min.css"></link>
 </head>
 
 <body class="container-fluid">
@@ -91,7 +61,7 @@ a:hover {
 			<p>それは階段 それとも扉</p>
 			<p>夢のかたちは色々あるんだろう</p>
 			<p>そして繋がれ みんな繋がれ</p>
-			<p style="color: #f69163">夜空を照らしにいこう！</p>
+			<p id="textorange" >夜空を照らしにいこう！</p>
 			<small>Aqours<cite title="Source Title">夢で夜空を照らしたい</cite></small>
 		</blockquote>
 		<p class="text-left intro">
@@ -101,20 +71,19 @@ a:hover {
 	<div class="container weibo">
 		<div class="text-center">
 			<h1 class="text-center h1" id="jieshao">我们的微博</h1>
-			<iframe id="weibo" style="width: 80%; height: 540px;" frameborder="0"
+			<iframe id="weibo" frameborder="0" src = "http://v.t.sina.com.cn/widget/widget_blog.php?uid=6241874149"
 				scrolling="no"></iframe>
 		</div>
 
 
 	</div>
 	<div class="footbar text-center">
-		<p style="padding-top: 100px;">互联网ICP备案：鲁ICP备17053445号</p>
+		<p class="footbarpara">互联网ICP备案：鲁ICP备17053445号</p>
 	</div>
+
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<script
 		src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script>
-		document.getElementById("weibo").src = "http://v.t.sina.com.cn/widget/widget_blog.php?uid=6241874149";
-	</script>
+	<script src="/mynavbar_commonpage.min.js"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@
 }
 
 a{
-    color:white;
+    color:black;
 }
 
 a:hover {
@@ -93,12 +93,11 @@ a.nowactbutton:link {
 
 .pagebox{
     text-align:center;
-    color:white;
+    color:black;
 }
 
 .pagebutton {
     font-size: 1.6em;
-    margin-left:50%;
     border: 1px solid;
     border-radius: 2px;
     background-color: #23b1f7;

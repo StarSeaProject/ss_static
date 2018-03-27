@@ -55,6 +55,15 @@ p{
 /*弹窗*/
 .modal-dialog{
     width:40%;
-    margin-top:20%;
+    margin-top:50%;
+    transform: translateY(-50%);
+}
+
+/*无作品显示*/
+.noitem{
+    height:300px;
+    text-align:center;
+    padding-top:130px;
+    font-size:40px;
 }
 

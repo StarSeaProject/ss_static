@@ -83,6 +83,27 @@
     padding-top: 15px;
 }
 
+.selectallc{
+    height:100%;
+    padding-top:16px;
+}
+
+#delselect {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 50px;
+    font-size: 1.6em;
+    color: white;
+    background: transparent;
+    width: 100%;
+}
+
+a.btncontainer:hover {
+    background: #eee;
+}
+
 #confbutt {
     display: block;
     margin: 0;
@@ -95,19 +116,13 @@
     width: 100%;
 }
 
+
+
 #confdivv {
     margin: 0;
     padding: 0;
     border: 0;
     display: block;
-}
-
-#delselect {
-    background: transparent;
-    border: 0;
-    color: black;
-    border-radius: 0;
-    height: 50px;
 }
 
 .addheight1{
@@ -127,11 +142,3 @@
     background: #ccc;
 }
 
-.pull-left{
-    width: 40%;
-    padding-top: 12px;
-}
-
-.pull-right{
-    width:40%;
-}

@@ -1,8 +1,8 @@
-var footer = document.querySelector("div#jiesuanbar");
-const maxY = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
 function func2()
 {
+    var footer = document.querySelector("div#jiesuanbar");
+    const maxY = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     "use strict";
     const y = window.scrollY;
     const trigger = maxY - 25;
@@ -29,7 +29,7 @@ function countchecked(){
         }
     });
     if(count==0){
-        $("#confbutt").css("background","#aaa")
+        $("#confbutt").css("background","#ddd")
     }
     else{
         $("#confbutt").css("background","#333")

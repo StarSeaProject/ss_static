@@ -1,12 +1,9 @@
 $(function () {
-    var x = document.getElementById("front");
-    if (x.innerHTML == "") {
+    if ($("#front").text() == "") {
         $("#frontbox").hide();
 
     }
-
-    var x = document.getElementById("back");
-    if (x.innerHTML == "") {
+    if ($("#back").text() == "" ) {
         $("#backbox").hide();
     }
 });
