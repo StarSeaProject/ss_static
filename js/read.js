@@ -34,9 +34,9 @@ $(function () {
                     page++;
                     total = data.totalPage;
                     for (let work of data.result) {
-                        str += `<div>
+                        str += `<div class="container-fluid">
 						<div class="row workbox">
-							<div class="${clazz} workimage">
+							<div class="col-xs-5 workimage">
 								<img src="${work.workCover}" class="workimg img-reponsive"></img>
 							</div>
 							<div class="col-xs-7 workdetail">

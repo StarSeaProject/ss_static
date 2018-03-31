@@ -60,16 +60,17 @@
     background: rgba(255, 255, 255, 0);
 }
 
+.more_picture{
+    width: 70%;
+    margin-left:15%
+}
 
 .fixedbutton{
     position:fixed;
-    margin-left:85%;
+    left:85%;
+    top:80%;
     width:15%;
     height:100%;
-}
-
-#addheight3{
-    height:80%;
 }
 
 #cardiv{

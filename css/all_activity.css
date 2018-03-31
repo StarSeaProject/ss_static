@@ -96,13 +96,26 @@ a.nowactbutton:link {
     color:black;
 }
 
-.pagebutton {
+
+.pagebutton{
+    position:relative;
+    margin-left:50%;
+    transform:translateX(-50%);
+    display:block;
     font-size: 1.6em;
     border: 1px solid;
     border-radius: 2px;
     background-color: #23b1f7;
     height: 40px;
     width: 40px;
+}
+
+a.pagebutton {
+
+}
+
+a.pagebutton:hover{
+    background-color: #3361af;
 }
 
 .right {

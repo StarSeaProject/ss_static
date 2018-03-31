@@ -40,16 +40,28 @@ titleh1 {
     text-align: center;
 }
 
-#gotocar{
-    border:1px solid orange;
-    border-radius:20px;
-    height:40px;
-    width:40px;
-    background:#fff;
+
+.fixedbutton{
+    position:fixed;
+    left:85%;
+    top:80%;
+    width:15%;
+    height:100%;
 }
+
 #cardiv{
-     position:fixed;
- }
+    position:relative;
+    margin-left:50%;
+}
+
+#gotocar {
+    transform: translateX(-50%);
+    border: 1px solid orange;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    background: #fff;
+}
 
 .glyphicon-shopping-cart{
     font-size:1.6em;

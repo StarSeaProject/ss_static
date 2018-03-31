@@ -54,9 +54,11 @@ p{
 
 /*弹窗*/
 .modal-dialog{
+    position:fixed;
+    left:30%;
     width:40%;
-    margin-top:50%;
-    transform: translateY(-50%);
+    top:40%;
+    height:20%;
 }
 
 /*无作品显示*/
