@@ -1,5 +1,42 @@
+
+.my-navbar{
+    background-color:inherit;
+    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    height: auto;
+}
+.nolnavbar{
+    background-color:inherit;
+    -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    height: auto;
+}
+.anav{
+    font-size: 1.5em;
+    color:rgb(255,255,255) !important;
+    font-family: sans-serif;
+}
+a.anav:hover,a.abnav:hover{
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    background-color: transparent !important;
+    trasition:0.5s;
+}
+.scrolledDown{
+    background: transparent;
+}
+.mynavul{
+    font-size:0.7em;
+    padding-right:3em;
+}
+.img-reponsive{
+    width: 100%;
+    height: 100%;
+}
+
 .main {
     width: 100%;
+    height:75%;
     background-image: url("/aqours.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -8,39 +45,52 @@
 
 .navbar-header{
     padding-top:10px;
-    paddingleft:25px;
+    padding-left:25px;
 }
 
 .navimg{
-    width: 100px;
+    width: 50px;
 }
-.title {
-    font-size: 3.8em;
-    color: #409cc3;
 
+.con1{
+    padding-top:60px;
+}
+
+.con2{
+    padding-top:50px;
+}
+
+.con3{
+    padding-top:100px;
+}
+
+.con4{
+    padding-top:50px;
+}
+
+.title {
+    font-size: 2.5em;
+    color: #409cc3;
 }
 
 .secondtitle {
-    font-size: 2.2em;
+    letter-spacing:0.1em;
+    font-size: 1.7em;
     font-style: oblique;
-    color: #FFFFFF;
     color: red;
 }
 
 .mymain {
     clear: both;
-    border: 0px;
-    padding: 0px;
-    margin: 0px;
+    padding:0;
     background: black;
     width: 100%;
-    height: 1000px;
-
 }
+
+
 
 .jieshao {
     color: #ffffff;
-
     font-size: 1.3em;
 }
 
@@ -63,9 +113,9 @@
 
 .footbar {
     background-image: url("/wave.png");
+    background-size:3%;
     background-repeat: repeat-x;
-    height: 80px;
-    padding-top:60px;
+    padding-top:20px;
 }
 
 #WeAre{

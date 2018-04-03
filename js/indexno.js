@@ -1,20 +1,19 @@
-(function () {
-    var widthget = window.innerWidth;
-    
-    switch (widthget) {
-        case 1280:
-            document.getElementById("homepage").style.height = 600 + "px";break;
-        case 1366:
-            document.getElementById("homepage").style.height = 600 + "px";break;
-        case 1920:
-            document.getElementById("homepage").style.height = 800 + "px";break;
-        case 1024:
-            document.getElementById("homepage").style.height = 600 + "px";break;
-        case 1600:
-            document.getElementById("homepage").style.height = 700 + "px";break;
-        case 2160:
-            document.getElementById("homepage").style.height = 900 + "px";break;
-        default:
-            document.getElementById("homepage").style.height = 600 + "px";break;
+$(function(){
+    function pageresponse(){
+        let width1=$(window).width();
+        let height1=$(window).height();
+
+        $(".main").css("height",height1*0.75);
+        $(".mymain").css("height",height1*1.5);
+        $(".footbar").css("height",height1*0.05);
+        $(".con1").css("height",height1*0.25);
+        $(".con2").css("height",height1*0.2);
+        $(".con3").css("height",height1*0.5);
+        $(".con4").css("height",height1*0.3);
+
     }
-})();
+    pageresponse();
+    $(window).resize(function(){
+        pageresponse();
+    });
+});

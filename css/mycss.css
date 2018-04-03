@@ -4,50 +4,19 @@ body{
     overflow-x: hidden;
 }
 
-/*这里是主页用*/
-.my-navbar{
-    background-color:inherit;
-    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
-    -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
-    height: auto;
-}
-.nolnavbar{
-    background-color:inherit;
-    -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
-    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
-    height: auto;
-}
-.anav{
-    font-size: 1.5em;
-    color:rgb(255,255,255) !important;
-    font-family: sans-serif;
-}
-a.anav:hover,a.abnav:hover{
-    color: rgb(255, 255, 255);
-    text-decoration: underline;
-    background-color: transparent !important;
-    trasition:0.5s;
-}
-.scrolledDown{
-    background: transparent;
-}
-.mynavul{
-    padding-right:3em;
-}
-.img-reponsive{
-    width: 100%;
-    height: 100%;
-}
 /*介绍页*/
+
 .heading{
     transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
     -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
     height: 200px;
     width: 100%;
 }
+
 .nornavbar{
     margin: auto;
 }
+
 p{
 	margin:0;
 }
