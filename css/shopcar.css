@@ -142,3 +142,19 @@ a.btncontainer:hover {
     background: #ccc;
 }
 
+/*弹窗*/
+.modal-dialog{
+    position:fixed;
+    left:30%;
+    width:40%;
+    top:40%;
+    height:20%;
+}
+
+/*无作品显示*/
+.noitem{
+    height:300px;
+    text-align:center;
+    padding-top:130px;
+    font-size:40px;
+}

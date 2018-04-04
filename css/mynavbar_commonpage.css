@@ -5,12 +5,14 @@
 
 .common-navbar {
     padding:0;
+    overflow:hidden;
 }
 
 .heading {
     background-image: url("/navbar.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
+    background-position-y:70%;
     margin:0;
 }
 
@@ -21,11 +23,24 @@
 
 .navimg {
     transition: all 0.6s;
-    width: 70px;
+    width: 50px;
 }
 
 .navimg:hover {
     transform: scale(1.4);
+}
+
+.anav{
+    font-size: 1em;
+    color:rgb(255,255,255) !important;
+    font-family: sans-serif;
+}
+
+a.anav:hover,a.abnav:hover{
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    background-color: transparent !important;
+    trasition:0.5s;
 }
 
 #shownav {

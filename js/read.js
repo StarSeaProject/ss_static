@@ -36,10 +36,10 @@ $(function () {
                     for (let work of data.result) {
                         str += `<div class="container-fluid">
 						<div class="row workbox">
-							<div class="col-xs-5 workimage">
-								<img src="${work.workCover}" class="workimg img-reponsive"></img>
+							<div class="col-xs-3 workimage">
+								<img src="${work.workCover}" class="workimg img-responsive"></img>
 							</div>
-							<div class="col-xs-7 workdetail">
+							<div class="col-xs-9 workdetail">
 								<p  class="h3 worktitle">${work.workName}</p>
 								<p class="p workdetail">${work.workSummary}</p>
 								<a data-workid=${work.workId} class="h4 detailhref" href="javascript:void(0)">&nbsp;&nbsp;查看作品&nbsp;&nbsp;</a>

@@ -1,9 +1,8 @@
 $(function(){
     function navresponse(){
         let width1=$(window).width();
-        let height1=width1/4;
-        $(".common-navbar").css("height",height1);
-        $(".heading").css("height",height1);
+        $(".common-navbar").css("height",width1/6);
+        $(".heading").css("height",width1/5);
     }
     navresponse();
     $(window).resize(function(){
