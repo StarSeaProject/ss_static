@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(function () { 
     $("#modifyAddressBtn").on("click",function(e){  
         areanum = $("#area").val(); 
         if(areanum==""||areanum==undefined){
