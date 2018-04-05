@@ -37,6 +37,10 @@
     background: red;
 }
 
+.checklist{
+    width:70%;
+}
+
 .workname {
     background-color: #eeeeee;
     color: #23b1f7;
@@ -62,7 +66,6 @@
 
 .more_picture{
     width: 70%;
-    margin-left:15%
 }
 
 .fixedbutton{
@@ -103,4 +106,13 @@
 
 #workImages{
     text-align:center;
+}
+
+/*弹窗*/
+.modal-dialog{
+    position:fixed;
+    left:30%;
+    width:40%;
+    top:40%;
+    height:20%;
 }

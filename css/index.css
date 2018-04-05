@@ -5,17 +5,20 @@
     -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
     height: auto;
 }
+
 .nolnavbar{
     background-color:inherit;
     -webkit-transition:background 0.5s ease-in-out, padding 0.5s ease-in-out;
     transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
     height: auto;
 }
+
 .anav{
     font-size: 1.5em;
     color:rgb(255,255,255) !important;
     font-family: sans-serif;
 }
+
 a.anav:hover,a.abnav:hover{
     color: rgb(255, 255, 255);
     text-decoration: underline;
@@ -48,8 +51,13 @@ a.anav:hover,a.abnav:hover{
     padding-left:25px;
 }
 
-.navimg{
+.navimg {
+    transition: all 0.6s;
     width: 50px;
+}
+
+.navimg:hover {
+    transform: scale(1.4);
 }
 
 .con1{
