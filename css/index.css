@@ -32,18 +32,15 @@ a.anav:hover,a.abnav:hover{
     font-size:0.7em;
     padding-right:3em;
 }
-.img-reponsive{
-    width: 100%;
-    height: 100%;
-}
 
 .main {
     width: 100%;
-    height:75%;
+    background-color:black;
     background-image: url("/aqours.png");
-    background-size: 100% 100%;
+    background-size:100%,auto;
     background-repeat: no-repeat;
-    clear: both
+    clear: both;
+    overflow:hidden;
 }
 
 .navbar-header{

@@ -1,3 +1,15 @@
+.main{
+    width:60%;
+}
+
 .col-xs-6{
     margin-top: 15px;
+}
+
+.inner1{
+    width:auto;
+}
+
+#modifyAddressBtn{
+    margin-bottom:100px;
 }
