@@ -2,6 +2,8 @@ $(function () {
     let str = `<img class="more_picture" src="${workImages.shift().workImagePath}" /><br/>`;
     $("#more_image").before(str);
     $("#more_image").on("click", () => {
+    	if (workImages.length == 0)
+            return;
         let str = `<img class="more_picture" src="${workImages.shift().workImagePath}" /><br/>`;
         $("#more_image").before(str);
     });
