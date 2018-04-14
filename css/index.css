@@ -38,6 +38,7 @@ a.anav:hover,a.abnav:hover{
     background-color:black;
     background-image: url("/aqours.png");
     background-size:100%,auto;
+    background-position:0,50%;
     background-repeat: no-repeat;
     clear: both;
     overflow:hidden;
@@ -92,7 +93,9 @@ a.anav:hover,a.abnav:hover{
     width: 100%;
 }
 
-
+.midpic{
+    width:90%;
+}
 
 .jieshao {
     color: #ffffff;
