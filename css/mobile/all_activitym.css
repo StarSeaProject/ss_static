@@ -31,7 +31,10 @@
 
 .nowactbox, .nowactimg, .nowactdetail {
     background: #a9d6f5;
+}
 
+.nowactimg{
+    padding:15px;
 }
 
 .nowactbutton {
