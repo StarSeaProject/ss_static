@@ -2,6 +2,10 @@ titleh1 {
     font-size: 0.8em;
 }
 
+.imgct{
+    padding:10px;
+}
+
 .workname {
     background-color: #eeeeee;
     color: #23b1f7;
@@ -10,6 +14,7 @@ titleh1 {
     margin-top: 0px;
     margin-bottom: 10px;
 }
+
 #workTypes {
     display:none;
 }
@@ -33,7 +38,6 @@ titleh1 {
 
 .more_picture{
     width: 70%;
-    margin-left:15%
 }
 
 #workImages{
