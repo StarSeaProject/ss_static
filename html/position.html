@@ -1,0 +1,26 @@
+<html>
+
+<head></head>
+
+<body>
+    <button onclick="getPosition()">获取</button>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://raw.githubusercontent.com/jmesnil/stomp-websocket/master/lib/stomp.min.js"></script>
+<script>
+    let socket = new SockJS('/position-websocket');
+    let stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/position', function (positions) {
+            console.log(positions);
+        });
+    });
+    function getPosition() {
+        stompClient.send("position/get_position","");
+    }
+
+</script>
+
+</html>
