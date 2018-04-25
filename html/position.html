@@ -1,0 +1,48 @@
+<html>
+
+<head></head>
+
+<body>
+    <button onclick="staff_start()">staff模式</button>
+    <button onclick="normal_start()">普通用户模式</button><br>
+    <div style="float:left;border:1px solid;width:49%;height:1000px;" id="staffMessage"></div>
+    <div style="float:right;border:1px solid;width:49%;height:1000px;" id="normalMessage"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="/stomp.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script>
+    let socket = new SockJS('/position-websocket');
+    let stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        stompClient.subscribe('/update_position', function (success) {
+            $("#staffMessage").append(success.body + "<br>");
+        });
+        stompClient.subscribe('/get_position', function (position) {
+            $("#normalMessage").append("获取到所有staff坐标：" + position.body+ "<br>");
+        });
+    });
+    function staff_start() {
+        setInterval("updatePosition()", 1000);
+    }
+    let x = 0;
+    let y = 0;
+    function updatePosition() {
+        let position = {
+            "x": "" + x,
+            "y": "" + y
+        }
+        x++;
+        y++;
+        stompClient.send("/position/update_position", {}, JSON.stringify(position));
+    }
+    function normal_start() {
+        setInterval("getPosition()", 1000);
+    }
+    function getPosition() {
+        stompClient.send("/position/get_position", {}, "");
+    }
+
+</script>
+
+</html>
