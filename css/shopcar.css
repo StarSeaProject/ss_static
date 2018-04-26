@@ -1,3 +1,10 @@
+.vertical-center {
+
+    width:100%;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+}
 
 .pagetitle {
     color: #238acb;
@@ -8,18 +15,39 @@
 }
 
 .pagetitleh1 {
-    padding-left: 100px;
+    padding-left: 6%;
     margin: 0px;
 }
 
 .pagetitleh2 {
-    padding-left: 100px;
+    padding-left: 6%;
     margin: 0px;
     color: #999999;
 }
 
+.processbar {
+    background: black;
+    height: 40px;
+    padding-left:2%;
+    margin-bottom: 60px;
+}
+
+.processbarli {
+    display: inline-block;
+    color: white;
+    font-size: 1.6em;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 40px;
+}
+
+.nowprocess {
+    background: red;
+}
+
 .upperform{
-    width:95%;
+    margin-left:5%;
+    width:90%;
 }
 
 .formtitle {
@@ -85,23 +113,23 @@
 
 .selectallc{
     height:100%;
-    padding-top:16px;
+    position:relative;
+    font-size: 1.6em;
 }
 
 #delselect {
+    padding:0;
+    position:relative;
     display: block;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    height: 50px;
+    height:100%;
     font-size: 1.6em;
-    color: white;
-    background: transparent;
-    width: 100%;
+    color: black;
+    text-decoration: none;
 }
 
 a.btncontainer:hover {
-    background: #eee;
+    background: #999;
+    cursor:pointer;
 }
 
 #confbutt {
@@ -139,7 +167,7 @@ a.btncontainer:hover {
 
 .navbar-fixed-bottom{
     height: 50px;
-    background: #ccc;
+    background: #eee;
 }
 
 /*弹窗*/
@@ -157,4 +185,14 @@ a.btncontainer:hover {
     text-align:center;
     padding-top:130px;
     font-size:40px;
+}
+
+/*页脚*/
+.footbar {
+    padding-top:20px;
+    background-color:#eee;
+}
+
+.footbarpara{
+    margin:0;
 }

@@ -29,7 +29,7 @@ function countchecked(){
         }
     });
     if(count==0){
-        $("#confbutt").css("background","#ddd")
+        $("#confbutt").css("background","#999")
     }
     else{
         $("#confbutt").css("background","#333")

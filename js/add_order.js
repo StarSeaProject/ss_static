@@ -1,9 +1,108 @@
 $(function () {
+    let navpre=$("#provincenav");
+    let provincepre;
+    let citypre;
+    let areapre;
+
+    WriteProvince();
+    $("#provincenav").toggleClass("navbutton");
+    $("#provincenav").toggleClass("navvisited");
+    $(".addressmap").hide();
+    $("#addressbutton").on("click",function(e){
+
+        $(".addressmap").show();
+        $("#city").hide();
+        $("#area").hide();
+        e.stopPropagation();
+        //点击其他地方关闭窗口
+        $(document).on("click",function(){
+            $(".addressmap").hide();
+        });
+
+        $("#provincenav").on("click",function(){
+            $("#city").hide();
+            $("#area").hide();
+            $("#province").show();
+            navpre.toggleClass("navbutton");
+            navpre.toggleClass("navvisited");
+            navpre=$(this);
+            navpre.toggleClass("navbutton");
+            navpre.toggleClass("navvisited");
+        });
+
+        $("#citynav").on("click",function(){
+            $("#area").hide();
+            $("#province").hide();
+            $("#city").show();
+            navpre.toggleClass("navbutton");
+            navpre.toggleClass("navvisited");
+            navpre=$(this);
+            navpre.toggleClass("navbutton");
+            navpre.toggleClass("navvisited");
+        });
+
+        $("#areanav").on("click",function(){
+            $("#city").hide();
+            $("#province").hide();
+            $("#area").show();
+            navpre.toggleClass("navbutton");
+            navpre.toggleClass("navvisited");
+            navpre=$(this);
+            navpre.toggleClass("navbutton");
+            navpre.toggleClass("navvisited");
+        });
+
+        $("#province").on("click",".provincebutton",function(e){
+            let provinceId=$(e.target).attr("value");
+            WriteCity(provinceId);
+            $("#area").html("");
+            $("#areasub").val("");
+            if (provincepre!==undefined){
+                provincepre.toggleClass("addressbutton");
+                provincepre.toggleClass("addressvisited");
+            }
+            provincepre=$(this);
+            provincepre.toggleClass("addressbutton");
+            provincepre.toggleClass("addressvisited");
+            $("#addressbutton").text(provincepre.text());
+        });
+
+        $("#city").on("click",".citybutton",function(e){
+            let cityId=$(e.target).attr("value");
+            WriteArea(cityId);
+            $("#areasub").val("");
+            if (citypre!==undefined){
+                citypre.toggleClass("addressbutton");
+                citypre.toggleClass("addressvisited");
+            }
+            citypre=$(this);
+            citypre.toggleClass("addressbutton");
+            citypre.toggleClass("addressvisited");
+            $("#addressbutton").text(provincepre.text()+citypre.text());
+        });
+        $("#area").on("click",".areabutton",function(e){
+            areanum = $(e.target).attr("value");
+            $("#areasub").val(areanum);
+            if (areapre!==undefined){
+                areapre.toggleClass("addressbutton");
+                areapre.toggleClass("addressvisited");
+            }
+            areapre=$(this);
+            areapre.toggleClass("addressbutton");
+            areapre.toggleClass("addressvisited");
+            $("#addressbutton").text(provincepre.text()+citypre.text()+areapre.text());
+        });
+    });
+
+    $(".addressmap").on("click",function(e){
+        e.stopPropagation();
+    });
+
 
 
     $("#addOrderBtn").on("click",function(e){
         name = $("#ordname").val();
-        if(name.length==0){
+        if(name.length===0){
         	alert("收货人为空");
         	return false;
         }
@@ -13,20 +112,19 @@ $(function () {
     	}
         
         phone = $("#ordphone").val();
-        if(phone.length!=11){
+        if(phone.length!==11){
         	alert("手机号格式错误！");
         	return false;
         }
         
-        areanum = $("#area").val(); 
-        if(areanum==""||areanum==undefined){
+        areanum = $("#areasub").val();
+        if(areanum===""||areanum===undefined){
         	alert("收货地址不合法！");
         	return false;
         }
-        $("#areasub").val(areanum);
         
         adddetail = $("#ordadddel").val();
-        if(adddetail.length==0){
+        if(adddetail.length===0){
         	alert("收货详细地址不能为空！");
         	return false;
         }
@@ -36,7 +134,7 @@ $(function () {
         }
         
         email = $("#ordemail").val();
-        if(email.length == 0){
+        if(email.length === 0){
         	alert("电子邮箱为空");
         	return false;
         }
@@ -53,4 +151,5 @@ $(function () {
 		}
         $("#addOrderForm").submit(); 
     });
+
 });
