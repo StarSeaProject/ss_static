@@ -19,7 +19,7 @@
             $("#staffMessage").append(success.body + "<br>");
         });
         stompClient.subscribe('/get_position', function (position) {
-            $("#normalMessage").append("获取到所有staff坐标：" + position.body+ "<br>");
+            $("#normalMessage").append("获取到所有staff坐标：" + position.body + "<br>");
         });
     });
     function staff_start() {
@@ -30,7 +30,8 @@
     function updatePosition() {
         let position = {
             "x": "" + x,
-            "y": "" + y
+            "y": "" + y,
+            "name": "kuma" + x + y
         }
         x++;
         y++;
