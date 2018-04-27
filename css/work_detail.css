@@ -72,6 +72,22 @@
     margin-bottom:100px;
 }
 
+
+.ul{
+    padding-left: 100px;
+    height: 40px;
+}
+
+.border1{
+    border-top: 1px solid black;
+}
+
+#workImages{
+    text-align:center;
+}
+
+/*购物车按钮*/
+
 .fixedbutton{
     position:fixed;
     left:85%;
@@ -97,19 +113,6 @@
 .glyphicon-shopping-cart{
     font-size: 1.6em;
     color: orange;
-}
-
-.ul{
-    padding-left: 100px;
-    height: 40px;
-}
-
-.border1{
-    border-top: 1px solid black;
-}
-
-#workImages{
-    text-align:center;
 }
 
 /*弹窗*/

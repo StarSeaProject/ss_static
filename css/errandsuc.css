@@ -1,4 +1,5 @@
 #mainblock{
+    margin-top:100px;
     background:rgba(200,200,200,0.5);
     width:50%
 }
@@ -9,4 +10,33 @@
 
 #bottommargin{
     height:100px;
+}
+
+/*购物车按钮*/
+
+.fixedbutton{
+    position:fixed;
+    left:85%;
+    top:80%;
+    width:15%;
+    height:100%;
+}
+
+#cardiv{
+    position:relative;
+    margin-left:50%;
+}
+
+#gotocar {
+    transform: translateX(-50%);
+    border: 1px solid orange;
+    border-radius: 40px;
+    height: 80px;
+    width: 80px;
+    background: #fff;
+}
+
+.glyphicon-shopping-cart{
+    font-size: 1.6em;
+    color: orange;
 }
