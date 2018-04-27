@@ -40,3 +40,20 @@
     font-size: 1.6em;
     color: orange;
 }
+
+/*保证页尾同页底贴合*/
+
+html{
+    height:100%;
+}
+
+body{
+    position:relative;
+    min-height:100%;
+}
+
+.footbar{
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
