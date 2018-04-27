@@ -9,7 +9,16 @@ $(function(){
 
     }
     pageresponse();
-    $(window).resize(function(){
+    let heighta=$("#ConnectedSite").height();
+    $(".bgimg").css("height",heighta);
+
+    $("#ShowSite").on("click",function(){
+        $("#ConnectedSite").slideToggle();
+    });
+
+    $(window).on("resize",function(){
         pageresponse();
     });
+
+
 });

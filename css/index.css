@@ -126,3 +126,65 @@ a.anav:hover,a.abnav:hover{
 #WeAre{
     color:#fff;
 }
+
+/*友情链接 */
+
+#ShowSite{
+    background-image: linear-gradient(to bottom,#f77910 0, #d27b06 100%);
+    background-color:#d27b06;
+    border:1px solid #f77910;
+}
+
+#ConnectedSite{
+    margin-top:20px;
+    position:relative;
+}
+
+.bgimg{
+    background-image:url("/mikan.png");
+    background-size:70%;
+    background-position-y:-50px;
+    background-color:#eee;
+    background-repeat: no-repeat;
+    opacity:0.5;
+    width:100%;
+    position:absolute;
+}
+
+#ConnectedSite.row{
+    margin:0;
+}
+
+.col-xs-12{
+    padding:0;
+}
+
+a.SiteLink{
+    display:block;
+    color:#f77910;
+    background-color: transparent;
+    padding-right:100px;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:2em;
+    text-align:right;
+}
+
+a.SiteLink:hover{
+    color:white;
+    background-color: #f77910;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
