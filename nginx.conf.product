@@ -35,6 +35,11 @@ http {
 	#	root /usr/share/nginx/html;
 	#	index index1.html;
 	#}
+	location /favicon.ico {
+		gzip off;
+		expires 30d;
+		root img/;
+	}
 	location ~* \.(jpg|jpeg|png)$ {
 		gzip off;
 	   	root /usr/share/nginx/img/;
