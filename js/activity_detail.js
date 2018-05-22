@@ -13,8 +13,10 @@ $(function(){
         setTimeout(autoscl,10);
     }
 
+
+
+
     let maxh=$(".leftbox").height();
-    console.log(maxh);
     $(".rightbox").css("height",maxh);
     autoscl();
     $(".rightbox").scroll(function(){

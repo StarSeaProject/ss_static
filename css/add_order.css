@@ -84,6 +84,10 @@ a#addressbutton:hover{
     background-color:#ddd;
 }
 
+#addressnav .col-xs-4{
+    padding:0;
+}
+
 .addresspanel{
     background-color:#fff;
     border-style:none none none dashed ;
@@ -92,10 +96,6 @@ a#addressbutton:hover{
 
 .addresspanel .row{
     margin:0;
-}
-
-#addressnav .col-xs-4{
-    padding:0;
 }
 
 .addresspanel .col-xs-3 {
