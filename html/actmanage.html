@@ -2,118 +2,144 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/lib/bootstrap.min.css">
-    <link rel="stylesheet" href="/lib/bootstrap-theme.min.css">
-    <script src="/lib/jquery.min.js"></script>
-    <script src="/lib/bootstrap.min.js"></script>
-    <title>星之海志愿者公会</title>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css
+"
+	integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w="
+	crossorigin="anonymous"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css
+"
+	integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4="
+	crossorigin="anonymous"></link>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js
+"
+	integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8="
+	crossorigin="anonymous"></script>
+<title>星之海志愿者公会</title>
 
 </head>
 
 <body>
 
-    <div class="container">
+	<div class="container">
 
-        <div class="tab">
-            <div class="row container form">
-                <input type="text" id="text" />
-                <input id="query" type="submit" value="查询活动" class="btn btn-info btn-lg text-right" />
-            </div>
-            <br> <br> <br>
-            <!-- -->
+		<div class="tab">
+			<div class="row container form">
+				<input type="text" id="text" /> <input id="query" type="submit"
+					value="查询活动" class="btn btn-info btn-lg text-right" />
+			</div>
+			<br> <br> <br>
+			<!-- -->
 
-            <div class="row container" style="height: 500px;">
-                <table id="activitys" class="table">
-                    <thead>
-                        <tr>
-                            <th>活动名</th>
-                            <th>活动状态</th>
-                            <th><button id="addfun" class="btn btn-info btn-lg text-right">添加活动</button></th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                <div id="pages"></div>
-            </div>
-            <div id="addact">
-                <form id="addActivityForm" class="form" method="post" action="activity/add" enctype="multipart/form-data">
-                    <table class="table">
-                        <tr>
-                            <td>请输入活动名称：</td>
-                            <td><input name="activityName" type="text"></td>
-                        </tr>
-                        <tr>
-                            <td>输入具体内容:</td>
-                            <td>
-                                <div id="content"></div>
-                                <input id="activityContent" name="activityContent" type="hidden" style="height: 100px;"><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>请选择活动封面:</td>
-                            <td><input name="coverFile" type="file"><br></td>
-                        </tr>
-                        <tr>
-                            <td>输入活动概要:</td>
-                            <td><input name="activitySummary" type="text" style="height: 100px;"><br></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="添加活动" class="btn btn-success btn-lg text-right"></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
-            <div id="showdetail">
-                <h1 id="showactname"></h1>
-                <br>
-                <p id="showactcontent"></p>
-                <br>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>众筹者id</td>
-                            <td>众筹金额</td>
-                            <td>留言</td>
-                            <td>操作</td>
-                        </tr>
-                    </thead>
-                    <tbody id="funding"></tbody>
-                </table>
-                <p id="add_funding"><button id="add_funding" class="btn btn-primary btn-lg text-right">添加众筹人信息</button></p>
-                <p id="showactstatus"><button id="changestatus" class="btn btn-primary btn-lg text-right">更改活动状态</button></p>
-                <div id="add_funding_container" hidden>
-                    <form action="activity/funding/add" class="form" method="post" id="addFundingForm">
-                        众筹人姓名:<input type="text" name="fundings[0].fundingName" /> 众筹金额:
-                        <input type="text" name="fundings[0].fundingMoney" /> 众筹留言:
-                        <input type="text" name="fundings[0].fundingMessage" /><br/>
-                        <input type="hidden" name="activityId" id="addFundingActivityId" />
-                    </form>
-                    <input type="button" value="新增众筹人" id="new_funding_one" />
-                    <input type="button" value="提交" id="submit_funding" />
-                </div>
-                <form action="activity/funding/remove" method="post" id="removeFundingForm">
-                    <input type="hidden" name="fundingId" id="removeFundingId" />
-                    <input type="hidden" name="fundingMoney" id="removeFundingMoney" />
-                    <input type="hidden" name="activityId" id="removeActivityId" />
-                </form>
-                <div id="changecontainer">
-                    <form action="activity/modify" class="form" method="post" id="modifyForm">
-                        <input type="hidden" name="activityId" id="modifyActivityId" />
-                        <input type="radio" value="2" name="activityStatus" />进行中
-                        <input type="radio" value="3" name="activityStatus" />已结束
-                        <button class="btn btn-primary btn-lg text-right" id="checkchange">确认改变</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <form action="activity/remove" method="post" id="removeForm">
-        <input type="hidden" name="activityId" id="removeActivityId" />
-    </form>
-    <script type="text/javascript" src="/lib/wangEditor.min.js"></script>
-    <script type="text/javascript">
+			<div class="row container" style="height: 500px;">
+				<table id="activitys" class="table">
+					<thead>
+						<tr>
+							<th>活动名</th>
+							<th>活动状态</th>
+							<th><button id="addfun"
+									class="btn btn-info btn-lg text-right">添加活动</button></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<div id="pages"></div>
+			</div>
+			<div id="addact">
+				<form id="addActivityForm" class="form" method="post"
+					action="activity/add" enctype="multipart/form-data">
+					<table class="table">
+						<tr>
+							<td>请输入活动名称：</td>
+							<td><input name="activityName" type="text"></td>
+						</tr>
+						<tr>
+							<td>输入具体内容:</td>
+							<td>
+								<div id="content"></div> <input id="activityContent"
+								name="activityContent" type="hidden" style="height: 100px;"><br>
+							</td>
+						</tr>
+						<tr>
+							<td>请选择活动封面:</td>
+							<td><input name="coverFile" type="file"><br></td>
+						</tr>
+						<tr>
+							<td>输入活动概要:</td>
+							<td><input name="activitySummary" type="text"
+								style="height: 100px;"><br></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" value="添加活动"
+								class="btn btn-success btn-lg text-right"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div id="showdetail">
+				<h1 id="showactname"></h1>
+				<br>
+				<p id="showactcontent"></p>
+				<br>
+				<table>
+					<thead>
+						<tr>
+							<td>众筹者id</td>
+							<td>众筹金额</td>
+							<td>留言</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody id="funding"></tbody>
+				</table>
+				<p id="add_funding">
+					<button id="add_funding" class="btn btn-primary btn-lg text-right">添加众筹人信息</button>
+				</p>
+				<p id="showactstatus">
+					<button id="changestatus" class="btn btn-primary btn-lg text-right">更改活动状态</button>
+				</p>
+				<div id="add_funding_container" hidden>
+					<form action="activity/funding/add" class="form" method="post"
+						id="addFundingForm">
+						众筹人姓名:<input type="text" name="fundings[0].fundingName" /> 众筹金额:
+						<input type="text" name="fundings[0].fundingMoney" /> 众筹留言: <input
+							type="text" name="fundings[0].fundingMessage" /><br /> <input
+							type="hidden" name="activityId" id="addFundingActivityId" />
+					</form>
+					<input type="button" value="新增众筹人" id="new_funding_one" /> <input
+						type="button" value="提交" id="submit_funding" />
+				</div>
+				<form action="activity/funding/remove" method="post"
+					id="removeFundingForm">
+					<input type="hidden" name="fundingId" id="removeFundingId" /> <input
+						type="hidden" name="fundingMoney" id="removeFundingMoney" /> <input
+						type="hidden" name="activityId" id="removeActivityId" />
+				</form>
+				<div id="changecontainer">
+					<form action="activity/modify" class="form" method="post"
+						id="modifyForm">
+						<input type="hidden" name="activityId" id="modifyActivityId" /> <input
+							type="radio" value="2" name="activityStatus" />进行中 <input
+							type="radio" value="3" name="activityStatus" />已结束
+						<button class="btn btn-primary btn-lg text-right" id="checkchange">确认改变</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form action="activity/remove" method="post" id="removeForm">
+		<input type="hidden" name="activityId" id="removeActivityId" />
+	</form>
+	<script type="text/javascript" src="/lib/wangEditor.min.js"></script>
+	<script type="text/javascript">
         var E = window.wangEditor;
         var editor = new E('#content');
         let imgSrc = new Array();
@@ -150,7 +176,7 @@
         }
         editor.create();
     </script>
-    <script>
+	<script>
         $("#addact").hide();
         $("#showdetail").hide();
         $("#changecontainer").hide();
