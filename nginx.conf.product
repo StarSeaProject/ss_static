@@ -56,6 +56,9 @@ http {
 	location ~* \.pdf$ {
         root /usr/share/nginx/pdf/;
     }
+	location ~* \.woff2$ {
+        root /usr/share/nginx/;
+    }
 	location / {
 		proxy_pass http://127.0.0.1:8080;
 	}
