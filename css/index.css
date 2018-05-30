@@ -142,7 +142,7 @@ a.anav:hover,a.abnav:hover{
 
 .bgimg{
     background-image:url("/mikan.png");
-    background-size:70%;
+    background-size:20%;
     background-position-y:-50px;
     background-color:#eee;
     background-repeat: no-repeat;
