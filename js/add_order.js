@@ -11,8 +11,7 @@ $(function () {
     $("#addressbutton").on("click",function(e){
 
         $(".addressmap").show();
-        $("#city").hide();
-        $("#area").hide();
+        navpre.trigger("click");
         e.stopPropagation();
         //点击其他地方关闭窗口
         $(document).on("click",function(){
@@ -53,6 +52,9 @@ $(function () {
         });
 
         $("#province").on("click",".provincebutton",function(e){
+
+            $("#city").hide();
+            $("#area").hide();
             let provinceId=$(e.target).attr("value");
             WriteCity(provinceId);
             $("#area").html("");
