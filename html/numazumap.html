@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>沼津电子地图</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+
+        #map {
+            height: 100vh;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG30bjEDgbn_C9u0V-LAh2sp76vZwly8w&callback=initMap" async
+    defer></script>
+<script>
+    var points = [
+        //淡岛
+        {
+            name: "淡島ホテル",
+            lat: 35.035722,
+            lng: 138.886840
+        }, {
+            name: "淡島遊歩道のトンネル",
+            lat: 35.034885,
+            lng: 138.8875353
+        }, {
+            name: "金比羅宮",
+            lat: 35.0341976,
+            lng: 138.8885572
+        }, {
+            name: "カエル館前",
+            lat: 35.0328059,
+            lng: 138.8879952
+        }, {
+            name: "淡岛神社入口",
+            lat: 35.032072,
+            lng: 138.890203
+        },
+        //市中心
+        {
+            name: "沼津JR站南口",
+            lat: 35.102308,
+            lng: 138.859309
+        },
+        {
+            name: "ゲーマーズ沼津店",
+            lat: 35.10157,
+            lng: 138.8546183
+        },
+        {
+            name: "中央公园",
+            lat: 35.0988133,
+            lng: 138.857391
+        },
+        {
+            name: "曜家：欧蘭陀館",
+            lat: 35.0907773,
+            lng: 138.8558707
+        },
+        {
+            name: "商业街",
+            lat: 35.101284,
+            lng: 138.857462
+        }, {
+            name: "上土朝日稲荷神社",
+            lat: 35.0966424,
+            lng: 138.8563555
+        }, {
+            name: "岛乡海水浴场",
+            lat: 35.065166,
+            lng: 138.877209
+        },
+        //内浦
+        {
+            name: "辻宗商店",
+            lat: 35.025463,
+            lng: 138.898432
+        }, {
+            name: "松月",
+            lat: 35.022274,
+            lng: 138.897905
+        }, {
+            name: "千歌家x安田屋旅馆",
+            lat: 35.020419,
+            lng: 138.897563
+        }, {
+            name: "梨子家x安田屋旅馆旁",
+            lat: 35.020492,
+            lng: 138.897666
+        }, {
+            name: "来迎寺",
+            lat: 35.021538,
+            lng: 138.899506
+        }, {
+            name: "水族馆",
+            lat: 35.019396,
+            lng: 138.896619
+        }, {
+            name: "山顶",
+            lat: 35.012368,
+            lng: 138.921130
+        }, {
+            name: "伊豆长冈站",
+            lat: 35.039794,
+            lng: 138.947466
+        }, {
+            name: "长冈温泉站",
+            lat: 35.029456,
+            lng: 138.933036
+        }, {
+            name: "综合案内所",
+            lat: 35.017686,
+            lng: 138.893306
+        }, {
+            name: "黑泽家",
+            lat: 35.017303,
+            lng: 138.893479
+        }
+    ]
+</script>
+<script>
+    var map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 35.097211,
+                lng: 138.8559536
+            },
+            zoom: 14
+        });
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < points.length; i++) {
+            var latlng = new google.maps.LatLng({
+                lat: points[i].lat,
+                lng: points[i].lng
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: points[i].name
+            });
+            bounds.extend(latlng);
+            marker.addListener('click', (function (marker, infowindow) {
+                return function () {
+                    infowindow.open(map, marker);
+                };
+            })(marker, infowindow))
+        }
+        map.fitBounds(bounds);
+    }
+</script>
+
+</html>

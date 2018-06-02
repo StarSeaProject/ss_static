@@ -2,97 +2,115 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/lib/bootstrap.min.css">
-    <link rel="stylesheet" href="/lib/bootstrap-theme.min.css">
-    <script src="/lib/jquery.min.js"></script>
-    <script src="/lib/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css
+"
+	integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w="
+	crossorigin="anonymous"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css
+"
+	integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4="
+	crossorigin="anonymous"></link>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js
+"
+	integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8="
+	crossorigin="anonymous"></script>
 
 
-    <title>星之海志愿者公会</title>
+<title>星之海志愿者公会</title>
 
 </head>
 
 <body>
-    <div class="container">
-        <div class="row container form">
-            <input type="text" name="orderName" id="text">
-            <button id="orderquery" class="btn btn-info btn-lg text-right">收货人查询</button>
-            <button id="export" class="btn btn-info btn-lg text-right">发货名单导出为xls</button>
-        </div>
-        <br> <br> <br>
-        <div class="row container">
-            <table id="orders" class="table">
-                <thead>
-                    <tr>
-                        <th>订单号</th>
-                        <th>收货人姓名</th>
-                        <th>订单状态</th>
-                        <th>下单时间</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div id="pages"></div>
-        </div>
-        <div class="container" id="showdetail">
-            <table id="aorder" class="table">
-                <tr>
-                    <td>收货人姓名</td>
-                    <td id="ordername"></td>
-                </tr>
-                <tr>
-                    <td>收货地址</td>
-                    <td id="orderaddress"></td>
-                </tr>
-                <tr>
-                    <td>订单状态</td>
-                    <td id="orderstatus"></td>
-                </tr>
-                <tr>
-                    <td>快递单号</td>
-                    <td id="orderexpressnum"></td>
-                </tr>
-                <tr>
-                    <td>下单时间</td>
-                    <td id="ordertime"></td>
-                </tr>
-                <tr>
-                    <td>电子邮箱</td>
-                    <td id="orderemail"></td>
-                </tr>
-                <tr>
-                    <td>订单号</td>
-                    <td id="ordernum"></td>
-                </tr>
-                <tr>
-                    <td>备注</td>
-                    <td id="orderremark"></td>
-                </tr>
-                <tr>
-                    <td>收货人手机</td>
-                    <td id="orderphone"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button class="btn btn-primary btn-lg text-right" id="callchangedetail">发货</button></td>
-                    <td><button class="btn btn-primary btn-lg text-right" id="back">返回上一级</button></td>
-                </tr>
-            </table>
-        </div>
-        <div class="container" id="changedetaildiv">
-            <form class="form" id="changeform" action="order/modify" method="post">
-                请输入运单号：<input type="text" name="orderExpressnum" value="" />
-                <button class="btn btn-primary btn-lg text-right" id="changedetail">确认发货</button>
-            </form>
-        </div>
-        <form action="order/remove" method="post" id="removeForm"></form>
-        <script>
+	<div class="container">
+		<div class="row container form">
+			<input type="text" name="orderName" id="text">
+			<button id="orderquery" class="btn btn-info btn-lg text-right">收货人查询</button>
+			<button id="export" class="btn btn-info btn-lg text-right">发货名单导出为xls</button>
+		</div>
+		<br> <br> <br>
+		<div class="row container">
+			<table id="orders" class="table">
+				<thead>
+					<tr>
+						<th>订单号</th>
+						<th>收货人姓名</th>
+						<th>订单状态</th>
+						<th>下单时间</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<div id="pages"></div>
+		</div>
+		<div class="container" id="showdetail">
+			<table id="aorder" class="table">
+				<tr>
+					<td>收货人姓名</td>
+					<td id="ordername"></td>
+				</tr>
+				<tr>
+					<td>收货地址</td>
+					<td id="orderaddress"></td>
+				</tr>
+				<tr>
+					<td>订单状态</td>
+					<td id="orderstatus"></td>
+				</tr>
+				<tr>
+					<td>快递单号</td>
+					<td id="orderexpressnum"></td>
+				</tr>
+				<tr>
+					<td>下单时间</td>
+					<td id="ordertime"></td>
+				</tr>
+				<tr>
+					<td>电子邮箱</td>
+					<td id="orderemail"></td>
+				</tr>
+				<tr>
+					<td>订单号</td>
+					<td id="ordernum"></td>
+				</tr>
+				<tr>
+					<td>备注</td>
+					<td id="orderremark"></td>
+				</tr>
+				<tr>
+					<td>收货人手机</td>
+					<td id="orderphone"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button class="btn btn-primary btn-lg text-right"
+							id="callchangedetail">发货</button></td>
+					<td><button class="btn btn-primary btn-lg text-right"
+							id="back">返回上一级</button></td>
+				</tr>
+			</table>
+		</div>
+		<div class="container" id="changedetaildiv">
+			<form class="form" id="changeform" action="order/modify"
+				method="post">
+				请输入运单号：<input type="text" name="orderExpressnum" value="" />
+				<button class="btn btn-primary btn-lg text-right" id="changedetail">确认发货</button>
+			</form>
+		</div>
+		<form action="order/remove" method="post" id="removeForm"></form>
+		<script>
             var orderID;
             $("#showdetail").hide();
             $("#changedetaildiv").hide();
         </script>
-        <script>
+		<script>
             $(function () {
                 let page = 1;
                 let ajaxOpt = {
@@ -245,7 +263,7 @@
                 })
             });
         </script>
-    </div>
+	</div>
 </body>
 
 </html>
