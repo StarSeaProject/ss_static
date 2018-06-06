@@ -5,16 +5,15 @@ $(function () {
     let areapre;
     WriteProvince();
 
-    let heightap=$(".modal-dialog").height()-$(".modal-header").height()-$("#addressnav").height()-20;
-    $(".addresspanel").css("height",heightap);
+
+
     $("#provincenav").toggleClass("navbutton");
     $("#provincenav").toggleClass("navvisited");
-    $(".addressmap").hide();
     $("#addressbutton").on("click",function(){
         $("#Modalbox").modal();
-        $(".addressmap").show();
-        $("#city").hide();
-        $("#area").hide();
+        let heightap=$(".modal-dialog").height()-$(".modal-header").height()-$("#addressnav").height()-20;
+        $(".addresspanel").css("height",heightap);
+        navpre.trigger("click");
 
         $("#provincenav").on("click",function(){
             $("#city").hide();
