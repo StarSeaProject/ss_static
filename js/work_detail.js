@@ -1,4 +1,6 @@
 $(function () {
+
+
     let str = `<img class="more_picture" src="${workImages.shift().workImagePath}" /><br/>`;
     $("#more_image").before(str);
     $("#more_image").on("click", () => {
@@ -18,6 +20,26 @@ $(function () {
             async: false,
             success: function (data) {
                 modalalert(data.info);
+                $("#Modalbox").on('hidden.bs.modal',function(){
+                    $("#ModalSuggest").modal();
+                    $("#modal-body-suggest").html(`<div class="suggest-words">右边<span class="glyphicon glyphicon-shopping-cart"></span>就是购物车按钮哦~"</div> `);
+                    $(".fixedbutton").css("z-index",100);
+                    $("#notunderstand").click(function(){
+                        $("#modal-footer-suggest").html(`
+            		        <button type="button" class="btn btn-primary btn-modal-suggest" id="suggestsubmit">提交</button>
+                            `);
+                        $("#modal-body-suggest").html(`
+            		        <div class="suggest-words"> 这里是星之海小助手机器人，请问您需要什么帮助？</div>
+            		        <input class="suggest-input" />
+                        `);
+                        $("#suggestsubmit").click(function(){
+                            $("#modal-footer-suggest").hide();
+                            $("#modal-body-suggest").html(`
+				                <div class="suggest-words"> 哈！你以为我是人工智能么？</div>
+                            `);
+                        });
+                    });
+                });
             }
         });
     });

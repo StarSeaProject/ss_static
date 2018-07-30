@@ -123,3 +123,37 @@
     top:30%;
     height:20%;
 }
+
+/*提示弹窗*/
+.modal-dialog-suggest{
+    position:fixed;
+    left:85%;
+    top:80%;
+    width:20%;
+    height:20%;
+}
+
+.modal-content-suggest{
+    transform: translate(-110%,-50%);
+    background-color: rgba(0,0,0,0.5);
+    border:none;
+}
+
+.btn-modal-suggest,.btn-modal-suggest:hover{
+    background-image:none;
+    background-color:transparent;
+    border: 0;
+    border-radius:0;
+    box-shadow:none;
+    border-bottom:1px solid white ;
+}
+
+.suggest-words{
+    color:white;
+    font-size:1em;
+}
+
+.suggest-input{
+    margin-top:20px;
+    width:100%;
+}
