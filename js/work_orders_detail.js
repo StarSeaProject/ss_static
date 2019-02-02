@@ -6,3 +6,4 @@ $(function () {
         let workId = $(event.target).data("workid");
         window.location.href = "/order/toAddOrder?workId=" + workId;
     });
+}

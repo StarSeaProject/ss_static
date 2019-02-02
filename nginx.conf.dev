@@ -1,78 +1,82 @@
-worker_processes  1;
+	worker_processes  1;
 
-events {
-    worker_connections  1024;
-}
-
-
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-
-    sendfile        on;
-
-    gzip on;
-    gzip_proxied any;
-    gzip_min_length 1024;
-    gzip_buffers 4 16k;
-    gzip_comp_level 2;
-    gzip_types text/plain application/javascript application/css text/css application/xml text/javascript;
-    gzip_http_version  1.1;
-
-
-    keepalive_timeout  65;
-	
-	#设置允许发布内容为50M
-	client_max_body_size 50M;
-	client_body_buffer_size 20M;
-
-    server {
-        listen       80;
-        server_name  localhost;
-
-	charset utf-8;
-
-    error_page   500 502 503 504  /50x.html;
-	
-	location /favicon.ico {
-		gzip off;
-		expires 30d;
-		root img/;
+	events {
+		worker_connections  1024;
 	}
-    location = /50x.html {
-        root html;
-    }
-	location ~* \.(eot|otf|ttf|woff|woff2)$ {
-		add_header Access-Control-Allow-Origin *;
-		root /;
+
+
+	http {
+		include       mime.types;
+		default_type  application/octet-stream;
+
+
+		sendfile        on;
+
+		gzip on;
+		gzip_proxied any;
+		gzip_min_length 1024;
+		gzip_buffers 4 16k;
+		gzip_comp_level 2;
+		gzip_types text/plain application/javascript application/css text/css application/xml text/javascript;
+		gzip_http_version  1.1;
+
+
+		keepalive_timeout  65;
+		
+		#设置允许发布内容为50M
+		client_max_body_size 50M;
+		client_body_buffer_size 20M;
+
+		server {
+			listen       80;
+			server_name  localhost;
+
+			charset utf-8;
+
+			error_page   500 502 503 504  /50x.html;
+			
+			location /favicon.ico {
+				gzip off;
+				expires 30d;
+				root img/;
+			}
+			location = /50x.html {
+				root html;
+			}
+			location ~* \.(eot|otf|ttf|woff|woff2)$ {
+				add_header Access-Control-Allow-Origin *;
+				root /;
+			}
+			location ~* \.(jpg|jpeg|png)$ {
+				gzip off;
+				root img/;
+				expires 30d;
+			}
+			location ~* \.css$ {
+				root min.css/;
+			}
+			location ~* \.js$ {
+				root min.js/;
+			}
+			location ~* \.html$ {
+				root html/;
+			}
+			location ~* \.pdf$ {
+				root pdf/;
+			}
+			rewrite ^/sdc$ /sdc/index.html last;
+			location /sdc {
+				proxy_pass http://127.0.0.1:8081;
+			}
+			location / {
+				proxy_pass http://127.0.0.1:8080;
+				proxy_redirect off;
+				proxy_http_version 1.1;  
+				proxy_set_header Upgrade $http_upgrade;  
+				proxy_set_header Connection "upgrade";  
+				proxy_set_header Host $host:$server_port;  
+				proxy_set_header X-Real-IP $remote_addr;  
+				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			}
+		}
 	}
-	location ~* \.(jpg|jpeg|png)$ {
-		gzip off;
-	   	root img/;
-		expires 30d;
-	}
-	location ~* \.css$ {
-        root min.css/;
-    }
-	location ~* \.js$ {
-        root min.js/;
-    }
-	location ~* \.html$ {
-        root html/;
-    }
-	location ~* \.pdf$ {
-        root pdf/;
-    }
-	location / {
-		proxy_pass http://127.0.0.1:8080;
-		proxy_redirect off;
-        proxy_http_version 1.1;  
-        proxy_set_header Upgrade $http_upgrade;  
-        proxy_set_header Connection "upgrade";  
-        proxy_set_header Host $host:$server_port;  
-        proxy_set_header X-Real-IP $remote_addr;  
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	}
-   }
-}
