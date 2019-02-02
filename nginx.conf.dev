@@ -65,7 +65,7 @@ http {
 			root pdf/;
 		}
 		location /sdc {
-			proxy_pass http://127.0.0.1:8081/index;
+			proxy_pass http://127.0.0.1:8081;
 		}
 		location / {
 			proxy_pass http://127.0.0.1:8080;
