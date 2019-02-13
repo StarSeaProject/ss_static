@@ -63,7 +63,8 @@ http {
 		rewrite ^/sdc$ /sdc/ permanent;#重写路径，nginx比较野蛮
 		location ~ /sdc/ {
 			rewrite ^/sdc/(.*) /$1  break; #;重写路径，webpack比较野蛮
-			try_files $uri /index.html =404; #react开发服务器
+			root /usr/share/nginx/sdc/;
+			try_files $uri /index.html =404; #react
 		}
 
 		location ~* \.(jpg|jpeg|png)$ {
