@@ -47,6 +47,7 @@
 			location ~ /sdc/api/{
 				proxy_pass http://127.0.0.1:8081;#api服务器
 			}
+			rewrite ^/sdc$ /sdc/ permanent;#重写路径，nginx比较野蛮
 			location ~ /sdc/ {
 				rewrite ^/sdc/(.*) /$1  break; #;重写路径，webpack比较野蛮
 				proxy_pass http://127.0.0.1:3000; #react开发服务器
