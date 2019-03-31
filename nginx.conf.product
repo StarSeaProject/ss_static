@@ -79,7 +79,7 @@ http {
 		}
 
 
-		location ~* \.(jpg|jpeg|png)$ {
+		location ~* \.(jpg|jpeg|png|gif)$ {
 			gzip off;
 			root /usr/share/nginx/img/;
 		}

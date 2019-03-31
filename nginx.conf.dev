@@ -79,7 +79,7 @@
 				add_header Access-Control-Allow-Origin *;
 				root /;
 			}
-			location ~* \.(jpg|jpeg|png)$ {
+			location ~* \.(jpg|jpeg|png|gif)$ {
 				gzip off;
 				root img/;
 				expires 30d;
