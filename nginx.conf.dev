@@ -27,6 +27,37 @@
 		client_max_body_size 50M;
 		client_body_buffer_size 20M;
 
+		server{
+			listen 80;
+			server_name live.data.localhost;
+
+			location ~ /api/{
+				proxy_pass http://127.0.0.1:8081;#api服务器
+			}
+
+			location / {
+				proxy_http_version 1.1;
+    			proxy_set_header Upgrade $http_upgrade;
+    			proxy_set_header Connection "upgrade";
+				proxy_pass http://127.0.0.1:3000;#react开发服务器
+			}
+		}
+
+		server{
+			listen 80;
+			server_name data.localhost;
+			root sdc/;
+			index index.html;
+
+			location ~ /api/{
+				proxy_pass http://127.0.0.1:8081;#api服务器
+			}
+
+			location / {
+				try_files $uri /index.html =404; #react
+			}
+		}
+
 		server {
 			listen       80;
 			server_name  localhost;
@@ -43,20 +74,12 @@
 			location = /50x.html {
 				root html;
 			}
-			
-			location ~ /sdc/api/{
-				proxy_pass http://127.0.0.1:8081;#api服务器
-			}
-			location ~ /sdc/ {
-				rewrite ^/sdc/(.*) /$1  break; #;重写路径，webpack比较野蛮
-				proxy_pass http://127.0.0.1:3000; #react开发服务器
-			}
 
 			location ~* \.(eot|otf|ttf|woff|woff2)$ {
 				add_header Access-Control-Allow-Origin *;
 				root /;
 			}
-			location ~* \.(jpg|jpeg|png)$ {
+			location ~* \.(jpg|jpeg|png|gif)$ {
 				gzip off;
 				root img/;
 				expires 30d;

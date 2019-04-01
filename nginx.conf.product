@@ -33,6 +33,27 @@ http {
 		server_name www.starrysea.top;
 		rewrite ^(.*) https://$server_name$1 permanent;
 	}
+
+	server{
+		listen 80;
+		server_name data.starrysea.top;
+		root /usr/share/nginx/sdc/;
+		index index.html;
+
+		location ~ /api/{
+			proxy_pass http://127.0.0.1:8081;#api服务器
+			proxy_set_header Real-IP $remote_addr;
+			proxy_set_header Forwarded-For $proxy_add_x_forwarded_for;
+			proxy_set_header NginX-Proxy true;
+			proxy_ssl_session_reuse off;
+			proxy_redirect off;
+		}
+
+		location / {
+			try_files $uri /index.html =404; #react
+		}
+
+	}
     server {
         listen      443 ssl;
 		ssl on;
@@ -56,7 +77,9 @@ http {
 			expires 30d;
 			root img/;
 		}
-		location ~* \.(jpg|jpeg|png)$ {
+
+
+		location ~* \.(jpg|jpeg|png|gif)$ {
 			gzip off;
 			root /usr/share/nginx/img/;
 		}
