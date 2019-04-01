@@ -62,7 +62,7 @@
 }
 
 .SiteConnect{
-    margin: 0 10px 0 10px;
+    margin: 0px 10px 0 10px;
     border-radius:20px;
     border:1px solid #ff7d10;
     background-color: white;
@@ -71,6 +71,6 @@
 
 }
 
-.col-xs-12{
-    margin:0 0 20px 0;
+.col-sm-3{
+    height:35px;
 }

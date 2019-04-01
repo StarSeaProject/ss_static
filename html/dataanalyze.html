@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css
+"
+          integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w="
+          crossorigin="anonymous"></link>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css
+"
+          integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4="
+          crossorigin="anonymous"></link>
+    <style>
+        #example{
+            margin:auto;
+            height:500px;
+            width:500px;
+        }
+        a.returnbutton{
+            text-align:center;
+            margin:auto;
+            width:100px;
+            display:block;
+            color:white;
+            background-color: #1e93f3;
+            padding:5px;
+            border-radius:5px;
+        }
+        a.returnbutton:hover{
+            color:white;
+            background-color: #1a7cd1;
+            text-decoration: none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div  id="example">
+
+    </div>
+
+
+
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js
+"
+            integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script type="text/babel">
+        class DataPlot extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state={type:'', links:'', keys: '', data: '', };
+                this.linkstack=[];
+                this.SetNewState.call(this,props.source);
+            }
+
+            //render后绘制图表
+            componentDidUpdate() {
+                this.PlotChart.call(this);
+            }
+
+            //Get JSON并更新State
+            SetNewState(source){
+
+                this.activelink=source;
+                this.serverRequest=$.get(source, {async: false}, function(JSONresult){
+
+                    var dataarray = new Array(JSONresult.resultList.length);
+                    var linkarray = new Array(JSONresult.resultList.length);
+                    var keyarray = new Array(JSONresult.resultList.length);
+                    for(var i=0;i<JSONresult.resultList.length;i++){
+                        if(JSONresult.type!="day"){
+                            linkarray[i]=JSONresult.links[i].href;
+                        }
+                        keyarray[i]=JSONresult.resultList[i].date;
+                        dataarray[i]=JSONresult.resultList[i].result;
+                    }
+                    this.setState({type:JSONresult.type, links:linkarray, keys: keyarray, data: dataarray, });
+                }.bind(this));
+
+            }
+
+            //绘制图表
+            PlotChart(){
+                var ctx = $("#myChart");
+                this.myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: this.state.keys,
+                        datasets: [{
+                            label: 'data',
+                            data: this.state.data,
+                        }]
+                    },
+                    options: {
+                        responsive:true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+
+            }
+
+            //访问下级
+            HandleClick(evt){
+                var activePoints = this.myChart.getElementsAtEvent(evt);
+                if (activePoints.length && this.state.type!="day") {
+                    evt.stopPropagation();
+                    this.myChart.destroy();
+                    this.linkstack.push(this.activelink);
+                    this.SetNewState.call(this,this.state.links[activePoints[0]._index]);
+                }
+
+            }
+
+            //返回上级
+            ReturnUpper(){
+                if (this.linkstack.length>0){
+                    this.myChart.destroy();
+                    this.SetNewState.call(this,this.linkstack.pop());
+                }
+            }
+
+            componentWillUnmount() {
+                this.serverRequest.abort();
+            }
+
+            render() {
+
+                if (this.state.type!="year") {
+                    return (
+                        <div className="chartcontainer">
+                            <canvas id="myChart" width="400" height="400"  onClick={this.HandleClick.bind(this)}></canvas>
+                            <a className="returnbutton" onClick={this.ReturnUpper.bind(this)}>返回上级</a>
+                        </div>
+                    );
+                }
+                else{
+                    return (
+                        <div className="chartcontainer">
+                            <canvas id="myChart" width="400" height="400"  onClick={this.HandleClick.bind(this)}></canvas>
+                        </div>
+                    );
+                }
+
+
+            }
+        }
+
+        ReactDOM.render(
+            <DataPlot source="/date" />,
+            document.getElementById('example')
+        );
+
+
+
+    </script>
+    <script>
+
+    </script>
+</body>
+</html>
