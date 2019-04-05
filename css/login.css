@@ -27,15 +27,15 @@ input{
 }
 
 a.loginbt{
-    margin-top:20px;
-    display:block;
-    background-color: #23b1f7;
-    padding: 7px 10px 7px 10px;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    color:white;
-}
+     margin-top:20px;
+     display:block;
+     background-color: #23b1f7;
+     padding: 7px 10px 7px 10px;
+     border-radius: 5px;
+     text-align: center;
+     text-decoration: none;
+     color:white;
+ }
 
 a.loginbt:hover{
     background-color: #82e2f7;
