@@ -9,10 +9,9 @@
 }
 
 .heading {
-    background-image: url("/navbar.jpg");
+    background-image: url("/newheader.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position-y:70%;
     margin:0;
 }
 
