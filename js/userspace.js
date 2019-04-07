@@ -164,20 +164,6 @@ $("#submitbt1").click(function(){
         messagealert("昵称长度不能超过30");
         return false;
     }
-    let userEmail=$("#formuserEmail").val();
-    if(!userEmail){
-        messagealert("用户邮箱不能为空");
-        return false;
-    }
-    if(userEmail.length>100){
-        messagealert("用户邮箱长度不能超过100");
-        return false;
-    }
-    var reg = /\w+[@]{1}\w+[.]\w+/;
-    if (!reg.test(userEmail)) {
-        messagealert("Email格式错误");
-        return false;
-    }
 
 
     let isDD=$("#isDD").val();
@@ -197,18 +183,9 @@ $("#submitbt1").click(function(){
     }
 
 
-    let data={userEmail:userEmail};
-    $.post("/user/check",data, function(result){
-        if(result.isAvailable== false){
-            messagealert(result.errInfo);
-            return false;
-        }
-        else{
-            $("#userEmail").val(userEmail);
-            $("#username").val(username);
-            $("#resultform").submit();
-        }
-    });
+
+    $("#username").val(username);
+    $("#resultform").submit();
 
 
 
