@@ -43,7 +43,7 @@ $("#login").on("click",function(){
 
     else {
         let data={userEmail:$("#AccountInput").val(),
-            password:sha256($("#PasswordInput").val()),
+            userPassword:sha256($("#PasswordInput").val()),
             verifyCode:$("#vcodeInput").val()};
         $.post("/user/login",data, function(result){
             if(result.resultCode==1){
