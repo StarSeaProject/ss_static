@@ -26,6 +26,7 @@ $("body").prepend(`
 `);
 $("body").append(`
     <div class="footbar text-center">
+    <hr>
 		<p class="footbarpara">互联网ICP备案：鲁ICP备17053445号</p>
 	</div>
 `);

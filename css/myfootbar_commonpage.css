@@ -1,12 +1,17 @@
-
+body{
+    min-height: 100%;
+}
 
 .footbar {
+    position:absolute;
+    width:100%;
+    text-align:center;
     padding-top:20px;
-    background-image: url("/wavew.png");
+    /*background-image: url("/wavew.png");
     background-repeat: repeat-x;
-    background-size:3%;
+    background-size:3%;*/
 }
 
 .footbarpara{
-    margin:0;
+    margin:30px;
 }

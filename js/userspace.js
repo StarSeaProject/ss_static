@@ -1,3 +1,30 @@
+$("#activitypage").hide();
+$("#infobt").css("background-color","#bee4fb");
+$("#infobt").click(function(){
+    $("#infobt").css("background-color","#bee4fb");
+    $("#activitybt").css("background-color","#323232");
+    $("#activitypage").hide();
+    $("#infopage").show();
+    }
+);
+
+$("#activitybt").click(function(){
+        $("#activitybt").css("background-color","#bee4fb");
+        $("#infobt").css("background-color","#323232");
+        $("#infopage").hide();
+        $("#activitypage").show();
+    }
+);
+
+$("#orderbt").click(function(){
+    $("#orderrcd").toggle("slow");
+});
+
+$("#acrcdbt").click(function(){
+    $("#activityrcd").toggle("slow");
+});
+
+
 let spcolorcharaarray=["#7ecbf7","#f08300","#ff9999","#229977", "#ff4a4a", "#44aaff","#7a7a7a","#dbb623","#d47aff","#ff5599","#90D7EC","#cccccc"];
 let spcolorteamarray=["white","#ffaa01","#fe5ea2","#825deb","#cd3935"];
 
@@ -34,6 +61,20 @@ let btarray=[{class:"charabt",input:"osuPerson",select:charabtselect,reset:chara
     {class:"teambt",input:"osuTeam",select:teambtselect,reset:teambtreset},
     {class:"gradebt",input:"osuGrade",select:gradebtselect,reset:gradebtreset}];
 btcl=btarray.length;
+
+//初始化按钮
+for (let i = 0; i < btcl; i=i+1){
+    if($("#" + btarray[i]['input']).attr("value")!=0){
+        let btid=$("#" + btarray[i]['input']).attr("value");
+        btarray[i]['select']('#'+btarray[i]['class'] +btid);
+    }
+}
+
+if($("#isDD").val()!=2){
+    $(".ddbt").css("background-color","#fe5ea2");
+    $(".ddtext").html(`<small>注意：你已选中了DD标签</small>`);
+}
+
 
 $(".bt").hover(function() {
         let i;
@@ -137,16 +178,6 @@ $("#submitbt1").click(function(){
         messagealert("Email格式错误");
         return false;
     }
-    let password=$("#formpassword").val();
-    if(!password){
-        messagealert("用户密码不能为空");
-        return false;
-    }
-
-    if(password!=$("#formpassword2").val()){
-        messagealert("用户密码与确认密码不匹配");
-        return false;
-    }
 
 
     let isDD=$("#isDD").val();
@@ -165,11 +196,6 @@ $("#submitbt1").click(function(){
         }
     }
 
-    let vcode=$("#formvcode").val();
-    if(!vcode){
-        messagealert("验证码不能为空")
-        return false;
-    }
 
     let data={userEmail:userEmail};
     $.post("/user/check",data, function(result){
@@ -179,9 +205,7 @@ $("#submitbt1").click(function(){
         }
         else{
             $("#userEmail").val(userEmail);
-            $("#userPassword").val(sha256(password));
             $("#username").val(username);
-            $("#verifyCode").val(vcode);
             $("#resultform").submit();
         }
     });

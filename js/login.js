@@ -4,7 +4,8 @@ function messagealert(s){
 }
 let psdunchanged=1;
 let acunchanged=1;
-$("#PasswordInput").on("click",function(){
+let vcunchanged=1;
+$("#PasswordInput").focus(function(){
     if (psdunchanged==1){
         $("#PasswordInput").attr("value","");
         $("#PasswordInput").css("color","black");
@@ -13,11 +14,19 @@ $("#PasswordInput").on("click",function(){
     }
 });
 
-$("#AccountInput").on("click",function(){
+$("#AccountInput").focus(function(){
     if (acunchanged==1) {
         $("#AccountInput").attr("value","");
         $("#AccountInput").css("color", "black");
         acunchanged=0;
+    }
+});
+
+$("#vcodeInput").focus(function(){
+    if (vcunchanged==1) {
+        $("#vcodeInput").attr("value","");
+        $("#vcodeInput").css("color", "black");
+        vcunchanged=0;
     }
 });
 
@@ -28,14 +37,18 @@ $("#login").on("click",function(){
     else if ($("#PasswordInput").val() == "密码" ||$("#PasswordInput").val()==""){
         messagealert("请输入密码");}
 
+    else if ($("#vcodeInput").val()== "验证码" ||$("#vcodeInput").val()==""){
+        messagealert("请输入验证码");
+    }
+
     else {
-        $("#PasswordInput").val(sha256($("#PasswordInput").val()));
         let data={userEmail:$("#AccountInput").val(),
-            password:$("#PasswordInput").val()};
+            password:sha256($("#PasswordInput").val()),
+            verifyCode:$("#vcodeInput").val()};
         $.post("/user/login",data, function(result){
             if(result.resultCode==1){
-                $("#PasswordInput").val("");
                 messagealert(result.result);
+                $("#PasswordInput").val("");
             }
             else{
                 $("#jumpform").submit();
