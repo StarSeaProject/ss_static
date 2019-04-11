@@ -14,6 +14,10 @@ input{
     color: #cccccc;;
 }
 
+.vcodebox{
+    margin-top:11px;
+}
+
 #mainwindow{
     margin-top:70px;
     width:100%;
