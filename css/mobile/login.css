@@ -3,22 +3,20 @@ body{
     background-size:100%;
 }
 
+h2{
+    color:white;
+}
+
 input{
     width:100%;
-    margin-top:10px;
-    margin-bottom:10px;
-    color: #cccccc;
+    margin-top:25px;
+    margin-bottom:25px;
+    color: #cccccc;;
 }
 
 #mainwindow{
-    position:fixed;
-    left:50%;
-    width:30%;
-    max-width:350px;
-    margin-top:200px;
-    background-color: white;
-    border-radius:60px;
-    padding: 30px 40px 40px 40px;
+    margin-top:70px;
+    width:100%;
 }
 
 .alertbox{
@@ -31,7 +29,7 @@ input{
 a.loginbt{
      margin-top:20px;
      display:block;
-     background-color: #23b1f7;
+     background-color: #6dd2f7;
      padding: 7px 10px 7px 10px;
      border-radius: 5px;
      text-align: center;
@@ -40,6 +38,6 @@ a.loginbt{
  }
 
 a.loginbt:hover{
-    background-color: #82e2f7;
+    background-color: #51a0f7;
     cursor:pointer;
 }
