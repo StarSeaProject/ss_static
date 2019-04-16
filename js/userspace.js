@@ -1,16 +1,16 @@
 $("#activitypage").hide();
-$("#infobt").css("background-color","#bee4fb");
+$("#infobt").css("background-color","#323232");
 $("#infobt").click(function(){
-    $("#infobt").css("background-color","#bee4fb");
-    $("#activitybt").css("background-color","#323232");
+    $("#infobt").css("background-color","#323232");
+    $("#activitybt").css("background-color","#777777");
     $("#activitypage").hide();
     $("#infopage").show();
     }
 );
 
 $("#activitybt").click(function(){
-        $("#activitybt").css("background-color","#bee4fb");
-        $("#infobt").css("background-color","#323232");
+        $("#activitybt").css("background-color","#323232");
+        $("#infobt").css("background-color","#777777");
         $("#infopage").hide();
         $("#activitypage").show();
     }
