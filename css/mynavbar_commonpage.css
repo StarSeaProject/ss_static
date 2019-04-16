@@ -59,3 +59,22 @@ a.anav:hover,a.abnav:hover{
 .myli:hover {
     text-decoration: underline;
 }
+
+.imgboxlogin{
+    display:block;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    height:40px;
+    width:40px;
+
+}
+@media (min-width: 768px){
+    .navbar-nav>li>.imgboxlogin{
+        padding:2px;
+    }
+}
+
+
+.nav>li>a>.userimglogin{
+    max-width:100%;
+}

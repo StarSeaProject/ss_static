@@ -1,4 +1,14 @@
 $("body").addClass("container-fluid");
+let strlogin='';
+if(user){
+    strlogin=`<a class="imgboxlogin" href="/user/info">
+        <img class="userimglogin img-responsive" src="/头像.jpg"/>
+    </a>`;
+}
+else{
+    strlogin=`<a href="/login" class="anav">登录</a>`;
+}
+
 $("body").prepend(`
     <div class="container-fluid common-navbar">
         <nav class="row heading" role="navigation" id="mybar">
@@ -16,10 +26,10 @@ $("body").prepend(`
 
             <div class="collapse navbar-collapse navbar-right" id="shownav">
                 <ul class="nav navbar-nav mynavul">
+                    <li class="myli">`+strlogin+`</li>
                     <li class="myli"><a href="/work" class="anav">作品阅览</a></li>
                     <li class="myli"><a href="/activity" class="anav">活动众筹</a></li>
                     <li class="myli"><a href="/intro.html" class="anav">组织介绍</a></li>
-                    <li class="myli"><a href="/login" class="anav">登录</a></li>
                 </ul>
             </div>
         </nav>
