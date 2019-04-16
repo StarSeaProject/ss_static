@@ -19,6 +19,7 @@ $("body").prepend(`
                     <li class="myli"><a href="/work" class="anav">作品阅览</a></li>
                     <li class="myli"><a href="/activity" class="anav">活动众筹</a></li>
                     <li class="myli"><a href="/intro.html" class="anav">组织介绍</a></li>
+                    <li class="myli"><a href="/login" class="anav">登录</a></li>
                 </ul>
             </div>
         </nav>
