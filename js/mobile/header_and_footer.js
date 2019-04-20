@@ -27,7 +27,7 @@ $("body").prepend(`<div class="container-fluid">
 				class="ma text-right">活动</a> 
 				 </div>
 		  <div class="navbar-right col-xs-2 text-right">
-		  <a href="/mintro.html"
+		  <a href="/intro"
 				class="ma text-right">关于</a>
 		</div>
 	</div>
