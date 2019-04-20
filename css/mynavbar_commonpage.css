@@ -61,11 +61,13 @@ a.anav:hover,a.abnav:hover{
 }
 
 .imgboxlogin{
+    position:relative;
     display:block;
     background-color: white;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     height:40px;
     width:40px;
+    z-index:100;
 
 }
 @media (min-width: 768px){
@@ -78,3 +80,38 @@ a.anav:hover,a.abnav:hover{
 .nav>li>a>.userimglogin{
     max-width:100%;
 }
+#loginbox{
+    position:relative;
+}
+
+#floatbox{
+    position:absolute;
+    background-color: white;
+    border-radius: 5px;
+    width:100px;
+    transform:translate(-30px,-20px);
+    padding-top:30px;
+    padding-bottom:10px;
+    z-index:10;
+}
+
+#floatbox>hr {
+    margin: 0px 5px 0px 5px;
+}
+
+a.floatbutton{
+    padding:5px 0 5px 0;
+    width:100%;
+    display: block;
+    color: #9d9d9d;
+    font-size:0.7em;
+    text-align:center;
+
+}
+
+a.floatbutton:hover{
+    background-color: #cccccc;
+    text-decoration: none;
+    cursor:pointer;
+}
+

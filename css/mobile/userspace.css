@@ -15,10 +15,20 @@ hr{
     margin:0;
 }
 
+.imgbarcontainer{
+    overflow:hidden;
+}
+
+.imgbar{
+    width:100%;
+}
+
+.headrow0{
+
+}
+
 .headrow1{
-    height:100px;
-    background-image:url("/手机 页首.png");
-    background-size:100%;
+    position:absolute;
 }
 
 .headrow2{
@@ -51,7 +61,7 @@ a.headbt{
     height:80px;
     width:80px;
     padding:5px;
-    transform:translateY(50px);
+    transform:translateY(-50px);
 }
 
 .ordertitle{

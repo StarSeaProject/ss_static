@@ -1,3 +1,5 @@
+$(".heading").css("background-image","url('/页首1.jpg')");
+
 $("#activitypage").hide();
 $("#infobt").css("background-color","#323232");
 $("#infobt").click(function(){
@@ -7,6 +9,8 @@ $("#infobt").click(function(){
     $("#infopage").show();
     }
 );
+
+
 
 $("#activitybt").click(function(){
         $("#activitybt").css("background-color","#323232");
