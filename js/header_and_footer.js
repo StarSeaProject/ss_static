@@ -1,9 +1,19 @@
 $("body").addClass("container-fluid");
 let strlogin='';
 if(user){
-    strlogin=`<a class="imgboxlogin" href="/user/info">
+    strlogin=`<div id="loginbox">
+<a class="imgboxlogin" href="/user/info">
         <img class="userimglogin img-responsive" src="/头像.jpg"/>
-    </a>`;
+    </a>
+    <div id="floatbox">
+    <hr>
+    <a class="floatbutton" href="/user/info">个人中心</a>
+    <hr>
+    <a class="floatbutton" href="/user/exit">退出登录</a>
+    <hr>
+</div>
+</div>`
+    ;
 }
 else{
     strlogin=`<a href="/login" class="anav">登录</a>`;
@@ -41,3 +51,10 @@ $("body").append(`
 		<p class="footbarpara">互联网ICP备案：鲁ICP备17053445号</p>
 	</div>
 `);
+$("#floatbox").hide();
+$("#loginbox").hover(function(){
+    $("#floatbox").slideToggle(200);
+},
+    function(){
+        $("#floatbox").slideToggle(200);
+    });
