@@ -1,21 +1,60 @@
 
 let strlogin='';
 if(user){
-    strlogin=`<div id="loginbox">
-<a class="imgboxlogin">
-        <img class="userimglogin img-responsive" src="/头像.jpg"/>
-    </a>
-    <div id="floatbox">
-    <hr>
-    <a class="floatbutton" href="/user/info">个人中心</a>
-    <hr>
-    <a class="floatbutton" href="/user/exit">退出登录</a>
-    <hr>
-</div>
-</div>`;
+    strlogin=`<div class="navbar-right col-xs-4 text-right container">
+            <div class="row marow">
+                <div class="col-xs-4 mabox">
+                    <a href="/wo3rk" class="ma text-right">作品</a> 
+                </div>
+                <div class="col-xs-4 mabox">
+                    <a href="/activity"
+                                class="ma text-right">活动</a>      
+                </div>
+                <div class="col-xs-4 mabox">
+                    <a href="/intro"
+                                class="ma text-right">关于</a>  
+                </div>
+		  
+                
+            </div>
+        </div>
+        <div class="navbar-right col-xs-2 text-right">
+            <div id="loginbox">
+            <a class="imgboxlogin">
+                    <img class="userimglogin img-responsive" src="/头像.jpg"/>
+                </a>
+                <div id="floatbox">
+                <hr>
+                <a class="floatbutton" href="/user/info">个人中心</a>
+                <hr>
+                <a class="floatbutton" href="/user/exit">退出登录</a>
+                <hr>
+            </div>
+            </div>
+        </div>
+
+`;
 }
 else{
-    strlogin=`<a href="/login" class="ma text-right">登录</a>`;
+    strlogin=`<div class="navbar-right col-xs-6 text-right container">
+            <div class="row marow">
+                <div class="col-xs-3 mabox">
+                    <a href="/wo3rk" class="ma text-right">作品</a> 
+                </div>
+                <div class="col-xs-3 mabox">
+                    <a href="/activity"
+                                class="ma text-right">活动</a>      
+                </div>
+                <div class="col-xs-3 mabox">
+                    <a href="/intro"
+                                class="ma text-right">关于</a>  
+                </div>
+		  
+                <div class="navbar-right col-xs-3 text-right">
+                    <a href="/login" class="ma text-right">登录</a>
+                </div>
+            </div>
+        </div>`;
 }
 
 $("body").prepend(`<div class="container-fluid">
@@ -25,25 +64,8 @@ $("body").prepend(`<div class="container-fluid">
 		<div class="navbar-header col-xs-6">
 			<a href="/"><img src="/starsea.png" class="navimg img-responsive"></img></a>
 		</div>
-		<div class="navbar-right col-xs-2 text-right">
-		`+strlogin+`  
-		  </div>
-            <div class="navbar-right col-xs-4 text-right container">
-            <div class="row marow">
-            <div class="col-xs-4 mabox">
-			<a href="/work" class="ma text-right">作品</a> 
-</div>
- <div class="col-xs-4 mabox">
- <a href="/activity"
-				class="ma text-right">活动</a>      
-</div>
- <div class="col-xs-4 mabox">
-		  <a href="/intro"
-				class="ma text-right">关于</a>  
-</div>
-		  
-</div>
-		</div>
+        ${strlogin}
+    
 	</div>
 	<div class="row">
 		<div class="col-xs-12 imgbarcontainer">

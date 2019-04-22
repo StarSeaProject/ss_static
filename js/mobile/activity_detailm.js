@@ -1,4 +1,5 @@
 $(function(){
+
     //自动滚动
     let boxheight=0;
     $(".rightbox").children().each(function(i,div){
@@ -20,6 +21,20 @@ $(function(){
     autoscl();
     $(".rightbox").scroll(function(){
         position=$(".rightbox").scrollTop();
+    });
+    //金额输入
+
+    function messagealert(s){
+        $("#messagebox").html(`
+	    <div class="alertbox">`+s+ `</div>`);
+    }
+
+    $(".checkbutton").on("click",function(){
+        if(/^\d+\.?\d{0,2}$/.test($("input").val())){
+            $("#form1").submit();
+        }else{
+            messagealert("请输入有效格式的数字");
+        }
     });
 
 });

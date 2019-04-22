@@ -1,100 +1,205 @@
-let citys;
+let IdList=[-1,-1,-1];
+let ClassId=0;
 $(function () {
-    let navpre = $("#provincenav");
-    let provincepre;
-    let citypre;
-    let areapre;
+    class Button extends Object{
+        constructor(tag){
+            super();
+            this.tag=tag;
+        }
+    }
 
-    WriteProvince();
-    $("#provincenav").toggleClass("navbutton");
-    $("#provincenav").toggleClass("navvisited");
+    class NavButton extends Button{
+
+        NavBtClass(){
+            this.tag.toggleClass("navnormal");
+            this.tag.toggleClass("navvisited");
+        }
+
+        HandelClick(){
+            $(".addressmap [data-id="+ClassId+"]").hide();
+            ClassId=Number(this.tag.attr("name"));
+            console.log(ClassId);
+            $(".addressmap [data-id="+ClassId+"]").show();
+            if(navpre!==undefined){
+                let objectpre=new NavButton(navpre);
+                objectpre.NavBtClass();
+                objectpre=null;
+            }
+            navpre = this.tag;
+            this.NavBtClass();
+        }
+    }
+
+    class AddressButton extends Button {
+        AddBtClass(){
+            this.tag.toggleClass("addressnormal");
+            this.tag.toggleClass("addressvisited");
+        }
+
+        HandlePre(){
+            if (IdList[ClassId] !== -1) {
+                let buttonpre=new AddressButton($("[data-class="+ClassId+"][name="+IdList[ClassId]+"]"));
+                buttonpre.AddBtClass();
+                buttonpre=null;
+            }
+            IdList[ClassId] = $(this.tag).attr("name");
+        }
+
+        HandlePost(){
+            let buttonpost=new AddressButton($("[data-class="+ClassId+"][name="+IdList[ClassId]+"]"));
+            buttonpost.AddBtClass();
+            buttonpost=null;
+
+            let buttontext='';
+
+            for (let i=0;i<ClassId+1;i=i+1){
+                buttontext=buttontext+$("[data-class="+i+"][name="+IdList[i]+"]").text();
+            }
+
+            $("#addressbutton").text(buttontext);
+        }
+    }
+
+    class ProvinceButton extends AddressButton{
+        HandleClick(){
+            this.HandlePre();
+
+            $("#city").hide();
+            $("#area").hide();
+            WriteMap(1);
+            $("#area").html("");
+            $("#areasub").val("");
+
+            this.HandlePost();
+
+            $(".navbutton[name=1]").trigger("click");
+        }
+    }
+    class CityButton extends AddressButton{
+        HandleClick(){
+            this.HandlePre();
+
+            WriteMap(2);
+            $("#areasub").val("");
+
+            this.HandlePost();
+
+            $(".navbutton[name=2]").trigger("click");
+        }
+    }class AreaButton extends AddressButton{
+        HandleClick(){
+            this.HandlePre();
+
+            $("#areasub").val(IdList[ClassId]);
+
+            this.HandlePost();
+
+            $(document).trigger("click");
+        }
+    }
+    function WriteMap(ClassId) {
+        let i = 0;
+        let str = '';
+        let ItemList;
+        let DataList=[];
+        switch(ClassId){
+            case 0:
+                for (let Item in provinces){
+                    DataList.push({Id:provinces[Item].provinceId,Name:provinces[Item].provinceName});
+                }
+                break;
+            case 1:
+                ItemList=provinces[IdList[0]].citys;
+                for (let Item in ItemList){
+                    DataList.push({Id:ItemList[Item].cityId,Name:ItemList[Item].cityName});
+                }
+                break;
+            case 2:
+                ItemList=provinces[IdList[0]].citys[IdList[1]].areas;
+                console.log(ItemList);
+                for (let Item in ItemList){
+                    DataList.push({Id:ItemList[Item].areaId,Name:ItemList[Item].areaName});
+                }
+                break;
+        }
+        for (let DataItem in DataList) {
+            let stra = `
+					<div class="col-xs-3" >
+						<a class="addressbutton addressnormal" data-class="${ClassId}" name="${DataList[DataItem].Id}">
+								${DataList[DataItem].Name}
+						</a>
+					</div>
+					`
+            str += tableformat(stra, i);
+            i += 1;
+        }
+        if (i % 4 === 0) {
+            str += `</div>`;
+        }
+        $(".addressmap [data-id="+ClassId+"]").html(str);
+    }
+
+
+    function tableformat(str, i) {
+        let strout = "";
+        if (i % 4 === 0) {
+            strout += `<div class="row">`;
+        }
+
+        strout += str;
+
+        if (i % 4 === 3) {
+            strout += `</div>`;
+        }
+        return (strout);
+    }
+
+    let navpre = undefined;
+    let classlength=3;
+    WriteMap(0);
     $(".addressmap").hide();
+
+    $(".navbutton").on("click", function () {
+
+        let buttonobj=new NavButton($(this));
+        buttonobj.HandelClick();
+        buttonobj=null;
+        console.log(ClassId);
+    });
+
+
+    $(".addressmap").on("click", ".addressbutton", function (e) {
+
+        let buttonobj;
+        switch(ClassId){
+            case 0:
+                buttonobj=new ProvinceButton($(e.target));
+                break;
+            case 1:
+                buttonobj=new CityButton($(e.target));
+                break;
+            case 2:
+                buttonobj=new AreaButton($(e.target));
+                break;
+        }
+        buttonobj.HandleClick();
+        buttonobj=null;
+    });
+
     $("#addressbutton").on("click", function (e) {
 
         $(".addressmap").show();
-        navpre.trigger("click");
+
         e.stopPropagation();
         //点击其他地方关闭窗口
         $(document).on("click", function () {
             $(".addressmap").hide();
+            return 0;
         });
 
-        $("#provincenav").on("click", function () {
-            $("#city").hide();
-            $("#area").hide();
-            $("#province").show();
-            navpre.toggleClass("navbutton");
-            navpre.toggleClass("navvisited");
-            navpre = $(this);
-            navpre.toggleClass("navbutton");
-            navpre.toggleClass("navvisited");
-        });
+        $("#provincenav").trigger("click");
 
-        $("#citynav").on("click", function () {
-            $("#area").hide();
-            $("#province").hide();
-            $("#city").show();
-            navpre.toggleClass("navbutton");
-            navpre.toggleClass("navvisited");
-            navpre = $(this);
-            navpre.toggleClass("navbutton");
-            navpre.toggleClass("navvisited");
-        });
 
-        $("#areanav").on("click", function () {
-            $("#city").hide();
-            $("#province").hide();
-            $("#area").show();
-            navpre.toggleClass("navbutton");
-            navpre.toggleClass("navvisited");
-            navpre = $(this);
-            navpre.toggleClass("navbutton");
-            navpre.toggleClass("navvisited");
-        });
-
-        $("#province").on("click", ".provincebutton", function (e) {
-
-            $("#city").hide();
-            $("#area").hide();
-            let provinceId = $(e.target).attr("value");
-            WriteCity(provinceId);
-            $("#area").html("");
-            $("#areasub").val("");
-            if (provincepre !== undefined) {
-                provincepre.toggleClass("addressbutton");
-                provincepre.toggleClass("addressvisited");
-            }
-            provincepre = $(this);
-            provincepre.toggleClass("addressbutton");
-            provincepre.toggleClass("addressvisited");
-            $("#addressbutton").text(provincepre.text());
-        });
-
-        $("#city").on("click", ".citybutton", function (e) {
-            let cityId = $(e.target).attr("value");
-            WriteArea(cityId);
-            $("#areasub").val("");
-            if (citypre !== undefined) {
-                citypre.toggleClass("addressbutton");
-                citypre.toggleClass("addressvisited");
-            }
-            citypre = $(this);
-            citypre.toggleClass("addressbutton");
-            citypre.toggleClass("addressvisited");
-            $("#addressbutton").text(provincepre.text() + citypre.text());
-        });
-        $("#area").on("click", ".areabutton", function (e) {
-            areanum = $(e.target).attr("value");
-            $("#areasub").val(areanum);
-            if (areapre !== undefined) {
-                areapre.toggleClass("addressbutton");
-                areapre.toggleClass("addressvisited");
-            }
-            areapre = $(this);
-            areapre.toggleClass("addressbutton");
-            areapre.toggleClass("addressvisited");
-            $("#addressbutton").text(provincepre.text() + citypre.text() + areapre.text());
-        });
     });
 
     $(".addressmap").on("click", function (e) {
@@ -154,76 +259,3 @@ $(function () {
     });
 
 });
-function WriteProvince() {
-    let i = 0;
-    let str = '';
-    for (let province in provinces) {
-        let stra = `
-					<div class="col-xs-3" >
-						<a class="addressbutton  provincebutton" value="${provinces[province].provinceId}">
-								${provinces[province].provinceName}
-						</a>
-					</div>
-					`
-        str += tableformat(stra, i);
-        i += 1;
-    }
-    if (i % 4 === 0) {
-        str += `</div>`;
-    }
-    $("#province").html(str);
-}
-function WriteCity(provinceId) {
-    let i = 0;
-    let str = '';
-    citys = provinces[provinceId].citys;
-    for (let city in citys) {
-        let stra = `
-					<div class="col-xs-3" >
-						<a class="addressbutton  citybutton" value="${citys[city].cityId}">
-								${citys[city].cityName}
-						</a>
-					</div>
-					`
-        str += tableformat(stra, i);
-        i += 1;
-    }
-    if (i % 4 === 0) {
-        str += `</div>`;
-    }
-    $("#city").html(str);
-}
-function WriteArea(cityId) {
-    let i = 0;
-    let str = '';
-    let areas = citys[cityId].areas;
-    for (let area in areas) {
-        let stra = `
-					<div class="col-xs-3" >
-						<a class="addressbutton  areabutton" value="${areas[area].areaId}">
-								${areas[area].areaName}
-						</a>
-					</div>
-					`
-        str += tableformat(stra, i);
-        i += 1;
-    }
-    if (i % 4 === 0) {
-        str += `</div>`;
-    }
-    $("#area").html(str);
-}
-
-function tableformat(str, i) {
-    let strout = "";
-    if (i % 4 === 0) {
-        strout += `<div class="row">`;
-    }
-
-    strout += str;
-
-    if (i % 4 === 3) {
-        strout += `</div>`;
-    }
-    return (strout);
-}

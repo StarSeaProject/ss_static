@@ -71,6 +71,7 @@ a.navbutton{
     border-style: none none solid none;
     border-width:1px;
     border-color:#333;
+    text-decoration: none;
 }
 
 a.navvisited{
@@ -84,6 +85,7 @@ a.navvisited{
     border-style: none none solid none;
     border-width:3px;
     border-color:#ff7d10;
+    text-decoration: none;
 }
 
 a.addressbutton{
@@ -94,6 +96,7 @@ a.addressbutton{
     padding:5px;
     color:black;
     font-size:14px;
+    text-decoration: none;
 }
 
 a.addressvisited{
@@ -110,7 +113,7 @@ a.addressvisited{
 
 /*其他代码*/
 
-.col-xs-6{
+form>div>.col-xs-6{
     margin-top:15px;
     font-size:1em;
 }

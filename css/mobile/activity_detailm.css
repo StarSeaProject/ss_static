@@ -31,6 +31,42 @@
     padding: 20px 10px 20px 10px;
 }
 
+input{
+    margin-top:30px;
+    width:100%;
+    border: 2px solid #9d9d9d;
+}
+
+.checkbox{
+    position:static;
+    height:40px;
+}
+
+a.checkbutton{
+    margin-top:10px;
+    width:70px;
+    display:block;
+    position:absolute;
+    right:10px;
+    text-align: center;
+    padding:5px;
+    background-color:#23b1f7;
+    border-radius:4px;
+    color:white
+ }
+
+a.checkbutton:hover{
+    background-color: #198ff7;
+    text-decoration: none;
+}
+
+.alertbox{
+    background-color: #f7c2b8;
+    color: #f7422b;
+    width:100%;
+    padding:10px;
+}
+
 .newbox{
 }
 
