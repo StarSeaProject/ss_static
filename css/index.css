@@ -16,6 +16,12 @@ html{
     width:1920px;
 }
 
+#usernav{
+    position:absolute;
+    top:620px;
+    left:1198px;
+}
+
 #navbg{
     position:absolute;
     height:700px;
@@ -43,7 +49,7 @@ html{
     position:absolute;
     margin:0;
     left:22px;
-    top:0px;
+    top:0;
     font-family:"Source Han Sans CN";
     font-size:140px;
     -webkit-text-fill-color: #34a3ff;
@@ -153,6 +159,18 @@ a.navbutton:hover{
     background-color: #49c586;
 }
 
+a.usernavbutton{
+    display:block;
+    position:absolute;
+    height:80px;
+    width:100px;
+    top:0;
+}
+
+a.usernavbutton:hover{
+    background-color: #f7a56e;
+}
+
 .buttonimg{
     position:absolute;
     width:48px;
@@ -161,13 +179,68 @@ a.navbutton:hover{
 }
 
 .buttontext{
+     position:absolute;
+     color:white;
+     font-size:20px;
+     font-family:"Source Han Sans CN";
+     left:110px;
+     top:25px;
+     letter-spacing:3px
+ }
+
+.ubuttontext{
     position:absolute;
     color:white;
     font-size:20px;
     font-family:"Source Han Sans CN";
-    left:110px;
+    left:30px;
     top:25px;
     letter-spacing:3px
+}
+
+#uimg1{
+    left:80px;
+}
+
+#ubt1{
+    left:140px;
+}
+
+#unavtext{
+    position:absolute;
+    color:white;
+    left:238px;
+    top:22px;
+    font-size:24px;
+    z-index:100;
+
+}
+
+#unavtext1{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    font-family:"Source Han Sans CN";
+    top:25px;
+    letter-spacing:3px;
+    left:160px;
+    width:200px;
+}
+
+#userimg{
+    position:absolute;
+    width:48px;
+    left:80px;
+    top:15px;
+    border:4px solid white;
+}
+
+#ubt2{
+    left:240px;
+}
+
+#ubt3{
+    left:300px;
 }
 
 #nb1{

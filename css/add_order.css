@@ -106,7 +106,7 @@ a#addressbutton:hover{
 }
 
 
-a.navbutton{
+a.navnormal{
     display:block;
     width:100%;
     height:100%;
@@ -123,14 +123,14 @@ a.navvisited{
     font-size:16px;
 }
 
-a.navbutton:hover,a.navvisited{
+a.navnormal:hover,a.navvisited{
     color:white;
     background-color:black;
     cursor:pointer;
     text-decoration:none;
 }
 
-a.addressbutton{
+a.addressnormal{
     display:block;
     width:100%;
     height:30px;
@@ -149,7 +149,7 @@ a.addressvisited{
     font-size:14px;
 }
 
-a.addressbutton:hover,a.addressvisited{
+a.addressnormal:hover,a.addressvisited{
     color:white;
     background-color: #23b1f7;
     cursor:pointer;

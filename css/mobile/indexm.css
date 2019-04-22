@@ -1,5 +1,4 @@
 .navbartop {
-    width: 100%;
     background-image: url("/aqours.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -10,9 +9,22 @@
 .navimg{
     width:70px;
 }
+
+.navbar-right{
+    padding:0 5px 0 0;
+}
+.marow{
+    padding-right:15px;
+}
+
+.mabox{
+    padding:0;
+}
+
 .ma {
+    padding:0;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-bottom: -4px;
     color: white;
     display: inline-block;
@@ -56,6 +68,53 @@
     font-size:1em;
 }
 
+
+.imgboxlogin{
+    position:relative;
+    margin-top:10px;
+    display:block;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    height:40px;
+    width:40px;
+    z-index:100;
+}
+
+#loginbox{
+    position:relative;
+}
+
+#floatbox{
+    position:absolute;
+    background-color: white;
+    border-radius: 5px;
+    width:100px;
+    transform:translate(-30px,-20px);
+    padding-top:30px;
+    padding-bottom:10px;
+    z-index:10;
+}
+
+#floatbox>hr {
+    margin: 0px 5px 0px 5px;
+}
+
+a.floatbutton{
+    padding:5px 0 5px 0;
+    width:100%;
+    display: block;
+    color: #9d9d9d;
+    font-size:0.7em;
+    text-align:center;
+
+}
+
+a.floatbutton:hover{
+    background-color: #cccccc;
+    text-decoration: none;
+    cursor:pointer;
+}
+
 /*友情链接*/
 #Sitepara{
     font-size:1.6em;
@@ -74,3 +133,4 @@
 .col-sm-3{
     height:35px;
 }
+
