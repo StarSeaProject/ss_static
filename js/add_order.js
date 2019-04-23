@@ -1,6 +1,11 @@
 let IdList=[-1,-1,-1];
 let ClassId=0;
+
+
 $(function () {
+    $("#expensebar").hide();
+
+
     class Button extends Object{
         constructor(tag){
             super();
@@ -72,6 +77,13 @@ $(function () {
 
             this.HandlePost();
 
+            let data={provinceId:IdList[0]};
+            $.get("/order/postage/money",data, function(result){
+                console.log(result);
+                $("#expense").text("预计邮费 至"+$("[data-class="+0+"][name="+IdList[0]+"]").text()+"：RMB"+result.postageMoney);
+                $("#expensebar").show();
+            });
+
             $(".navbutton[name=1]").trigger("click");
         }
     }
@@ -97,6 +109,8 @@ $(function () {
             $(document).trigger("click");
         }
     }
+
+    console.log(provinces[33]);
     function WriteMap(ClassId) {
         let i = 0;
         let str = '';
@@ -110,6 +124,7 @@ $(function () {
                 break;
             case 1:
                 ItemList=provinces[IdList[0]].citys;
+
                 for (let Item in ItemList){
                     DataList.push({Id:ItemList[Item].cityId,Name:ItemList[Item].cityName});
                 }
@@ -164,7 +179,6 @@ $(function () {
         let buttonobj=new NavButton($(this));
         buttonobj.HandelClick();
         buttonobj=null;
-        console.log(ClassId);
     });
 
 
