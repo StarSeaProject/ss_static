@@ -117,7 +117,8 @@ function clearalert(s){
     messagealert(s);
     $("#formpassword").val("");
     $("#formpassword2").val("");
-    $("#formvcode").val("")
+    $("#formvcode").val("");
+    $("[alt='验证码']").trigger("click");
 }
 
 $("#submitbt1").click(function(){
