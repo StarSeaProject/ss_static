@@ -31,6 +31,8 @@ $(function(){
 
     $(".checkbutton").on("click",function(){
         if(/^\d+\.?\d{0,2}$/.test($("input").val())){
+            $("#fundingMoney").val(Number($("#MoneyInput").val()));
+            $("[name='activityId']").val(parseInt($("[name='activityId']").val()));
             $("#form1").submit();
         }else{
             messagealert("请输入有效格式的数字");

@@ -1,6 +1,9 @@
 $(function () {
     let IdList=[-1,-1,-1];
     let ClassId=0;
+
+    $("#expensebar").hide();
+
     function WriteMap(ClassId) {
         let i = 0;
         let str = '';
@@ -111,7 +114,12 @@ $(function () {
             $("#areasub").val("");
 
             this.HandlePost();
-
+            let data={provinceId:IdList[0]};
+            $.get("/order/postage/money",data, function(result){
+                console.log(result);
+                $("#expense").text("预计邮费 至"+$("[data-class="+0+"][name="+IdList[0]+"]").text()+"：RMB"+result.postageMoney);
+                $("#expensebar").show();
+            });
             $(".navbutton[name=1]").trigger("click");
         }
     }

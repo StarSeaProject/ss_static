@@ -4,7 +4,7 @@ if(user){
     strlogin=`<div class="navbar-right col-xs-4 text-right container">
             <div class="row marow">
                 <div class="col-xs-4 mabox">
-                    <a href="/wo3rk" class="ma text-right">作品</a> 
+                    <a href="/work" class="ma text-right">作品</a> 
                 </div>
                 <div class="col-xs-4 mabox">
                     <a href="/activity"
@@ -39,7 +39,7 @@ else{
     strlogin=`<div class="navbar-right col-xs-6 text-right container">
             <div class="row marow">
                 <div class="col-xs-3 mabox">
-                    <a href="/wo3rk" class="ma text-right">作品</a> 
+                    <a href="/work" class="ma text-right">作品</a> 
                 </div>
                 <div class="col-xs-3 mabox">
                     <a href="/activity"
