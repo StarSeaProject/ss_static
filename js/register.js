@@ -118,7 +118,7 @@ function clearalert(s){
     $("#formpassword").val("");
     $("#formpassword2").val("");
     $("#formvcode").val("");
-    $("[alt='验证码']").trigger("click");
+    $("#vcodeimg").trigger("click");
 }
 
 $("#submitbt1").click(function(){

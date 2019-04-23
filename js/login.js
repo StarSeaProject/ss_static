@@ -50,7 +50,7 @@ $("#login").on("click",function(){
                 messagealert(result.result);
                 $("#PasswordInput").val("");
                 $("#vcodeInput").val("");
-                $("[alt='验证码']").trigger("click");
+                $("#vcodeimg").trigger("click");
             }
             else{
                 $("#jumpform").submit();
