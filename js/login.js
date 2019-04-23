@@ -49,6 +49,7 @@ $("#login").on("click",function(){
             if(result.resultCode==1){
                 messagealert(result.result);
                 $("#PasswordInput").val("");
+                $("#vcodeInput").val("");
             }
             else{
                 $("#jumpform").submit();

@@ -113,6 +113,13 @@ function messagealert(s){
 	    <div class="alertbox">`+s+ `</div>`);
 }
 
+function clearalert(s){
+    messagealert(s);
+    $("#formpassword").val("");
+    $("#formpassword2").val("");
+    $("#formvcode").val("")
+}
+
 $("#submitbt1").click(function(){
     let username=$("#formusername").val();
     if (!username){
@@ -139,12 +146,12 @@ $("#submitbt1").click(function(){
     }
     let password=$("#formpassword").val();
     if(!password){
-        messagealert("用户密码不能为空");
+        clearalert("用户密码不能为空");
         return false;
     }
 
     if(password!=$("#formpassword2").val()){
-        messagealert("用户密码与确认密码不匹配");
+        clearalert("用户密码与确认密码不匹配");
         return false;
     }
 
@@ -167,14 +174,14 @@ $("#submitbt1").click(function(){
 
     let vcode=$("#formvcode").val();
     if(!vcode){
-        messagealert("验证码不能为空")
+        clearalert("验证码不能为空")
         return false;
     }
 
     let data={userEmail:userEmail};
     $.post("/user/check",data, function(result){
         if(result.isAvailable== false){
-            messagealert(result.errInfo);
+            clearalert(result.errInfo);
             return false;
         }
         else{
