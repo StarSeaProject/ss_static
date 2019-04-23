@@ -30,6 +30,7 @@ titleh1 {
 }
 .orderbtn{
     background:rgba(255,255,255,0);
+    max-width:300px;
 }
 
 .active{

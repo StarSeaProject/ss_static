@@ -49,6 +49,8 @@ $("#login").on("click",function(){
             if(result.resultCode==1){
                 messagealert(result.result);
                 $("#PasswordInput").val("");
+                $("#vcodeInput").val("");
+                $("#vcodeimg").trigger("click");
             }
             else{
                 $("#jumpform").submit();
