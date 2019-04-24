@@ -45,17 +45,24 @@ $("#login").on("click",function(){
         let data={userEmail:$("#AccountInput").val(),
             userPassword:sha256($("#PasswordInput").val()),
             verifyCode:$("#vcodeInput").val()};
-        $.post("/user/login",data, function(result){
-            if(result.resultCode==1){
-                messagealert(result.result);
-                $("#PasswordInput").val("");
-                $("#vcodeInput").val("");
-                $("#vcodeimg").trigger("click");
-            }
-            else{
-                $("#jumpform").submit();
-            }
+        $("#loginform").hide(0);
+        $("#loading").show(0,function(){
+            $.post("/user/login",data, function(result){
+                if(result.resultCode==1){
+                    messagealert(result.result);
+                    $("#PasswordInput").val("");
+                    $("#vcodeInput").val("");
+                    $("#vcodeimg").trigger("click");
+                    $("#loginform").show(0);
+                    $("#loading").hide(0);
+                }
+                else{
+                    $("#jumpform").submit();
+                }
+            });
         });
+
+
 
     }
 
