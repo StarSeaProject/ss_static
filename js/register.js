@@ -179,20 +179,26 @@ $("#submitbt1").click(function(){
         return false;
     }
 
-    let data={userEmail:userEmail};
-    $.post("/user/check",data, function(result){
-        if(result.isAvailable== false){
-            clearalert(result.errInfo);
-            return false;
-        }
-        else{
-            $("#userEmail").val(userEmail);
-            $("#userPassword").val(sha256(password));
-            $("#username").val(username);
-            $("#verifyCode").val(vcode);
-            $("#resultform").submit();
-        }
+    $("#registerform").slideUp(0);
+    $("#loading").slideDown(0,function(){
+        let data={userEmail:userEmail};
+        $.post("/user/check",data, function(result){
+            if(result.isAvailable== false){
+                clearalert(result.errInfo);
+                $("#registerform").slideDown(0);
+                $("#loading").slideUp(0);
+                return false;
+            }
+            else{
+                $("#userEmail").val(userEmail);
+                $("#userPassword").val(sha256(password));
+                $("#username").val(username);
+                $("#verifyCode").val(vcode);
+                $("#resultform").submit();
+            }
+        });
     });
+
 
 
 
