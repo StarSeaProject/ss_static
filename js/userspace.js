@@ -195,3 +195,8 @@ $("#submitbt1").click(function(){
 
 
 });
+
+$(".paylink").click(function(e){
+    let data={orderId:$(e.target).attr("name")};
+    $.post('/order/pay',data);
+});

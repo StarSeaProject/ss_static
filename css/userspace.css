@@ -111,3 +111,8 @@ a.apbt:hover{
     background-color: #3093fb;
     cursor:pointer;
 }
+
+
+a.paylink:hover{
+    cursor: pointer;
+}
