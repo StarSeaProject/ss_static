@@ -2,14 +2,16 @@ $(function(){
 
     //自动滚动
     let boxheight=0;
-    $(".rightbox").children().each(function(i,div){
-        boxheight+=$(div).height();
+    $("#he2").children().each(function(i,div){
+        boxheight+=$(div).height()+10;
     });
+    boxheight+=100;
+
     let position=0;
     function autoscl(){
         position = position + 1;
         position = position % boxheight;
-        $(".rightbox").scrollTop(position);
+        $("#he2").scrollTop(position);
         setTimeout(autoscl,10);
     }
 
@@ -19,8 +21,8 @@ $(function(){
     });
 
     autoscl();
-    $(".rightbox").scroll(function(){
-        position=$(".rightbox").scrollTop();
+    $("#he2").scroll(function(){
+        position=$("#he2").scrollTop();
     });
     //金额输入
 

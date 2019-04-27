@@ -1,15 +1,18 @@
 $(function(){
     //自动滚动
     let boxheight=0;
-    $(".rightbox").children().each(function(i,div){
-        boxheight+=$(div).height();
+    $("#rightbox").children().each(function(i,div){
+        boxheight+=$(div).height()+10;
     });
     //在滚到末尾时停一下
     boxheight+=100;
     let position=0;
     function autoscl(){
         position = position + 1;
-        position = position % boxheight;
+        if (position>boxheight){
+            position = position - boxheight;
+        }
+
         $(".rightcont").scrollTop(position);
         setTimeout(autoscl,10);
     }
@@ -19,17 +22,17 @@ $(function(){
         $(this).addClass("img-responsive");
     });
 
-    let righth=$(".rightcont").height();
+    let righth=$("#namebox").height();
     let lefth=$(".leftcont").height();
 
-    if (lefth>=600){
+    if (lefth>=860){
         $(".leftcont").css("overflow-y","scroll");
     }
     if(righth>=600){
-        $(".rightcont").css("overflow-y","scroll");
+        $("#namebox").css("overflow-y","scroll");
         autoscl();
-        $(".rightcont").scroll(function(){
-            position=$(".rightcont").scrollTop();
+        $("#namebox").scroll(function(){
+            position=$("#namebox").scrollTop();
         });
     }
 
