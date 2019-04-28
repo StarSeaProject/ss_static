@@ -51,6 +51,65 @@ $(function () {
         }
     }
 
+    class PayOnlineButton extends Button{
+        constructor(tag,text,row,input){
+            super(tag);
+            this.value=false;
+            this.isShow=true;
+            this.text=text;
+            this.row=row;
+            this.input=input;
+            this.input.val(false);
+        }
+
+        PayOnlineBtClass(){
+            this.tag.toggleClass("PayOnlineUv");
+            this.tag.toggleClass("PayOnlineVd");
+        }
+
+        SetTrue(){
+            if(!this.value){
+                this.PayOnlineBtClass();
+                this.text.text("已选择在线支付");
+                this.input.val(true);
+                this.value=true;
+            }
+        }
+
+        SetFalse(){
+            if(this.value){
+                this.PayOnlineBtClass();
+                this.input.val(false);
+                this.text.text("选中该选项时将使用在线支付的方式支付邮费")
+                this.value=false;
+            }
+        }
+
+        SetShow(){
+            if(!this.isShow){
+                this.row.show();
+                this.isShow=true;
+            }
+        }
+
+        SetHide(){
+            if(this.isShow){
+                this.row.hide();
+                this.SetFalse();
+                this.isShow=false;
+            }
+        }
+
+        HandleClick(){
+            if(this.value){
+                this.SetFalse();
+            }
+            else{
+                this.SetTrue();
+            }
+        }
+    }
+
     class NavButton extends Button{
 
         NavBtClass(){
@@ -104,6 +163,11 @@ $(function () {
     }
 
     class ProvinceButton extends AddressButton{
+        constructor(tag,pobt){
+            super(tag);
+            this.pobt=pobt;
+        }
+
         HandleClick(){
             this.HandlePre();
 
@@ -120,6 +184,14 @@ $(function () {
                 $("#expense").text("预计邮费 至"+$("[data-class="+0+"][name="+IdList[0]+"]").text()+"：RMB"+result.postageMoney);
                 $("#expensebar").show();
             });
+
+            if(IdList[0]>31){
+                this.pobt.SetHide();
+            }
+            else{
+                this.pobt.SetShow();
+            }
+
             $(".navbutton[name=1]").trigger("click");
         }
     }
@@ -149,6 +221,7 @@ $(function () {
     let navpre = undefined;
     let classlength=3;
     WriteMap(0);
+    let PayOnline=new PayOnlineButton($("#PayOnlineBt"),$("#PayOnlineText"),$("#isPayOnlineRow"),$("#isPayOnline"));
 
 
     $(".navbutton").on("click", function () {
@@ -158,14 +231,16 @@ $(function () {
         buttonobj=null;
         console.log(ClassId);
     });
-
+    $("#PayOnlineBt").on("click",function(){
+        PayOnline.HandleClick();
+    });
 
     $(".addressmap").on("click", ".addressbutton", function (e) {
 
         let buttonobj;
         switch(ClassId){
             case 0:
-                buttonobj=new ProvinceButton($(e.target));
+                buttonobj=new ProvinceButton($(e.target),PayOnline);
                 break;
             case 1:
                 buttonobj=new CityButton($(e.target));

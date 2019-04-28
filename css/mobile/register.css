@@ -123,6 +123,7 @@ a.submitbt:hover{
 }
 
 .alertbox{
+    margin-top:20px;
     background-color: #f7c2b8;
     color: #f7422b;
     width:100%;

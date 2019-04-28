@@ -28,16 +28,18 @@
     left:0;
     width:100%;
     bottom:0;
-    height:60%;
+    height:400px;
     margin:0;
 }
 
 .modal-content{
     height:100%;
     border-radius:0;
+    padding-bottom:10px;
 }
 
 .addresspanel{
+    max-height:260px;
     overflow:scroll;
 }
 
@@ -67,25 +69,19 @@ a.navbutton{
     height:100%;
     padding:5px;
     color:black;
-    font-size:14px;
+    font-size:1em;
     border-style: none none solid none;
-    border-width:1px;
-    border-color:#333;
     text-decoration: none;
 }
 
+a.navnormal{
+    border-width:1px;
+    border-color:#333;
+}
+
 a.navvisited{
-    display:block;
-    width:100%;
-    height:100%;
-    padding:5px;
-    color:black;
-    font-size:14px;
-    text-decoration:none;
-    border-style: none none solid none;
     border-width:3px;
     border-color:#ff7d10;
-    text-decoration: none;
 }
 
 a.addressbutton{
@@ -95,27 +91,49 @@ a.addressbutton{
     vertical-align:middle;
     padding:5px;
     color:black;
-    font-size:14px;
+    font-size:1em;
     text-decoration: none;
 }
 
+a.addressnormal{
+}
+
 a.addressvisited{
-    display:block;
-    width:100%;
-    height:30px;
     background-color:#ff7d10;
-    vertical-align:middle;
-    padding:5px;
-    color:black;
-    font-size:14px;
-    text-decoration:none;
 }
 
 /*其他代码*/
+#PayOnlineText{
+    font-size: 0.7em;
+    color:red;
+}
 
-form>div>.col-xs-6{
+#PayOnlineBt{
+    font-size:0.6em;
+    display:block;
+    border: 2px solid black;
+    padding:2px 2px 2px 2px;
+    text-align:center;
+    width:100px;
+    color:black;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+a.PayOnlineUv{
+    background-color: white;
+}
+
+
+a.PayOnlineVd{
+    background-color: #ff7156;
+}
+
+
+
+
+.normalline{
     margin-top:15px;
-    font-size:1em;
 }
 
 input{

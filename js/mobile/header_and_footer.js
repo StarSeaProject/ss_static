@@ -1,6 +1,6 @@
 
 let strlogin='';
-if(user){
+if(0){
     strlogin=`<div class="navbar-right col-xs-4 text-right container">
             <div class="row marow">
                 <div class="col-xs-4 mabox">
@@ -50,7 +50,7 @@ else{
                                 class="ma text-right">关于</a>  
                 </div>
 		  
-                <div class="navbar-right col-xs-3 text-right">
+                <div class="col-xs-3 mabox">
                     <a href="/login" class="ma text-right">登录</a>
                 </div>
             </div>
