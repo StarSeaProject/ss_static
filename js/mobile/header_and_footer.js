@@ -1,6 +1,6 @@
 
 let strlogin='';
-if(0){
+if(user){
     strlogin=`<div class="navbar-right col-xs-4 text-right container">
             <div class="row marow">
                 <div class="col-xs-4 mabox">
