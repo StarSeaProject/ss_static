@@ -138,3 +138,13 @@ button.paylink{
 button.paylink:hover{
     background-color: #636363;
 }
+
+form.col-xs-2{
+    padding:10px 0 0 0;
+
+}
+
+a.cancelbt{
+    color:red;
+    text-decoration: underline;
+}

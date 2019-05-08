@@ -200,3 +200,7 @@ $(".paylink").click(function(e){
     $("#orderId").val($(e.target).val());
     $("#orderpayform").submit();
 });
+
+$(".cancelbt").click(function(e){
+    $(e.target).parent().submit();
+});
