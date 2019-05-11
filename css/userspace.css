@@ -124,3 +124,15 @@ button.paylink{
 button.paylink:hover{
     background-color: #636363;
 }
+
+form.col-xs-2{
+    padding-top:20px;
+}
+
+a.cancelbt{
+     color:red;
+ }
+
+a.cancelbt:hover{
+    cursor: pointer;
+}
