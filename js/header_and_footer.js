@@ -1,22 +1,30 @@
 $("body").addClass("container-fluid");
 let strlogin='';
-if(user){
-    strlogin=`<div id="loginbox">
-<a class="imgboxlogin" href="/user/info">
-        <img class="userimglogin img-responsive" src="/头像.jpg"/>
-    </a>
-    <div id="floatbox">
-    <hr>
-    <a class="floatbutton" href="/user/info">个人中心</a>
-    <hr>
-    <a class="floatbutton" href="/user/exit">退出登录</a>
-    <hr>
-</div>
-</div>`
-    ;
+let avatarurl;
+let defaultstr=`<a href="/login" class="anav">登录</a>`;
+if(typeof user!='undefined'){
+    if(user){
+        avatarurl=user.avatar;
+        strlogin=`<div id="loginbox">
+            <a class="imgboxlogin" href="/user/info">
+                    <img id="imgavatar" class="userimglogin img-responsive"/>
+                </a>
+                <div id="floatbox">
+                <hr>
+                <a class="floatbutton" href="/user/info">个人中心</a>
+                <hr>
+                <a class="floatbutton" href="/user/exit">退出登录</a>
+                <hr>
+            </div>
+            </div>`
+        ;
+    }
+    else{
+        strlogin=defaultstr;
+    }
 }
 else{
-    strlogin=`<a href="/login" class="anav">登录</a>`;
+    strlogin=defaultstr;
 }
 
 $("body").prepend(`
@@ -51,6 +59,9 @@ $("body").append(`
 		<p class="footbarpara">互联网ICP备案：鲁ICP备17053445号</p>
 	</div>
 `);
+if(avatarurl){
+    $("#imgavatar").attr('src',avatarurl);
+}
 $("#floatbox").hide();
 $("#loginbox").hover(function(){
     $("#floatbox").slideToggle(200);

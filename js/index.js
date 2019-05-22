@@ -2,14 +2,14 @@ $(function() {
     windowwidth=$(window).width();
     console.log(windowwidth);
     if(windowwidth<1920){$(window).scrollLeft((1920-windowwidth)/2);}
-
+    let avatarurl;
     let stra;
     if(user){
+        avatarurl=user.avatar;
 stra=`
 		<div id="usernav">
-
 			<a class="usernavimgbutton"  href="/user/info">
-				<img class="img-circle" id="userimg" src="/头像.jpg">
+				<img class="img-circle" id="userimg">
 			</a>
 			<p class="" id="unavtext1">${user.username}</p>
 			<a class="usernavbutton" id="ubt3" href="/user/exit">
@@ -32,7 +32,9 @@ stra=`
     
     `
     }
-
+    if(avatarurl){
+        $("#imgavatar").attr('src',avatarurl);
+    }
     $("#navup").append(stra)
 
 });

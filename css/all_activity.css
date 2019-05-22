@@ -34,11 +34,11 @@
     font-size: 1.5em;
 }
 
-a{
+a.majorlink{
     color:black;
 }
 
-a:hover {
+a.majorlink:hover {
     color: rgb(7, 251, 251);
     text-decoration: none;
 }
