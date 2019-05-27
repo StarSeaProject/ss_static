@@ -158,12 +158,14 @@ a.addressnormal:hover,a.addressvisited{
     color:red;
 }
 
-#PayOnlineBt{
+.PayOnlineBt{
     display:block;
+    margin-top:10px;
+    margin-bottom:10px;
     border: 2px solid black;
     padding:2px 10px 2px 10px;
     text-align:center;
-    width:240px;
+    width:100%;
     color:black;
     border-radius: 20px;
 }
@@ -173,6 +175,7 @@ a.PayOnlineUv{
 }
 
 a.PayOnlineUv:hover{
+    color:black;
     background-color: #ff7156;
     text-decoration: none;
     cursor:pointer;
@@ -183,6 +186,7 @@ a.PayOnlineVd{
 }
 
 a.PayOnlineVd:hover{
+    color:black;
     text-decoration: none;
     cursor:pointer;
 }

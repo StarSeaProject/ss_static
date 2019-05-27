@@ -1,7 +1,29 @@
 
 let strlogin='';
-if(user){
-    strlogin=`<div class="navbar-right col-xs-4 text-right container">
+let avatarurl;
+let defaultstr=`<div class="navbar-right col-xs-6 text-right container">
+            <div class="row marow">
+                <div class="col-xs-3 mabox">
+                    <a href="/work" class="ma text-right">作品</a> 
+                </div>
+                <div class="col-xs-3 mabox">
+                    <a href="/activity"
+                                class="ma text-right">活动</a>      
+                </div>
+                <div class="col-xs-3 mabox">
+                    <a href="/intro"
+                                class="ma text-right">关于</a>  
+                </div>
+		  
+                <div class="col-xs-3 mabox">
+                    <a href="/login" class="ma text-right">登录</a>
+                </div>
+            </div>
+        </div>`;
+if(typeof user!='undefined'){
+    if(user){
+        avatarurl=user.avatar;
+        strlogin=`<div class="navbar-right col-xs-4 text-right container">
             <div class="row marow">
                 <div class="col-xs-4 mabox">
                     <a href="/work" class="ma text-right">作品</a> 
@@ -21,7 +43,7 @@ if(user){
         <div class="navbar-right col-xs-2 text-right">
             <div id="loginbox">
             <a class="imgboxlogin">
-                    <img class="userimglogin img-responsive" src="/头像.jpg"/>
+                    <img id="imgavatar" class="userimglogin img-responsive"/>
                 </a>
                 <div id="floatbox">
                 <hr>
@@ -34,27 +56,15 @@ if(user){
         </div>
 
 `;
+    }
+    else{
+        strlogin=defaultstr;
+    }
 }
+
+
 else{
-    strlogin=`<div class="navbar-right col-xs-6 text-right container">
-            <div class="row marow">
-                <div class="col-xs-3 mabox">
-                    <a href="/work" class="ma text-right">作品</a> 
-                </div>
-                <div class="col-xs-3 mabox">
-                    <a href="/activity"
-                                class="ma text-right">活动</a>      
-                </div>
-                <div class="col-xs-3 mabox">
-                    <a href="/intro"
-                                class="ma text-right">关于</a>  
-                </div>
-		  
-                <div class="col-xs-3 mabox">
-                    <a href="/login" class="ma text-right">登录</a>
-                </div>
-            </div>
-        </div>`;
+    strlogin=defaultstr;
 }
 
 $("body").prepend(`<div class="container-fluid">
@@ -82,6 +92,9 @@ $("body").append(`
 </div>
 `);
 
+if(avatarurl){
+    $("#imgavatar").attr('src',avatarurl);
+}
 $("#floatbox").hide();
 $("#loginbox").click(function(e){
         $("#floatbox").slideDown(200);

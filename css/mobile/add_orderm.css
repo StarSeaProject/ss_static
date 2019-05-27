@@ -108,28 +108,37 @@ a.addressvisited{
     color:red;
 }
 
-#PayOnlineBt{
+.PayOnlineBt{
     font-size:0.6em;
     display:block;
     border: 2px solid black;
     padding:2px 2px 2px 2px;
     text-align:center;
-    width:100px;
+    width:100%;
     color:black;
     border-radius: 10px;
     text-decoration: none;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 a.PayOnlineUv{
     background-color: white;
 }
 
+a.PayOnlineUv:hover{
+    color:black;
+    text-decoration: none;
+}
 
 a.PayOnlineVd{
     background-color: #ff7156;
 }
 
-
+a.PayOnlineVd:hover{
+    color:black;
+    text-decoration: none;
+}
 
 
 .normalline{
