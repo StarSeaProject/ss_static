@@ -13,26 +13,27 @@ $(function () {
         }
     }
 
-    class PayOnlineButton extends Button{
-        constructor(tag,text,row,input){
-            super(tag);
+    class PayOnlineButton{
+        constructor(tagfalse,tagtrue,row,input){
+            this.tagfalse=tagfalse;
+            this.tagtrue=tagtrue;
             this.value=false;
             this.isShow=true;
-            this.text=text;
             this.row=row;
             this.input=input;
             this.input.val(false);
+            this.PayOnlineBtClass(this.tagfalse);
         }
 
-        PayOnlineBtClass(){
-            this.tag.toggleClass("PayOnlineUv");
-            this.tag.toggleClass("PayOnlineVd");
+        PayOnlineBtClass(tag){
+            tag.toggleClass("PayOnlineUv");
+            tag.toggleClass("PayOnlineVd");
         }
 
         SetTrue(){
             if(!this.value){
-                this.PayOnlineBtClass();
-                this.text.text("已选择在线支付");
+                this.PayOnlineBtClass(this.tagfalse);
+                this.PayOnlineBtClass(this.tagtrue);
                 this.input.val(true);
                 this.value=true;
             }
@@ -40,9 +41,9 @@ $(function () {
 
         SetFalse(){
             if(this.value){
-                this.PayOnlineBtClass();
+                this.PayOnlineBtClass(this.tagfalse);
+                this.PayOnlineBtClass(this.tagtrue);
                 this.input.val(false);
-                this.text.text("选中该选项时将使用在线支付的方式支付邮费")
                 this.value=false;
             }
         }
@@ -62,13 +63,18 @@ $(function () {
             }
         }
 
-        HandleClick(){
-            if(this.value){
-                this.SetFalse();
+        HandleClick(id){
+            if(id==0){
+                if(this.value){
+                    this.SetFalse();
+                }
             }
-            else{
-                this.SetTrue();
+            if(id==1){
+                if(!this.value){
+                    this.SetTrue();
+                }
             }
+
         }
     }
 
@@ -245,7 +251,7 @@ $(function () {
     WriteMap(0);
     $(".addressmap").hide();
 
-    let PayOnline=new PayOnlineButton($("#PayOnlineBt"),$("#PayOnlineText"),$("#isPayOnlineRow"),$("#isPayOnline"));
+    let PayOnline=new PayOnlineButton($(".PayOnlineBt[data-id=0]"),$(".PayOnlineBt[data-id=1]"),$(".isPayOnlineRow"),$("#isPayOnline"));
 
     $(".navbutton").on("click", function () {
 
@@ -254,8 +260,8 @@ $(function () {
         buttonobj=null;
     });
 
-    $("#PayOnlineBt").on("click",function(){
-        PayOnline.HandleClick();
+    $(".PayOnlineBt").on("click",function(e){
+        PayOnline.HandleClick($(e.target).attr('data-id'));
     });
 
     $(".addressmap").on("click", ".addressbutton", function (e) {
