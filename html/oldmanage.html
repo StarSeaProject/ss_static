@@ -38,6 +38,7 @@
                         <th>收货人姓名</th>
                         <th>订单状态</th>
                         <th>下单时间</th>
+                        <th>支付金额</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -97,7 +98,7 @@
         </div>
         <form action="order/remove" method="post" id="removeForm"></form>
         <form action="/order/export" method="post" id="exportXlsForm">
-            <input type="hidden" name="startTime" id="exportXlsStartTime"/>
+            <input type="hidden" name="startTime" id="exportXlsStartTime" />
         </form>
         <script>
             var orderID;
@@ -140,11 +141,18 @@
                     let str = "";
                     for (let order of data.result) {
                         let orderTime = new Date(order.orderTime).toLocaleString();
+                        let orderMoney = order.orderMoney;
+                        if (orderMoney == 0) {
+                            orderMoney = "到付";
+                        } else {
+                            orderMoney = orderMoney / 100 + "元";
+                        }
                         str += `<tr>
                             <td>${order.orderNum}</td>
                             <td>${order.orderName}</td>
                             <td>${order.orderStatus}</td>
                             <td>${orderTime}</td>
+                            <td>${orderMoney}</td>
                             <td>
                                 <button data-orderid=${order.orderId} class="query btn btn-primary btn-lg text-right">查询订单</button>
                                 <button data-orderid=${order.orderId} class="delete btn btn-danger btn-lg text-right">删除订单</button>
