@@ -40,7 +40,7 @@ $(function() {
         stra=defaultstr;
     }
     if(avatarurl){
-        $("#imgavatar").attr('src',avatarurl);
+        $("#userimg").attr('src',avatarurl);
     }
     $("#navup").append(stra)
 
