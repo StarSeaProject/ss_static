@@ -84,6 +84,10 @@
                     <td id="orderphone"></td>
                 </tr>
                 <tr>
+                    <td>支付金额</td>
+                    <td id="ordermoney"></td>
+                </tr>
+                <tr>
                     <td></td>
                     <td><button class="btn btn-primary btn-lg text-right" id="callchangedetail">发货</button></td>
                     <td><button class="btn btn-primary btn-lg text-right" id="back">返回上一级</button></td>
@@ -193,6 +197,11 @@
                                 $("#ordernum").html(order.orderNum);
                                 $("#orderremark").html(order.orderRemark);
                                 $("#orderphone").html(order.orderPhone);
+                                if (order.orderMoney == 0) {
+                                    $("#ordermoney").html("到付");
+                                } else {
+                                    $("#ordermoney").html(order.orderMoney / 100 + "元");
+                                }
                             }
                         });
                     });
